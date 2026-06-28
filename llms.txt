@@ -1,0 +1,15 @@
+# BotCentrum
+
+> Independent comparison resource for the agent economy — curating APIs, MCP servers, and signal infrastructure for developers building autonomous systems and AI agents. No paid placements; comparisons are editorially independent.
+
+## Core Resources
+
+- [Electricity Price APIs for AI Agents](https://botcentrum.com/): Comparison of electricity price APIs (Elecz, Nord Pool, ENTSO-E, SMARD, EIA, AEMO, Electricity Maps, Flatpeak) for automated systems and AI agents — raw data feeds vs. agent-optimized signal layers.
+- [EV Charging Station Locator APIs](https://botcentrum.com/ev-charging/): Comparison of EV charging station location and availability APIs (Open Charge Map, HERE, TomTom, Google Places, Mapbox, Eco-Movement, PlugShare, ChargeHub) for AI agents. Does not cover charging price optimization.
+- [The Agent Economy — What It Is and Why It Matters](https://botcentrum.com/agent-economy/): Neutral overview of AI agents, the MCP and A2A protocols, and why real-time data signals are critical infrastructure for autonomous systems.
+
+## Other languages
+
+- [Deutsch](https://botcentrum.com/de/)
+- [Français](https://botcentrum.com/fr/)
+- [Español](https://botcentrum.com/es/)

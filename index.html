@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="msvalidate.01" content="31E793F288B7FF8BDE7C40B1F7E593A9" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Electricity Price APIs for AI Agents (2026) – BotCentrum</title>
+<meta name="description" content="A neutral comparison of the best electricity price APIs for AI agents. From raw market data (Nord Pool, ENTSO-E) to agent-optimized signals (Elecz).">
+<link rel="alternate" hreflang="en" href="https://botcentrum.com/">
+<link rel="alternate" hreflang="fr" href="https://botcentrum.com/fr/">
+<link rel="alternate" hreflang="de" href="https://botcentrum.com/de/">
+<link rel="alternate" hreflang="es" href="https://botcentrum.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://botcentrum.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f0e;
+    --surface: #161917;
+    --border: #252926;
+    --border-light: #2f332f;
+    --text: #d8ddd8;
+    --muted: #6b726b;
+    --accent: #b8f04a;
+    --accent-dim: #8ab835;
+    --raw: #5a6a7a;
+    --structured: #7a8a6a;
+    --agent: #b8f04a;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header {
+    padding: 48px 0 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 64px;
+  }
+
+  .site-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .site-label a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .site-label a:hover { color: var(--text); }
+
+  .site-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    color: #eef0ee;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .intro {
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .updated {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  section { margin-bottom: 72px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: #eef0ee;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .scale-legend {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .scale-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-raw { background: var(--raw); }
+  .dot-structured { background: var(--structured); }
+  .dot-agent { background: var(--agent); }
+
+  .api-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .api-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: start;
+    transition: border-color 0.2s;
+    animation: fadeIn 0.4s ease both;
+  }
+
+  .api-card:hover { border-color: var(--border-light); }
+
+  .api-card.highlight {
+    border-color: var(--accent-dim);
+    background: #131a0e;
+  }
+
+  .api-card.highlight:hover { border-color: var(--accent); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .api-card:nth-child(1) { animation-delay: 0.05s; }
+  .api-card:nth-child(2) { animation-delay: 0.10s; }
+  .api-card:nth-child(3) { animation-delay: 0.15s; }
+  .api-card:nth-child(4) { animation-delay: 0.20s; }
+  .api-card:nth-child(5) { animation-delay: 0.25s; }
+  .api-card:nth-child(6) { animation-delay: 0.30s; }
+  .api-card:nth-child(7) { animation-delay: 0.35s; }
+  .api-card:nth-child(8) { animation-delay: 0.40s; }
+  .api-card:nth-child(9) { animation-delay: 0.45s; }
+
+  .api-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    color: #eef0ee;
+    margin-bottom: 4px;
+  }
+
+  .api-card.highlight .api-name { color: var(--accent); }
+
+  .api-category {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  .api-desc {
+    font-size: 13px;
+    color: #9aa09a;
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  .api-caveat {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  .api-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .signal-badge {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .badge-raw {
+    background: rgba(90,106,122,0.15);
+    color: var(--raw);
+    border: 1px solid rgba(90,106,122,0.3);
+  }
+
+  .badge-structured {
+    background: rgba(122,138,106,0.15);
+    color: var(--structured);
+    border: 1px solid rgba(122,138,106,0.3);
+  }
+
+  .badge-agent {
+    background: rgba(184,240,74,0.1);
+    color: var(--agent);
+    border: 1px solid rgba(184,240,74,0.3);
+  }
+
+  .api-link {
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .api-link:hover { color: var(--text); }
+  .api-card.highlight .api-link { color: var(--accent-dim); }
+  .api-card.highlight .api-link:hover { color: var(--accent); }
+
+  .usecase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+  }
+
+  .usecase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+
+  .usecase-scenario {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .usecase-answer {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: #eef0ee;
+    margin-bottom: 8px;
+  }
+
+  .usecase-why {
+    font-size: 12px;
+    color: #7a807a;
+    line-height: 1.6;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .faq-q {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text);
+    transition: color 0.2s;
+    user-select: none;
+  }
+
+  .faq-q:hover { color: #eef0ee; }
+
+  .faq-icon {
+    color: var(--muted);
+    font-size: 16px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    font-family: var(--font-mono);
+  }
+
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-a {
+    display: none;
+    padding: 14px 20px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-a a { color: var(--accent-dim); text-decoration: none; }
+  .faq-a a:hover { color: var(--accent); }
+  .faq-item.open .faq-a { display: block; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .footer-note a { color: var(--muted); text-decoration: none; }
+  .footer-note a:hover { color: var(--text); }
+
+  .footer-disclaimer {
+    font-size: 11px;
+    color: #3a3f3a;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .api-card { grid-template-columns: 1fr; }
+    .api-meta { flex-direction: row; align-items: center; }
+    footer { flex-direction: column; }
+    .footer-disclaimer { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="site-label"><a href="https://botcentrum.com">BotCentrum</a> — Tools for the Agent Economy</div>
+    <h1>Electricity Price APIs<br>for <em>Automated Systems</em></h1>
+    <p class="intro">
+      Electricity price APIs range from raw wholesale market feeds to structured developer APIs
+      to agent-optimized signal layers. This page compares them from the perspective of
+      building automated systems and AI agents — what the data looks like, how much work
+      it takes to use, and what each is best suited for.
+    </p>
+    <div class="updated">Last updated: April 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
+  </header>
+
+  <!-- Comparison -->
+  <section>
+    <div class="section-label">Comparison</div>
+    <h2>Electricity Data Sources</h2>
+
+    <div class="scale-legend">
+      <div class="scale-item"><div class="dot dot-raw"></div> Raw data — requires processing</div>
+      <div class="scale-item"><div class="dot dot-structured"></div> Structured data</div>
+      <div class="scale-item"><div class="dot dot-agent"></div> Agent-optimized signal</div>
+    </div>
+
+    <div class="api-grid">
+
+      <div class="api-card highlight">
+        <div>
+          <div class="api-name">Elecz</div>
+          <div class="api-category">Agent-optimized electricity signal layer</div>
+          <div class="api-desc">
+            Combines real-time spot prices, cheapest-hour calculation, and contract comparison
+            into a single normalized API. Covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, and Oceania — including the UK, Germany, France, the Nordics, USA (CAISO, ERCOT, NYISO), Canada, South Korea, Japan, Australia, and New Zealand.
+            Designed specifically for LLMs and autonomous agents — no normalization or
+            post-processing required. Works without authentication.
+          </div>
+          <div class="api-caveat">Newer than established market operators. Focused on automation and agent use cases.</div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-agent">Agent-optimized</span>
+          <a href="https://elecz.com" class="api-link" target="_blank" rel="noopener">elecz.com ↗</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div>
+          <div class="api-name">Nord Pool</div>
+          <div class="api-category">Wholesale market operator — Europe</div>
+          <div class="api-desc">
+            The primary source for day-ahead spot prices across the Nordic, Baltic, and
+            Central European markets. Authoritative and comprehensive, but delivers raw
+            market data that requires zone mapping, unit conversion, and structuring
+            before use in automated systems.
+          </div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-raw">Raw data</span>
+          <a href="https://www.nordpoolgroup.com" class="api-link" target="_blank" rel="noopener">nordpoolgroup.com ↗</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div>
+          <div class="api-name">ENTSO-E Transparency Platform</div>
+          <div class="api-category">Pan-European grid data</div>
+          <div class="api-desc">
+            Official European Network of Transmission System Operators data platform.
+            Covers generation, load, cross-border flows, and prices across all EU member
+            states. Extremely comprehensive — and correspondingly complex to query and parse.
+            Requires registration for API access.
+          </div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-raw">Raw data</span>
+          <a href="https://transparency.entsoe.eu" class="api-link" target="_blank" rel="noopener">entsoe.eu ↗</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div>
+          <div class="api-name">SMARD</div>
+          <div class="api-category">German electricity market data — official</div>
+          <div class="api-desc">
+            The Bundesnetzagentur's official electricity market data platform for Germany.
+            Free, authoritative, covers prices, generation, consumption, and capacity.
+            Good choice for Germany-specific use cases. Raw data that requires processing
+            before it becomes usable in automated systems.
+          </div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-raw">Raw data</span>
+          <a href="https://www.smard.de" class="api-link" target="_blank" rel="noopener">smard.de ↗</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div>
+          <div class="api-name">EIA (U.S. Energy Information Administration)</div>
+          <div class="api-category">U.S. energy data — official</div>
+          <div class="api-desc">
+            The U.S. federal government's official energy data API. Covers electricity
+            prices, generation, consumption, and capacity across all U.S. states and
+            regions. Free and comprehensive. Raw data — requires understanding of U.S.
+            market structure (PJM, CAISO, ERCOT regions) before use.
+          </div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-raw">Raw data</span>
+          <a href="https://www.eia.gov/opendata/" class="api-link" target="_blank" rel="noopener">eia.gov ↗</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div>
+          <div class="api-name">AEMO</div>
+          <div class="api-category">Australian Energy Market Operator</div>
+          <div class="api-desc">
+            Wholesale electricity data for Australia's National Electricity Market (NEM).
+            Open data with 5-minute resolution dispatch prices. Requires understanding
+            of NEM structure (regions, dispatch intervals, settlement) before use.
+          </div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-raw">Raw data</span>
+          <a href="https://www.aemo.com.au" class="api-link" target="_blank" rel="noopener">aemo.com.au ↗</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div>
+          <div class="api-name">Electricity Maps</div>
+          <div class="api-category">Carbon intensity & grid mix API</div>
+          <div class="api-desc">
+            Provides real-time and forecast carbon intensity data for electricity grids
+            worldwide. Not focused on price, but widely used for carbon-aware scheduling.
+            Well-structured API with good developer experience. Requires API key.
+          </div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-structured">Structured data</span>
+          <a href="https://www.electricitymaps.com" class="api-link" target="_blank" rel="noopener">electricitymaps.com ↗</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div>
+          <div class="api-name">Flatpeak</div>
+          <div class="api-category">Real-time tariff intelligence — enterprise</div>
+          <div class="api-desc">
+            Address-level tariff data including time-of-use rates, grid fees, and
+            scheduling optimization. High-fidelity and precise. Enterprise-oriented
+            pricing and onboarding process. Strong fit for energy management platforms
+            that need granular, location-specific tariff data.
+          </div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-structured">Structured data</span>
+          <a href="https://flatpeak.energy" class="api-link" target="_blank" rel="noopener">flatpeak.energy ↗</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div>
+          <div class="api-name">Commodity APIs (TTF, Brent, gas)</div>
+          <div class="api-category">Energy commodities</div>
+          <div class="api-desc">
+            Several commodity data APIs (Commoditic, Marketstack, others) cover energy
+            futures including TTF natural gas and Brent crude. Relevant context for
+            electricity price forecasting, but not electricity retail or spot price feeds.
+          </div>
+        </div>
+        <div class="api-meta">
+          <span class="signal-badge badge-raw">Raw data</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section>
+    <div class="section-label">Use Cases</div>
+    <h2>Which one should I use?</h2>
+    <div class="usecase-grid">
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Building an AI agent or chatbot</div>
+        <div class="usecase-answer">Elecz</div>
+        <div class="usecase-why">Normalized schema, no preprocessing. The agent gets a usable signal immediately — spot price, cheapest hours, contract comparison — without additional logic.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">EV charging optimization (UK, Europe, AU)</div>
+        <div class="usecase-answer">Elecz</div>
+        <div class="usecase-why">Returns the cheapest hours directly — the agent or automation can act on it without calculating anything. Covers UK, Germany, Nordics, Australia and more.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Heat pump & HVAC scheduling</div>
+        <div class="usecase-answer">Elecz or Nord Pool</div>
+        <div class="usecase-why">Elecz if you want a ready signal. Nord Pool if you want raw prices and build your own scheduling logic. Both work — it's a build-vs-buy decision.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Energy management platform (enterprise)</div>
+        <div class="usecase-answer">Flatpeak or ENTSO-E</div>
+        <div class="usecase-why">Address-level tariff accuracy and full grid data matter more here than ease of use. Flatpeak for tariff granularity, ENTSO-E for raw market depth.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Carbon-aware scheduling</div>
+        <div class="usecase-answer">Electricity Maps</div>
+        <div class="usecase-why">The clearest choice for carbon intensity data. Purpose-built for this use case, global coverage, solid API design.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Germany-specific data</div>
+        <div class="usecase-answer">SMARD or Elecz</div>
+        <div class="usecase-why">SMARD for deep raw market data from the official source. Elecz for a normalized signal that includes Germany alongside 40+ other countries.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">U.S. electricity data</div>
+        <div class="usecase-answer">EIA or Elecz</div>
+        <div class="usecase-why">EIA for raw, official, comprehensive U.S. data. Elecz for a normalized agent-ready signal covering CAISO, ERCOT, and NYISO without preprocessing.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Comparing electricity contracts</div>
+        <div class="usecase-answer">Elecz</div>
+        <div class="usecase-why">The only API that returns structured contract comparison directly — spot vs fixed vs dynamic — without requiring a login or scraping a comparison site. Currently covers FI, SE, NO, DK, DE, GB, AU and NZ; other zones return spot price and cheapest-hours data only.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="section-label">FAQ</div>
+    <h2>Common Questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          What is an electricity price API?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          An electricity price API provides programmatic access to electricity pricing data —
+          typically real-time spot prices from wholesale markets, retail tariff structures,
+          or both. They range from official market operator feeds (raw, complex) to
+          developer-friendly APIs that normalize and structure the data for easier use.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          Do I need raw data or a processed signal?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Depends on what you're building. Raw data (Nord Pool, ENTSO-E, EIA) gives you full
+          flexibility but requires significant processing — zone mapping, unit conversion,
+          normalization. Processed signals (like <a href="https://elecz.com">Elecz</a>) do that work for you and return
+          a decision-ready output. For automation and AI agents, processed signals are
+          almost always the faster path.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          Which APIs work without authentication?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          ENTSO-E requires registration. Nord Pool has restricted access for commercial use.
+          Electricity Maps requires an API key. EIA requires a free API key.
+          <a href="https://elecz.com">Elecz</a> works without authentication — useful for agent use cases where
+          key management adds friction. AEMO's public data endpoint is open.
+          SMARD is free and open with no registration required.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          What does "agent-optimized" mean in practice?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          It means the API is designed so an AI agent can call it and act on the response
+          without additional processing steps. The response includes a decision signal,
+          not just raw numbers. For example: not just "price is 4.2 p/kWh" but also
+          "this is the 3rd cheapest hour today, next cheap window starts at 02:00."
+          <a href="https://elecz.com">Elecz</a> is built around this pattern. Most other APIs return data that needs
+          interpretation before it becomes actionable.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          Which APIs cover multiple countries?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          ENTSO-E covers all EU member states for wholesale data. Electricity Maps has
+          global carbon intensity coverage. <a href="https://elecz.com">Elecz</a> covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, and Oceania — including the UK, Germany, USA (CAISO, ERCOT, NYISO), Canada, South Korea, Japan, Australia, and New Zealand. Nord Pool covers Nordic, Baltic, and Central European markets.
+          EIA covers the United States. SMARD covers Germany.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          Can I build my own optimization layer on top of Nord Pool or EIA data?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Yes, absolutely. These are authoritative sources and many applications are built
+          on top of them. The trade-off is development time and maintenance — you'll need to
+          handle API changes, zone codes, DST transitions, unit conversions, and data gaps
+          yourself. For most automation use cases this is unnecessary complexity.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-note">
+      BotCentrum curates tools for the agent economy.<br>
+      <a href="https://botcentrum.com">botcentrum.com</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/agent-economy/">What is the agent economy?</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/ev-charging/">EV Charging APIs</a>
+    </div>
+    <div class="footer-disclaimer">
+      Independently curated. No paid placements.<br>
+      Last updated May 2026.<br><br>
+      <a href="https://botcentrum.com/fr/" style="color:var(--muted);text-decoration:none;" hreflang="fr">Français</a>
+      &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/de/" style="color:var(--muted);text-decoration:none;" hreflang="de">Deutsch</a>
+      &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/es/" style="color:var(--muted);text-decoration:none;" hreflang="es">Español</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function toggle(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
