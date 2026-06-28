@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Best EV Charging Station Locator APIs for AI Agents (2026) | BotCentrum</title>
+  <meta name="description" content="Independent comparison of EV charging station locator APIs for AI agents: Open Charge Map, HERE, TomTom, Mapbox, ChargeHub." />
+  <link rel="canonical" href="https://botcentrum.com/ev-charging/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Best EV Charging Station Locator APIs for AI Agents (2026)",
+        "description": "Independent comparison of EV charging station locator APIs for AI agents: Open Charge Map, HERE, TomTom, Mapbox, ChargeHub.",
+        "datePublished": "2026-06-01",
+        "dateModified": "2026-06-26",
+        "author": { "@type": "Organization", "name": "BotCentrum" },
+        "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
+        "mainEntityOfPage": "https://botcentrum.com/ev-charging/"
+      },
+      {
+        "@type": "ItemList",
+        "name": "EV charging station locator APIs compared",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Open Charge Map" },
+          { "@type": "ListItem", "position": 2, "name": "HERE EV Charge Points API" },
+          { "@type": "ListItem", "position": 3, "name": "TomTom EV Charging Stations Availability API" },
+          { "@type": "ListItem", "position": 4, "name": "Google Places API" },
+          { "@type": "ListItem", "position": 5, "name": "Mapbox EV Charge Finder" },
+          { "@type": "ListItem", "position": 6, "name": "Eco-Movement" },
+          { "@type": "ListItem", "position": 7, "name": "PlugShare API" },
+          { "@type": "ListItem", "position": 8, "name": "ChargeHub API" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is an EV charging station locator API?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An EV charging station locator API provides programmatic access to charging station location, connector type, charging speed, operator details and often live availability status. It answers where a charger is and whether it can be used right now — not how to optimize when or how cheaply to charge."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this page cover EV charging price optimization?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. This page covers station location and availability data only. Electricity price optimization and cheapest-hour charging timing are a separate category, covered on BotCentrum's electricity price API comparison."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which EV charging API is free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open Charge Map is free with an API key and has global, open, community-contributed coverage. Google Places API also has a free usage tier. Most other listed APIs (HERE, TomTom, Mapbox, PlugShare, ChargeHub) are commercial."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which EV charging API has the best live availability data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "TomTom's EV Charging Stations Availability API is purpose-built for current availability by connector type and power level, covering over 800,000 live-data points. HERE, Google Places and Mapbox also provide live status where operator feeds support it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are TomTom and Eco-Movement independent alternatives?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not fully. Eco-Movement is one of the underlying data providers behind part of TomTom's European charging coverage, so the two overlap rather than being two fully separate choices."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which EV charging API is best for North America?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChargeHub focuses specifically on station locations across the US, Canada and Mexico, with a port-level status endpoint and a simple REST integration."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0e0f0e;
+      --surface: #161917;
+      --border: #252926;
+      --border-light: #2f332f;
+      --text: #d8ddd8;
+      --muted: #6b726b;
+      --accent: #b8f04a;
+      --accent-dim: #8ab835;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      padding: 48px 0 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .site-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .site-label a { color: var(--muted); text-decoration: none; }
+    .site-label a:hover { color: var(--text); }
+    .site-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.15;
+      color: #eef0ee;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .intro {
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .intro strong { color: var(--text); }
+
+    .updated {
+      font-size: 11px;
+      color: var(--muted);
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    section { margin-bottom: 72px; scroll-margin-top: 24px; }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 22px;
+      color: #eef0ee;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      color: #eef0ee;
+      margin-bottom: 6px;
+    }
+
+    p { max-width: 720px; color: #9aa09a; }
+    p strong { color: var(--text); }
+    a { color: var(--accent-dim); text-decoration: none; }
+    a:hover { color: var(--accent); }
+
+    .notice {
+      background: #131a0e;
+      border: 1px solid var(--accent-dim);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 13px;
+      color: #9aa09a;
+    }
+    .notice strong { color: var(--accent); }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .toc-title { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .toc ol { list-style: none; counter-reset: toc; padding: 0; }
+    .toc li { counter-increment: toc; margin-bottom: 8px; font-size: 13px; }
+    .toc li::before {
+      content: counter(toc, decimal-leading-zero);
+      color: var(--muted);
+      margin-right: 10px;
+      font-family: var(--font-mono);
+    }
+    .toc a { color: var(--text); }
+    .toc a:hover { color: var(--accent); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+    .card p { margin: 8px 0 0; max-width: none; }
+
+    .card.winner { border-color: var(--accent-dim); background: #131a0e; }
+    .card.winner h3 { color: var(--accent); }
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(184,240,74,0.1);
+      border: 1px solid rgba(184,240,74,0.3);
+      border-radius: 2px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      background: var(--surface);
+      font-size: 13px;
+    }
+    th, td { border-bottom: 1px solid var(--border); padding: 14px; text-align: left; vertical-align: top; color: #9aa09a; }
+    th { color: var(--muted); font-weight: 600; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; }
+    td strong { color: var(--text); }
+    tr:last-child td { border-bottom: none; }
+    .muted { color: var(--muted); font-size: 12px; margin-top: 12px; }
+
+    ul { padding-left: 20px; color: #9aa09a; }
+    li { margin-bottom: 6px; }
+    li strong { color: var(--text); }
+
+    .faq-list { display: flex; flex-direction: column; gap: 2px; margin-top: 24px; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; }
+    .faq-q {
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text);
+      transition: color 0.2s;
+      user-select: none;
+    }
+    .faq-q:hover { color: #eef0ee; }
+    .faq-icon { color: var(--muted); font-size: 16px; flex-shrink: 0; transition: transform 0.2s; font-family: var(--font-mono); }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      padding: 14px 20px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+      border-top: 1px solid var(--border);
+      max-width: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 48px;
+      margin-top: 32px;
+    }
+    .footer-note { font-size: 11px; color: var(--muted); line-height: 1.8; max-width: none; }
+    .footer-note a { color: var(--muted); }
+    .footer-note a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      .card { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="site-label"><a href="https://botcentrum.com">BotCentrum</a> — Tools for the Agent Economy</div>
+    <h1>EV Charging Station<br>Locator APIs</h1>
+    <p class="intro">
+      This page compares APIs that provide EV charging station location,
+      availability, connector types, charging speed, operator details and live
+      status — the data an AI agent needs to answer: <strong>“Where is the
+      nearest open charger my vehicle can use?”</strong>
+    </p>
+    <div class="updated">Last updated: June 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
+  </header>
+
+  <main>
+    <section class="notice">
+      <strong>Scope note:</strong>
+      This page covers EV charging station locator APIs for automated systems.
+      It does not cover smart charging, electricity price optimization, home
+      charger management, OCPP backends, payment processing or fleet energy
+      scheduling. For electricity price data and cheapest-hour charging timing,
+      see <a href="https://elecz.com">Elecz</a>.
+    </section>
+
+    <nav class="toc" aria-label="Table of contents">
+      <div class="toc-title">On this page</div>
+      <ol>
+        <li><a href="#quick-recommendation">Quick recommendation</a></li>
+        <li><a href="#comparison">Comparison</a></li>
+        <li><a href="#what-agents-need">What AI agents actually need</a></li>
+        <li><a href="#open-vs-commercial">Open data vs commercial APIs</a></li>
+        <li><a href="#by-use-case">Recommended choices by use case</a></li>
+        <li><a href="#why-no-single-api">Why there is no single perfect EV charging API</a></li>
+        <li><a href="#botcentrum-view">BotCentrum view</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ol>
+    </nav>
+
+    <section id="quick-recommendation">
+      <div class="section-label">Quick recommendation</div>
+      <h2>Three places to start</h2>
+
+      <div class="grid">
+        <article class="card winner">
+          <span class="tag">Best open / no-cost</span>
+          <h3>Open Charge Map</h3>
+          <p>
+            Free, open, global registry. Best starting point for low-volume or
+            non-commercial use. Real-time accuracy depends on community and
+            network contribution, so quality varies by region.
+          </p>
+        </article>
+
+        <article class="card winner">
+          <span class="tag">Best for routing-integrated navigation</span>
+          <h3>HERE EV Charge Points API</h3>
+          <p>
+            Structured commercial data covering locations, connectors, operators,
+            tariffs and predictions, built to integrate with HERE's broader
+            routing and navigation stack.
+          </p>
+        </article>
+
+        <article class="card winner">
+          <span class="tag">Best for a focused live-availability check</span>
+          <h3>TomTom EV Charging Stations Availability API</h3>
+          <p>
+            A narrow, purpose-built endpoint for current availability by
+            connector type and power level — useful when an agent already knows
+            the station and just needs live status. Much of TomTom's underlying
+            charging data is sourced via a partnership with Eco-Movement.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <div class="section-label">Comparison</div>
+      <h2>EV Charging Locator APIs</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>API</th>
+            <th>Best for</th>
+            <th>Live availability</th>
+            <th>Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Open Charge Map</strong></td>
+            <td>Open, global, low-volume lookup</td>
+            <td>Varies by network/region</td>
+            <td>Free, API key required</td>
+          </tr>
+          <tr>
+            <td><strong>HERE EV Charge Points API</strong></td>
+            <td>Commercial navigation &amp; routing</td>
+            <td>Yes, via connected operator feeds</td>
+            <td>Commercial</td>
+          </tr>
+          <tr>
+            <td><strong>TomTom EV Charging Stations Availability</strong></td>
+            <td>Real-time availability lookups</td>
+            <td>Yes — 800,000+ points with live data (1.8M+ mapped total)</td>
+            <td>Commercial</td>
+          </tr>
+          <tr>
+            <td><strong>Google Places API</strong></td>
+            <td>Consumer-scale place search incl. EV chargers</td>
+            <td>Yes, where Google has operator data</td>
+            <td>Commercial (free tier available)</td>
+          </tr>
+          <tr>
+            <td><strong>Mapbox EV Charge Finder</strong></td>
+            <td>Map &amp; route-integrated charger search</td>
+            <td>Yes, OCPI-formatted</td>
+            <td>Commercial</td>
+          </tr>
+          <tr>
+            <td><strong>Eco-Movement</strong></td>
+            <td>Underlying European charge point data provider — supplies several other platforms, including TomTom, rather than being a typical standalone developer API</td>
+            <td>Yes</td>
+            <td>Commercial / B2B</td>
+          </tr>
+          <tr>
+            <td><strong>PlugShare API</strong></td>
+            <td>Rich crowd-sourced station data with driver reviews/photos</td>
+            <td>Yes, where reported</td>
+            <td>Commercial only — no personal or non-commercial licenses</td>
+          </tr>
+          <tr>
+            <td><strong>ChargeHub API</strong></td>
+            <td>North America (US, Canada, Mexico) station locations</td>
+            <td>Port-level status endpoint available</td>
+            <td>Commercial, simple REST integration</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted">
+        Note: Eco-Movement's data already underlies part of TomTom's charging
+        coverage in Europe — the two are not fully independent alternatives to
+        each other.
+      </p>
+    </section>
+
+    <section id="what-agents-need">
+      <div class="section-label">For developers</div>
+      <h2>What AI agents actually need</h2>
+      <p>
+        AI agents do not usually need a raw charging station database. They need
+        structured answers that can drive routing, recommendations and automation.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Location</h3>
+          <p>Coordinates, address, operator and navigation-ready station data.</p>
+        </article>
+        <article class="card">
+          <h3>Compatibility</h3>
+          <p>Connector type, charging speed, max power and vehicle compatibility.</p>
+        </article>
+        <article class="card">
+          <h3>Live status</h3>
+          <p>Available, occupied, out of service or unknown charger status.</p>
+        </article>
+        <article class="card">
+          <h3>Routing context</h3>
+          <p>Distance, detour impact, opening hours, nearby alternatives and reliability.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="open-vs-commercial">
+      <div class="section-label">Access models</div>
+      <h2>Open data vs commercial APIs</h2>
+      <p>
+        Open EV charging datasets are valuable for broad discovery and public
+        interest use cases. Commercial APIs are usually stronger for production
+        navigation, live availability, support and data normalization — but
+        access models vary widely: some (Google Places, Mapbox) offer self-serve
+        signup, while others (PlugShare) require a commercial license and
+        EV-industry vetting before granting access at all.
+      </p>
+    </section>
+
+    <section id="by-use-case">
+      <div class="section-label">Use Cases</div>
+      <h2>Recommended choices by use case</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Use case</th>
+            <th>Recommended option</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Open research / public data</td>
+            <td>Open Charge Map</td>
+            <td>Global open registry, free API key, no commercial gatekeeping.</td>
+          </tr>
+          <tr>
+            <td>Navigation-grade EV apps</td>
+            <td>HERE or Google Places</td>
+            <td>Mature mapping ecosystems with structured EV-specific data.</td>
+          </tr>
+          <tr>
+            <td>Live availability checks</td>
+            <td>TomTom</td>
+            <td>Focused current-availability endpoint by connector and power level.</td>
+          </tr>
+          <tr>
+            <td>Deep European coverage</td>
+            <td>Eco-Movement (directly, or via TomTom)</td>
+            <td>One of the underlying data sources for European charge point info.</td>
+          </tr>
+          <tr>
+            <td>North America-focused apps</td>
+            <td>ChargeHub</td>
+            <td>Simple REST API, North American coverage, port-level status.</td>
+          </tr>
+          <tr>
+            <td>Crowd-sourced driver context (reviews, photos)</td>
+            <td>PlugShare</td>
+            <td>Rich community data — but requires a paid, vetted commercial license.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="why-no-single-api">
+      <div class="section-label">Market structure</div>
+      <h2>Why there is no single perfect EV charging API</h2>
+      <p>
+        EV charging data is fragmented across open registries, charge point
+        operators, mobility service providers, navigation companies and user
+        communities. Some providers resell or build on each other's underlying
+        data (TomTom on Eco-Movement, for instance), which means apparent
+        choice in this market is narrower than the number of listed APIs
+        suggests. Location data may be broad while live availability is
+        incomplete; operator data may be accurate but limited to one network
+        or one region.
+      </p>
+      <p>
+        For production AI agents, the strongest architecture may combine multiple
+        sources: an open or commercial station index, a live availability provider,
+        and fallback logic when real-time status is missing.
+      </p>
+    </section>
+
+    <section id="botcentrum-view">
+      <div class="section-label">Verdict</div>
+      <h2>BotCentrum view</h2>
+      <p>For AI agents, the right choice depends on the task, not a single overall winner:</p>
+      <ul>
+        <li><strong>Open discovery, no budget:</strong> Open Charge Map</li>
+        <li><strong>Navigation-grade commercial data:</strong> HERE or Google Places</li>
+        <li><strong>Live availability lookups:</strong> TomTom</li>
+        <li><strong>North America only:</strong> ChargeHub</li>
+      </ul>
+      <p>
+        No reviewed provider currently looks like a universal, MCP-native,
+        AI-agent-first EV charging station locator — most are commercial APIs
+        built for in-app navigation, not lightweight standalone agent queries.
+      </p>
+    </section>
+
+    <section id="faq">
+      <div class="section-label">FAQ</div>
+      <h2>Common Questions</h2>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggle(this)">
+            What is an EV charging station locator API?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            An EV charging station locator API provides programmatic access to
+            charging station location, connector type, charging speed, operator
+            details and often live availability status. It answers where a
+            charger is and whether it can be used right now — not how to
+            optimize when or how cheaply to charge.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggle(this)">
+            Does this page cover EV charging price optimization?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            No. This page covers station location and availability data only.
+            Electricity price optimization and cheapest-hour charging timing
+            are a separate category, covered on
+            <a href="https://elecz.com">Elecz</a>.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggle(this)">
+            Which EV charging API is free?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            Open Charge Map is free with an API key and has global, open,
+            community-contributed coverage. Google Places API also has a free
+            usage tier. Most other listed APIs (HERE, TomTom, Mapbox, PlugShare,
+            ChargeHub) are commercial.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggle(this)">
+            Which EV charging API has the best live availability data?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            TomTom's EV Charging Stations Availability API is purpose-built for
+            current availability by connector type and power level, covering
+            over 800,000 live-data points. HERE, Google Places and Mapbox also
+            provide live status where operator feeds support it.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggle(this)">
+            Are TomTom and Eco-Movement independent alternatives?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            Not fully. Eco-Movement is one of the underlying data providers
+            behind part of TomTom's European charging coverage, so the two
+            overlap rather than being two fully separate choices.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggle(this)">
+            Which EV charging API is best for North America?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            ChargeHub focuses specifically on station locations across the US,
+            Canada and Mexico, with a port-level status endpoint and a simple
+            REST integration.
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-note">
+      Looking for electricity price data instead? See
+      <a href="https://botcentrum.com/">Best Electricity Price APIs for Automated Systems</a>.<br><br>
+      BotCentrum evaluates APIs and tools from the perspective of AI agents,
+      autonomous systems and automated workflows. Assessments are editorial
+      and based on publicly available documentation; they may change as APIs,
+      pricing, coverage and documentation evolve.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function toggle(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
