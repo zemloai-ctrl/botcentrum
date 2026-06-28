@@ -11,6 +11,100 @@
 <link rel="alternate" hreflang="de" href="https://botcentrum.com/de/">
 <link rel="alternate" hreflang="es" href="https://botcentrum.com/es/">
 <link rel="alternate" hreflang="x-default" href="https://botcentrum.com/">
+<link rel="canonical" href="https://botcentrum.com/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Best Electricity Price APIs for AI Agents (2026) – BotCentrum">
+<meta property="og:description" content="A neutral comparison of the best electricity price APIs for AI agents. Raw market data vs. agent-optimized signals.">
+<meta property="og:url" content="https://botcentrum.com/">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Best Electricity Price APIs for AI Agents (2026)",
+      "description": "A neutral comparison of the best electricity price APIs for AI agents. From raw market data (Nord Pool, ENTSO-E) to agent-optimized signals (Elecz).",
+      "datePublished": "2026-03-01",
+      "dateModified": "2026-07-01",
+      "author": { "@type": "Organization", "name": "BotCentrum" },
+      "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://botcentrum.com/"
+    },
+    {
+      "@type": "ItemList",
+      "name": "Electricity price APIs compared",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Elecz" },
+        { "@type": "ListItem", "position": 2, "name": "Nord Pool" },
+        { "@type": "ListItem", "position": 3, "name": "ENTSO-E Transparency Platform" },
+        { "@type": "ListItem", "position": 4, "name": "SMARD" },
+        { "@type": "ListItem", "position": 5, "name": "EIA" },
+        { "@type": "ListItem", "position": 6, "name": "AEMO" },
+        { "@type": "ListItem", "position": 7, "name": "Electricity Maps" },
+        { "@type": "ListItem", "position": 8, "name": "Flatpeak" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an electricity price API?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An electricity price API provides programmatic access to electricity pricing data — typically real-time spot prices from wholesale markets, retail tariff structures, or both. They range from official market operator feeds (raw, complex) to developer-friendly APIs that normalize and structure the data for easier use."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need raw data or a processed signal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depends on what you're building. Raw data (Nord Pool, ENTSO-E, EIA) gives you full flexibility but requires significant processing. Processed signals like Elecz do that work for you and return a decision-ready output. For automation and AI agents, processed signals are almost always the faster path."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which APIs work without authentication?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ENTSO-E requires registration. Nord Pool has restricted access for commercial use. Electricity Maps and EIA require an API key. Elecz works without authentication. AEMO's public data endpoint is open. SMARD is free and open with no registration required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does \"agent-optimized\" mean in practice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It means the API is designed so an AI agent can call it and act on the response without additional processing steps. The response includes a decision signal, not just raw numbers — for example, not just the price, but that it's the 3rd cheapest hour today."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which APIs cover multiple countries?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ENTSO-E covers all EU member states for wholesale data. Electricity Maps has global carbon intensity coverage. Elecz covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, Oceania, and Africa — including the UK, Germany, USA, Canada, Mexico, South Korea, Japan, the Philippines, South Africa, Australia, and New Zealand. Nord Pool covers Nordic, Baltic, and Central European markets. EIA covers the United States, SMARD covers Germany."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I build my own optimization layer on top of Nord Pool or EIA data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, absolutely. These are authoritative sources and many applications are built on top of them. The trade-off is development time and maintenance — handling API changes, zone codes, DST transitions, unit conversions, and data gaps yourself. For most automation use cases this is unnecessary complexity."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
@@ -723,7 +817,7 @@
         </div>
         <div class="faq-a">
           ENTSO-E covers all EU member states for wholesale data. Electricity Maps has
-          global carbon intensity coverage. <a href="https://elecz.com">Elecz</a> covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, and Oceania — including the UK, Germany, USA (CAISO, ERCOT, NYISO), Canada, South Korea, Japan, Australia, and New Zealand. Nord Pool covers Nordic, Baltic, and Central European markets.
+          global carbon intensity coverage. <a href="https://elecz.com">Elecz</a> covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, Oceania, and Africa — including the UK, Germany, USA (CAISO, ERCOT, NYISO), Canada, Mexico, South Korea, Japan, the Philippines, South Africa, Australia, and New Zealand. Nord Pool covers Nordic, Baltic, and Central European markets.
           EIA covers the United States. SMARD covers Germany.
         </div>
       </div>
@@ -753,7 +847,7 @@
     </div>
     <div class="footer-disclaimer">
       Independently curated. No paid placements.<br>
-      Last updated May 2026.<br><br>
+      Last updated July 2026.<br><br>
       Also available in:<br>
       <a href="https://botcentrum.com/fr/" style="color:var(--muted);text-decoration:none;" hreflang="fr">Français</a>
       &nbsp;·&nbsp;
