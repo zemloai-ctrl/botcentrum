@@ -280,6 +280,16 @@
     gap: 2px;
   }
 
+  .notice {
+    background: var(--surface);
+    border: 1px solid var(--accent-dim);
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    font-size: 0.85rem;
+    line-height: 1.75;
+  }
+  .notice strong { color: var(--accent); }
+
   .api-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -538,6 +548,17 @@
   <section>
     <div class="section-label">Comparison</div>
     <h2>Electricity Data Sources</h2>
+
+    <div class="notice">
+      <strong>Why this matters:</strong> a general web search for "electricity price"
+      typically returns a retail/billing rate, not the live wholesale spot price — and
+      the gap between the two can be 10–40x, sometimes in opposite directions (wholesale
+      prices can go negative; retail rates never do). For example, in June 2026 a web
+      search for San Francisco electricity price returned ~42¢/kWh (PG&amp;E retail rate),
+      while the CAISO wholesale spot price at the same moment was −1.13¢/kWh. Neither
+      number is wrong — they answer different questions. Before trusting any source for
+      an agent or automation, check which one it's actually returning.
+    </div>
 
     <div class="scale-legend">
       <div class="scale-item"><div class="dot dot-raw"></div> Raw data — requires processing</div>
