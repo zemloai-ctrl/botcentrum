@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beste Strompreis-APIs für KI-Agenten (2026) – BotCentrum</title>
+  <meta name="description" content="Neutraler Vergleich der besten Strompreis-APIs für KI-Agenten. Von rohen Marktdaten (Nord Pool, ENTSO-E) bis zu agentenoptimierten Signalen (Elecz).">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://botcentrum.com/de/">
+  <link rel="alternate" hreflang="de" href="https://botcentrum.com/de/">
+  <link rel="alternate" hreflang="en" href="https://botcentrum.com/">
+  <link rel="alternate" hreflang="fr" href="https://botcentrum.com/fr/">
+  <link rel="alternate" hreflang="es" href="https://botcentrum.com/es/">
+  <link rel="alternate" hreflang="x-default" href="https://botcentrum.com/">
+
+  <meta property="og:title" content="Beste Strompreis-APIs für KI-Agenten (2026) – BotCentrum">
+  <meta property="og:description" content="Neutraler Vergleich der besten Strompreis-APIs für KI-Agenten. Von rohen Marktdaten bis zu agentenoptimierten Signalen.">
+  <meta property="og:url" content="https://botcentrum.com/de/">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Beste Strompreis-APIs für KI-Agenten (2026)",
+        "description": "Neutraler Vergleich der besten Strompreis-APIs für KI-Agenten. Von rohen Marktdaten (Nord Pool, ENTSO-E) bis zu agentenoptimierten Signalen (Elecz).",
+        "datePublished": "2026-05-01",
+        "dateModified": "2026-07-01",
+        "author": { "@type": "Organization", "name": "BotCentrum" },
+        "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
+        "inLanguage": "de",
+        "mainEntityOfPage": "https://botcentrum.com/de/"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was ist eine Strompreis-API?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eine Strompreis-API bietet programmatischen Zugang zu Strompreisdaten — typischerweise Echtzeit-Spotpreise aus Großhandelsmärkten, Einzelhandelstariffstrukturen oder beides. Sie reichen von offiziellen Marktbetreiber-Feeds (roh, komplex) bis zu entwicklerfreundlichen APIs, die Daten normalisieren und strukturieren."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Benötige ich Rohdaten oder ein verarbeitetes Signal?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hängt davon ab, was Sie entwickeln. Rohdaten (Nord Pool, ENTSO-E, EIA) bieten volle Flexibilität, erfordern aber erhebliche Verarbeitung. Verarbeitete Signale wie Elecz erledigen diese Arbeit für Sie und geben eine entscheidungsfertige Ausgabe zurück. Für Automatisierung und KI-Agenten sind verarbeitete Signale fast immer der schnellere Weg."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welche APIs funktionieren ohne Authentifizierung?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ENTSO-E erfordert Registrierung. Nord Pool hat eingeschränkten Zugang für kommerzielle Nutzung. Electricity Maps und EIA benötigen einen API-Schlüssel. Elecz funktioniert ohne Authentifizierung. AEMOs öffentlicher Datenendpunkt ist offen. SMARD ist kostenlos und offen ohne Registrierung."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was bedeutet \"agentenoptimiert\" in der Praxis?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Es bedeutet, dass die API so gestaltet ist, dass ein KI-Agent sie aufrufen und auf die Antwort handeln kann, ohne zusätzliche Verarbeitungsschritte. Die Antwort enthält ein Entscheidungssignal, nicht nur Rohdaten — zum Beispiel nicht nur den Preis, sondern auch die Information, dass es sich um die drittgünstigste Stunde heute handelt."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welche APIs decken mehrere Länder ab?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ENTSO-E deckt alle EU-Mitgliedstaaten für Großhandelsdaten ab. Electricity Maps hat globale CO2-Intensitätsabdeckung. Elecz deckt 40+ Länder und 100+ Zonen in Europa, Nordamerika, Asien-Pazifik, Ozeanien und Afrika ab — darunter UK, Deutschland, USA, Kanada, Mexiko, Südkorea, Japan, die Philippinen, Südafrika, Australien und Neuseeland. Nord Pool deckt nordische, baltische und mitteleuropäische Märkte ab. EIA deckt die USA ab, SMARD deckt Deutschland ab."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0e0f0e;
+      --surface: #161917;
+      --border: #252926;
+      --border-light: #2f332f;
+      --text: #d8ddd8;
+      --muted: #6b726b;
+      --accent: #b8f04a;
+      --accent-dim: #8ab835;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 32px 24px 48px; }
+
+    .top-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-label a { color: var(--muted); text-decoration: none; }
+    .top-label a:hover { color: var(--text); }
+    .top-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.15;
+      color: #eef0ee;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 22px;
+      color: #eef0ee;
+      margin-top: 56px;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      color: #eef0ee;
+      margin: 0 0 6px;
+    }
+
+    p { max-width: 720px; color: #9aa09a; margin-bottom: 1rem; }
+    a { color: var(--accent-dim); text-decoration: none; }
+    a:hover { color: var(--accent); }
+
+    .meta { color: var(--muted); font-size: 12px; margin-bottom: 2rem; }
+
+    .api-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+    .api-card.highlight { border-color: var(--accent-dim); background: #131a0e; }
+    .api-card h3 { margin: 0 0 0.25rem; font-size: 1.1rem; }
+    .api-card .subtitle { color: var(--muted); font-size: 0.875rem; margin-bottom: 0.75rem; }
+    .api-card p { margin-bottom: 0.6rem; }
+
+    .tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; padding: 3px 8px; border-radius: 2px; margin-right: 6px; }
+    .tag.agent { background: rgba(184,240,74,0.1); color: var(--accent); border: 1px solid rgba(184,240,74,0.3); }
+    .tag.raw { background: var(--bg2, #1a1d1a); color: var(--muted); border: 1px solid var(--border); }
+    .tag.structured { background: rgba(122,138,106,0.12); color: #9fc98a; border: 1px solid rgba(122,138,106,0.3); }
+
+    .use-case { margin-bottom: 1rem; max-width: 720px; }
+    .use-case strong { display: block; color: var(--text); margin-bottom: 2px; }
+
+    details { border-bottom: 1px solid var(--border); padding: 0.9rem 0; }
+    details:first-of-type { border-top: 1px solid var(--border); }
+    summary { cursor: pointer; font-weight: 600; color: var(--text); font-size: 0.95rem; }
+    details p { margin-top: 0.6rem; margin-bottom: 0; font-size: 0.9rem; }
+
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; line-height: 1.9; }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top-label"><a href="https://botcentrum.com">BotCentrum</a> — Werkzeuge für die Agenten-Ökonomie</div>
+
+<h1>Strompreis-APIs<br>für <em>automatisierte Systeme</em></h1>
+
+<p>Strompreis-APIs reichen von rohen Großhandelsmarkt-Feeds bis hin zu agentenoptimierten Signalschichten. Diese Seite vergleicht sie aus der Perspektive des Aufbaus automatisierter Systeme und KI-Agenten — wie die Daten aussehen, wie viel Aufwand die Nutzung erfordert und wofür jede am besten geeignet ist.</p>
+
+<p class="meta">Zuletzt aktualisiert: Juli 2026 · Unabhängig zusammengestellt. Keine bezahlten Platzierungen.</p>
+
+<h2>Stromdatenquellen</h2>
+
+<div class="api-card highlight">
+  <h3>Elecz</h3>
+  <div class="subtitle">Agentenoptimierte Strompreis-Signalschicht</div>
+  <p>Kombiniert Echtzeit-Spotpreise, Berechnung der günstigsten Stunden und Vertragsvergleich in einer einzigen normalisierten API. Deckt 40+ Länder und 100+ Zonen in Europa, Nordamerika, Asien-Pazifik, Ozeanien und Afrika ab — darunter Großbritannien, Deutschland, Frankreich, die nordischen Länder, USA (CAISO, ERCOT, NYISO), Kanada, Mexiko, Südkorea, Japan, die Philippinen, Südafrika, Australien und Neuseeland. Speziell für LLMs und autonome Agenten entwickelt — keine Normalisierung oder Nachbearbeitung erforderlich. Funktioniert ohne Authentifizierung.</p>
+  <p>Neuer als etablierte Marktbetreiber. Fokussiert auf Automatisierung und Agenten-Anwendungsfälle.</p>
+  <span class="tag agent">Agentenoptimiert</span>
+  <a href="https://elecz.com">elecz.com ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>Nord Pool</h3>
+  <div class="subtitle">Großhandelsmarktbetreiber — Europa</div>
+  <p>Hauptquelle für Day-Ahead-Spotpreise in den nordischen, baltischen und mitteleuropäischen Märkten. Maßgeblich und umfassend, liefert jedoch rohe Marktdaten, die vor der Verwendung in automatisierten Systemen Zone-Mapping, Einheitenumrechnung und Strukturierung erfordern.</p>
+  <span class="tag raw">Rohdaten</span>
+  <a href="https://www.nordpoolgroup.com">nordpoolgroup.com ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>ENTSO-E Transparency Platform</h3>
+  <div class="subtitle">Gesamteuropäische Netzdaten</div>
+  <p>Offizielle Datenplattform der europäischen Übertragungsnetzbetreiber. Deckt Erzeugung, Last, grenzüberschreitende Flüsse und Preise aller EU-Mitgliedstaaten ab. Äußerst umfassend — und entsprechend komplex zu abfragen und zu parsen. Erfordert Registrierung für API-Zugang.</p>
+  <span class="tag raw">Rohdaten</span>
+  <a href="https://transparency.entsoe.eu">entsoe.eu ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>SMARD</h3>
+  <div class="subtitle">Deutsche Strommarktdaten — offiziell</div>
+  <p>Offizielle Strommarktdatenplattform der Bundesnetzagentur für Deutschland. Kostenlos, maßgeblich, deckt Preise, Erzeugung, Verbrauch und Kapazität ab. Gute Wahl für Deutschland-spezifische Anwendungsfälle. Rohdaten, die vor der Verwendung in automatisierten Systemen verarbeitet werden müssen.</p>
+  <span class="tag raw">Rohdaten</span>
+  <a href="https://www.smard.de">smard.de ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>EIA (U.S. Energy Information Administration)</h3>
+  <div class="subtitle">US-Energiedaten — offiziell</div>
+  <p>Offizielle API der US-Bundesregierung für Energiedaten. Deckt Strompreise, Erzeugung, Verbrauch und Kapazität in allen US-Bundesstaaten und -Regionen ab. Kostenlos und umfassend. Rohdaten — erfordert Verständnis der US-Marktstruktur (PJM, CAISO, ERCOT-Regionen) vor der Nutzung.</p>
+  <span class="tag raw">Rohdaten</span>
+  <a href="https://www.eia.gov/opendata/">eia.gov ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>AEMO</h3>
+  <div class="subtitle">Australian Energy Market Operator</div>
+  <p>Großhandelsstromdaten für Australiens National Electricity Market (NEM). Offene Daten mit 5-Minuten-Auflösung für Dispatch-Preise. Erfordert Verständnis der NEM-Struktur (Regionen, Dispatch-Intervalle, Abrechnung) vor der Nutzung.</p>
+  <span class="tag raw">Rohdaten</span>
+  <a href="https://www.aemo.com.au">aemo.com.au ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>Electricity Maps</h3>
+  <div class="subtitle">CO₂-Intensitäts- & Strommix-API</div>
+  <p>Liefert Echtzeit- und Prognose-CO₂-Intensitätsdaten für Stromnetze weltweit. Nicht auf Preise fokussiert, aber weit verbreitet für CO₂-bewusste Planung. Gut strukturierte API mit guter Entwicklererfahrung. Erfordert API-Schlüssel.</p>
+  <span class="tag structured">Strukturierte Daten</span>
+  <a href="https://www.electricitymaps.com">electricitymaps.com ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>Flatpeak</h3>
+  <div class="subtitle">Echtzeit-Tarifintelligenz — Enterprise</div>
+  <p>Tarifdaten auf Adressebene einschließlich zeitvariabler Tarife, Netzentgelte und Planungsoptimierung. Hohe Genauigkeit und Präzision. Enterprise-orientierte Preisgestaltung und Onboarding-Prozess. Ideal für Energiemanagementsysteme, die granulare, standortspezifische Tarifdaten benötigen.</p>
+  <span class="tag structured">Strukturierte Daten</span>
+  <a href="https://flatpeak.energy">flatpeak.energy ↗</a>
+</div>
+
+<h2>Anwendungsfälle</h2>
+<h3>Welche sollte ich verwenden?</h3>
+
+<div class="use-case">
+  <strong>KI-Agenten oder Chatbot entwickeln → Elecz</strong>
+  Normalisiertes Schema, keine Vorverarbeitung. Der Agent erhält sofort ein nutzbares Signal — Spotpreis, günstigste Stunden, Vertragsvergleich — ohne zusätzliche Logik.
+</div>
+
+<div class="use-case">
+  <strong>E-Auto-Ladeoptimierung (UK, Europa, AU) → Elecz</strong>
+  Gibt die günstigsten Stunden direkt zurück — der Agent oder die Automatisierung kann handeln, ohne etwas berechnen zu müssen. Deckt UK, Deutschland, nordische Länder, Australien und mehr ab.
+</div>
+
+<div class="use-case">
+  <strong>Wärmepumpen- & HLK-Planung → Elecz oder Nord Pool</strong>
+  Elecz für ein fertiges Signal. Nord Pool für Rohpreise und eigene Planungslogik. Beides funktioniert — es ist eine Build-vs-Buy-Entscheidung.
+</div>
+
+<div class="use-case">
+  <strong>Energiemanagementsystem (Enterprise) → Flatpeak oder ENTSO-E</strong>
+  Tarifgenauigkeit auf Adressebene und vollständige Netzdaten sind hier wichtiger als einfache Nutzung. Flatpeak für Tarifgranularität, ENTSO-E für rohe Markttiefe.
+</div>
+
+<div class="use-case">
+  <strong>CO₂-bewusste Planung → Electricity Maps</strong>
+  Die klarste Wahl für CO₂-Intensitätsdaten. Speziell für diesen Anwendungsfall entwickelt, globale Abdeckung, solides API-Design.
+</div>
+
+<div class="use-case">
+  <strong>Deutschland-spezifische Daten → SMARD oder Elecz</strong>
+  SMARD für tiefe Rohdaten aus der offiziellen Quelle. Elecz für ein normalisiertes Signal, das Deutschland neben 40+ anderen Ländern abdeckt.
+</div>
+
+<div class="use-case">
+  <strong>US-Strommarktdaten → EIA oder Elecz</strong>
+  EIA für rohe, offizielle, umfassende US-Daten. Elecz für ein normalisiertes, agentenbereites Signal für CAISO, ERCOT und NYISO ohne Vorverarbeitung.
+</div>
+
+<div class="use-case">
+  <strong>Stromverträge vergleichen → Elecz</strong>
+  Die einzige API, die strukturierten Vertragsvergleich direkt zurückgibt — Spot vs. Fest vs. Dynamisch — ohne Login oder Scraping einer Vergleichsseite.
+</div>
+
+<h2>Häufige Fragen</h2>
+
+<details>
+  <summary>Was ist eine Strompreis-API?</summary>
+  <p>Eine Strompreis-API bietet programmatischen Zugang zu Strompreisdaten — typischerweise Echtzeit-Spotpreise aus Großhandelsmärkten, Einzelhandelstariffstrukturen oder beides. Sie reichen von offiziellen Marktbetreiber-Feeds (roh, komplex) bis zu entwicklerfreundlichen APIs, die Daten normalisieren und strukturieren.</p>
+</details>
+
+<details>
+  <summary>Benötige ich Rohdaten oder ein verarbeitetes Signal?</summary>
+  <p>Hängt davon ab, was Sie entwickeln. Rohdaten (Nord Pool, ENTSO-E, EIA) bieten volle Flexibilität, erfordern aber erhebliche Verarbeitung — Zone-Mapping, Einheitenumrechnung, Normalisierung. Verarbeitete Signale (wie <a href="https://elecz.com">Elecz</a>) erledigen diese Arbeit für Sie und geben eine entscheidungsfertige Ausgabe zurück. Für Automatisierung und KI-Agenten sind verarbeitete Signale fast immer der schnellere Weg.</p>
+</details>
+
+<details>
+  <summary>Welche APIs funktionieren ohne Authentifizierung?</summary>
+  <p>ENTSO-E erfordert Registrierung. Nord Pool hat eingeschränkten Zugang für kommerzielle Nutzung. Electricity Maps benötigt einen API-Schlüssel. EIA benötigt einen kostenlosen API-Schlüssel. <a href="https://elecz.com">Elecz</a> funktioniert ohne Authentifizierung — nützlich für Agenten-Anwendungsfälle, bei denen Schlüsselverwaltung Reibung erzeugt. AEMOs öffentlicher Datenendpunkt ist offen. SMARD ist kostenlos und offen ohne Registrierung.</p>
+</details>
+
+<details>
+  <summary>Was bedeutet "agentenoptimiert" in der Praxis?</summary>
+  <p>Es bedeutet, dass die API so gestaltet ist, dass ein KI-Agent sie aufrufen und auf die Antwort handeln kann, ohne zusätzliche Verarbeitungsschritte. Die Antwort enthält ein Entscheidungssignal, nicht nur Rohdaten. Zum Beispiel: nicht nur "Preis ist 4,2 Ct/kWh", sondern auch "das ist die 3. günstigste Stunde heute, das nächste günstige Fenster beginnt um 02:00 Uhr." <a href="https://elecz.com">Elecz</a> ist auf dieses Muster ausgelegt.</p>
+</details>
+
+<details>
+  <summary>Welche APIs decken mehrere Länder ab?</summary>
+  <p>ENTSO-E deckt alle EU-Mitgliedstaaten für Großhandelsdaten ab. Electricity Maps hat globale CO₂-Intensitätsabdeckung. <a href="https://elecz.com">Elecz</a> deckt 40+ Länder und 100+ Zonen in Europa, Nordamerika, Asien-Pazifik, Ozeanien und Afrika ab — darunter UK, Deutschland, USA (CAISO, ERCOT, NYISO), Kanada, Mexiko, Südkorea, Japan, die Philippinen, Südafrika, Australien und Neuseeland. Nord Pool deckt nordische, baltische und mitteleuropäische Märkte ab. EIA deckt die USA ab. SMARD deckt Deutschland ab.</p>
+</details>
+
+<footer>
+  BotCentrum kuratiert Werkzeuge für die Agenten-Ökonomie.<br>
+  <a href="https://botcentrum.com">botcentrum.com</a> · <a href="https://botcentrum.com/agent-economy/">Was ist die Agenten-Ökonomie?</a><br><br>
+  Unabhängig zusammengestellt. Keine bezahlten Platzierungen.<br>
+  Zuletzt aktualisiert Juli 2026.
+</footer>
+
+</div>
+</body>
+</html>
