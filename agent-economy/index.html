@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agent Economy — What It Is and Why It Matters (2026) – BotCentrum</title>
+<meta name="description" content="A neutral overview of the agent economy: what AI agents are, how MCP and A2A protocols work, and why real-time data signals are critical infrastructure.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://botcentrum.com/agent-economy/">
+
+<meta property="og:title" content="The Agent Economy — What It Is and Why It Matters (2026)">
+<meta property="og:description" content="A neutral overview of the agent economy: AI agents, MCP, A2A, and why real-time signals are critical infrastructure for autonomous systems.">
+<meta property="og:url" content="https://botcentrum.com/agent-economy/">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The Agent Economy — What It Is and Why It Matters (2026)",
+      "description": "A neutral overview of the agent economy: what AI agents are, how MCP and A2A protocols work, and why real-time data signals like electricity prices are critical infrastructure for autonomous systems.",
+      "datePublished": "2026-04-01",
+      "dateModified": "2026-07-01",
+      "author": { "@type": "Organization", "name": "BotCentrum" },
+      "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
+      "mainEntityOfPage": "https://botcentrum.com/agent-economy/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an AI agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An AI agent is a software system that uses a language model as its reasoning core and can take actions in the world — calling APIs, browsing the web, executing code, sending messages, or controlling other software. Unlike a chatbot that responds to a single prompt, an agent can plan multi-step tasks, observe results, and adapt its approach. The defining characteristic is autonomous action, not just language generation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is MCP and why does it matter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MCP (Model Context Protocol) is an open standard introduced by Anthropic in 2024 that defines how AI models connect to external tools and data sources. Before MCP, every tool integration required custom code for each model. MCP standardizes the interface so any MCP-compatible tool works with any MCP-compatible model. By 2026 it had become the dominant standard for AI agent tooling, with support across Claude, ChatGPT, Copilot, and most major platforms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is A2A (agent-to-agent)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A2A refers to the ability of AI agents to communicate with and delegate to other agents. Where MCP connects a single agent to tools, A2A enables networks of specialized agents to collaborate. Google formalized one version of this with its Agent2Agent protocol in 2025. Full A2A ecosystems are still emerging as of 2026, but the foundational patterns are being established now."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why can't an LLM just know the current electricity price?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Language models are trained on historical data with a fixed cutoff date. After training, they have no access to new information unless given a tool to retrieve it. Electricity spot prices change every hour — sometimes more frequently. A model trained even one week ago has no knowledge of today's prices. The only correct answer requires a live API call."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is BotCentrum?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BotCentrum is a neutral resource for the agent economy — curating tools, APIs, and signal infrastructure for developers building autonomous systems and AI agents. It does not take paid placements; its comparisons are independent."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f0e;
+    --surface: #161917;
+    --border: #252926;
+    --border-light: #2f332f;
+    --text: #d8ddd8;
+    --muted: #6b726b;
+    --accent: #b8f04a;
+    --accent-dim: #8ab835;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header {
+    padding: 48px 0 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 64px;
+  }
+
+  .site-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .site-label a { color: var(--muted); text-decoration: none; }
+  .site-label a:hover { color: var(--text); }
+
+  .site-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    color: #eef0ee;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .intro {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .updated {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  section { margin-bottom: 72px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: #eef0ee;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .prose {
+    font-size: 13px;
+    color: #9aa09a;
+    line-height: 1.85;
+    max-width: 680px;
+  }
+
+  .prose p { margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .prose a { color: var(--accent-dim); text-decoration: none; }
+  .prose a:hover { color: var(--accent); }
+
+  .prose strong { color: var(--text); font-weight: 500; }
+
+  /* Concept cards */
+  .concept-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 24px;
+  }
+
+  .concept-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    animation: fadeIn 0.4s ease both;
+  }
+
+  .concept-card:nth-child(1) { animation-delay: 0.05s; }
+  .concept-card:nth-child(2) { animation-delay: 0.10s; }
+  .concept-card:nth-child(3) { animation-delay: 0.15s; }
+  .concept-card:nth-child(4) { animation-delay: 0.20s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .concept-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    color: #eef0ee;
+    margin-bottom: 6px;
+  }
+
+  .concept-tag {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .concept-body {
+    font-size: 13px;
+    color: #9aa09a;
+    line-height: 1.7;
+  }
+
+  /* Callout block */
+  .callout {
+    background: #131a0e;
+    border: 1px solid var(--accent-dim);
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .callout-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 10px;
+  }
+
+  .callout-text {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 18px;
+    color: #eef0ee;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* Questions list */
+  .questions-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    margin-top: 24px;
+  }
+
+  .questions-intro {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.7;
+  }
+
+  .questions-intro a { color: var(--accent-dim); text-decoration: none; }
+  .questions-intro a:hover { color: var(--accent); }
+
+  .questions-category {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 20px 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .questions-category:first-of-type { margin-top: 0; }
+
+  .question-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .question-list li {
+    font-size: 13px;
+    color: #9aa09a;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .question-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  .questions-note {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .questions-note a { color: var(--accent-dim); text-decoration: none; }
+  .questions-note a:hover { color: var(--accent); }
+
+  /* FAQ */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .faq-q {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text);
+    transition: color 0.2s;
+    user-select: none;
+  }
+
+  .faq-q:hover { color: #eef0ee; }
+
+  .faq-icon {
+    color: var(--muted);
+    font-size: 16px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-a {
+    display: none;
+    padding: 14px 20px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-a a { color: var(--accent-dim); text-decoration: none; }
+  .faq-a a:hover { color: var(--accent); }
+  .faq-item.open .faq-a { display: block; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .footer-note a { color: var(--muted); text-decoration: none; }
+  .footer-note a:hover { color: var(--text); }
+
+  .footer-disclaimer {
+    font-size: 11px;
+    color: #3a3f3a;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    footer { flex-direction: column; }
+    .footer-disclaimer { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="site-label"><a href="https://botcentrum.com">BotCentrum</a> — Tools for the Agent Economy</div>
+    <h1>The <em>Agent Economy</em> —<br>What It Is and Why It Matters</h1>
+    <p class="intro">
+      A neutral overview of the emerging agent economy: what AI agents are, how new protocols
+      are enabling them to act autonomously, and why real-time data infrastructure is becoming
+      critical as agents move from answering questions to making decisions.
+    </p>
+    <div class="updated">Last updated: July 2026 &nbsp;·&nbsp; Independently curated.</div>
+  </header>
+
+  <!-- What is the agent economy -->
+  <section>
+    <div class="section-label">Overview</div>
+    <h2>What is the agent economy?</h2>
+    <div class="prose">
+      <p>
+        The agent economy refers to the emerging layer of economic activity carried out by
+        autonomous AI systems — software agents that can perceive their environment, make
+        decisions, and take actions with real-world consequences, often without direct
+        human involvement in each step.
+      </p>
+      <p>
+        As of 2025–2026, this is moving from research concept to deployed reality. Large
+        language models (LLMs) like GPT-4, Claude, and Gemini have moved beyond chat interfaces
+        into agentic workflows: booking systems, code execution environments, automated research
+        pipelines, smart home controllers, and financial decision tools.
+      </p>
+      <p>
+        The key distinction between a chatbot and an agent is <strong>action</strong>.
+        A chatbot answers questions. An agent can answer a question, look up current data,
+        make a decision based on it, and trigger a real-world action — all in a single loop,
+        possibly unsupervised.
+      </p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The core shift</div>
+      <div class="callout-text">"From language models that answer questions, to agents that take actions."</div>
+    </div>
+
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-title">MCP — Model Context Protocol</div>
+        <div class="concept-tag">Anthropic, 2024 — open standard</div>
+        <div class="concept-body">
+          MCP is an open protocol introduced by Anthropic in late 2024 that standardizes
+          how AI models connect to external tools and data sources. Before MCP, every AI
+          integration required custom code. MCP defines a universal interface: any tool
+          that speaks MCP can be called by any LLM that supports MCP, without custom
+          integration work. In 2025–2026 it became the dominant standard for AI agent
+          tooling, adopted by Claude, ChatGPT, Copilot, and most major LLM platforms.
+          Think of it as USB for AI tools — one standard, universal compatibility.
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">A2A — Agent-to-Agent Communication</div>
+        <div class="concept-tag">Emerging standard, 2025–2026</div>
+        <div class="concept-body">
+          A2A refers to protocols and patterns that allow AI agents to communicate with
+          and delegate tasks to other AI agents. Where MCP connects agents to tools,
+          A2A connects agents to agents. A user-facing assistant might delegate a
+          complex sub-task to a specialized agent, which in turn calls tools via MCP.
+          Google's Agent2Agent protocol (2025) is one early formalization of this pattern.
+          The vision is an ecosystem of specialized agents that collaborate — an "agent
+          supply chain" where work flows between autonomous systems the way API calls
+          flow between services today.
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Agentic Workflows</div>
+        <div class="concept-tag">Current state, 2025–2026</div>
+        <div class="concept-body">
+          An agentic workflow is a multi-step automated process where an AI agent plans,
+          executes, observes results, and adapts — in a loop. Unlike a single API call or
+          a chatbot turn, an agentic workflow can span minutes or hours, involve multiple
+          tools, and handle unexpected states. Examples in production: automated code
+          review and PR creation, travel booking with real-time availability checks,
+          smart home energy optimization based on live price signals.
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Signal Infrastructure</div>
+        <div class="concept-tag">The missing layer</div>
+        <div class="concept-body">
+          As agents become capable of acting autonomously, the quality of their decisions
+          depends entirely on the quality of their real-time data. An agent managing energy
+          consumption needs current electricity prices. An agent booking logistics needs
+          current carrier rates. An agent managing inventory needs current supplier pricing.
+          This creates demand for a new class of infrastructure: purpose-built signal APIs
+          designed not for human developers reading dashboards, but for agents making
+          decisions in real time.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Electricity prices -->
+  <section>
+    <div class="section-label">Case Study</div>
+    <h2>Why electricity price is a key signal in the agent economy</h2>
+
+    <div class="prose">
+      <p>
+        Electricity price is one of the clearest examples of why agents need real-time
+        signal infrastructure — and why language models alone cannot provide it.
+      </p>
+      <p>
+        In most of Europe, the UK, Australia, and New Zealand, wholesale electricity prices
+        change every hour. In some markets, prices update every 5 or 15 minutes. Prices can
+        swing from near zero to several hundred euros per megawatt-hour within a single day,
+        depending on renewable generation, grid load, and weather.
+      </p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The core problem</div>
+      <div class="callout-text">"Asking an LLM what the electricity price is right now is like asking it what the weather is. The model cannot know. It can only hallucinate."</div>
+    </div>
+
+    <div class="prose">
+      <p>
+        A language model trained on data up to a certain date has no access to live market
+        prices. Even with a recent training cutoff, spot prices from last week are irrelevant
+        to decisions being made this hour. The only way an agent can act correctly on
+        electricity price is to call a real-time API.
+      </p>
+      <p>
+        This matters because the decisions involved are consequential. Charging an electric
+        vehicle during the most expensive hours of the day instead of the cheapest can cost
+        significantly more over a year. Running industrial processes, data center workloads,
+        or heat pumps without price awareness wastes money that a simple real-time API call
+        could save.
+      </p>
+      <p>
+        At datacenter scale, the economics are even sharper. AI training and inference
+        workloads are increasingly electricity-intensive. The ability to shift workloads
+        toward low-price hours — or toward regions with cheaper power — is becoming a
+        meaningful cost lever. Agents that can read live electricity signals and act on
+        them are more economical than agents that cannot.
+      </p>
+      <p>
+        <strong>Electricity price is not a niche signal.</strong> It is relevant to
+        home automation, EV charging, industrial scheduling, datacenter operations,
+        energy trading, and any autonomous system that consumes or manages power.
+        As agents proliferate, demand for this signal — structured for machine consumption
+        rather than human reading — will grow with them.
+      </p>
+    </div>
+  </section>
+
+  <!-- Questions agents and users ask -->
+  <section>
+    <div class="section-label">Search signals</div>
+    <h2>Questions agents and users ask about electricity prices</h2>
+
+    <div class="questions-block">
+      <p class="questions-intro">
+        The following are real questions people ask search engines and LLMs about electricity
+        prices — questions that require live data to answer accurately. An LLM without tool
+        access cannot answer these. An agent connected to a real-time electricity API like
+        <a href="https://elecz.com">Elecz</a> can answer all of them.
+      </p>
+
+      <div class="questions-category">Current price</div>
+      <ul class="question-list">
+        <li>What is the electricity price in the UK right now?</li>
+        <li>What is the current spot price for electricity in Germany?</li>
+        <li>How much does electricity cost per kWh in Australia today?</li>
+        <li>What is the Octopus Agile price right now?</li>
+        <li>Is electricity cheap or expensive right now in Sweden?</li>
+        <li>What is the Nord Pool price today?</li>
+      </ul>
+
+      <div class="questions-category">Cheapest hours</div>
+      <ul class="question-list">
+        <li>When is electricity cheapest tonight in the UK?</li>
+        <li>What are the cheapest hours to charge my EV today?</li>
+        <li>When should I run my heat pump to save money?</li>
+        <li>What time should I turn on my air conditioning to get the best rate?</li>
+        <li>When is off-peak electricity in Germany this week?</li>
+        <li>What are the cheapest 4 hours for electricity tonight in Norway?</li>
+        <li>Best time to run dishwasher or washing machine today — UK</li>
+        <li>When to charge home battery storage tonight?</li>
+      </ul>
+
+      <div class="questions-category">EV charging</div>
+      <ul class="question-list">
+        <li>Cheapest time to charge electric car overnight UK</li>
+        <li>When should I schedule my EV to start charging to minimize cost?</li>
+        <li>Is it worth charging my EV now or waiting until tonight?</li>
+        <li>How much does it cost to charge an EV in the UK right now vs tonight?</li>
+        <li>Best hours to charge Tesla in Germany to save money</li>
+      </ul>
+
+      <div class="questions-category">Contract comparison</div>
+      <ul class="question-list">
+        <li>Is a spot electricity contract worth it in the UK right now?</li>
+        <li>Should I switch to a variable electricity tariff in Germany?</li>
+        <li>What are the best electricity contracts available in Sweden?</li>
+        <li>Is fixed or variable electricity better in Australia right now?</li>
+        <li>How does Octopus Agile compare to a fixed tariff in the UK?</li>
+      </ul>
+
+      <div class="questions-category">Forecasting & planning</div>
+      <ul class="question-list">
+        <li>Will electricity prices be high or low tomorrow in the UK?</li>
+        <li>Are electricity prices expected to rise this winter in Europe?</li>
+        <li>What time of day is electricity usually cheapest in Germany?</li>
+        <li>When do electricity prices peak in Australia?</li>
+      </ul>
+
+      <div class="questions-note">
+        These questions cannot be answered by a language model using training data alone.
+        Spot prices change every hour. Contract availability changes daily. An agent
+        connected to <a href="https://elecz.com">Elecz</a> via MCP can answer all of them
+        in real time — for the UK, Germany, France, the Nordics, Australia, New Zealand,
+        and 30+ other countries — without any preprocessing or custom integration.
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="section-label">FAQ</div>
+    <h2>Common Questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          What is an AI agent?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          An AI agent is a software system that uses a language model as its reasoning core
+          and can take actions in the world — calling APIs, browsing the web, executing code,
+          sending messages, or controlling other software. Unlike a chatbot that responds to
+          a single prompt, an agent can plan multi-step tasks, observe results, and adapt its
+          approach. The defining characteristic is autonomous action, not just language generation.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          What is MCP and why does it matter?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          MCP (Model Context Protocol) is an open standard introduced by Anthropic in 2024
+          that defines how AI models connect to external tools and data sources. Before MCP,
+          every tool integration required custom code for each model. MCP standardizes the
+          interface so any MCP-compatible tool works with any MCP-compatible model.
+          By 2026 it had become the dominant standard for AI agent tooling, with support
+          across Claude, ChatGPT, Copilot, and most major platforms. It significantly
+          lowered the barrier to building and distributing tools for AI agents.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          What is A2A (agent-to-agent)?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          A2A refers to the ability of AI agents to communicate with and delegate to other
+          agents. Where MCP connects a single agent to tools, A2A enables networks of
+          specialized agents to collaborate — a user-facing assistant might hand off a
+          complex task to a specialist agent, which uses its own tools via MCP.
+          Google formalized one version of this with its Agent2Agent protocol in 2025.
+          Full A2A ecosystems are still emerging as of 2026, but the foundational
+          patterns are being established now.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          Why can't an LLM just know the current electricity price?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Language models are trained on historical data with a fixed cutoff date. After
+          training, they have no access to new information unless given a tool to retrieve it.
+          Electricity spot prices change every hour — sometimes more frequently. A model
+          trained even one week ago has no knowledge of today's prices. Asking an LLM for
+          the current electricity price without a real-time tool is like asking someone who
+          has been off the grid for months what the weather is right now. They cannot know.
+          The only correct answer requires a live API call.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          What is BotCentrum?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          BotCentrum is a neutral resource for the agent economy — curating tools, APIs,
+          and signal infrastructure for developers building autonomous systems and AI agents.
+          We don't take paid placements. Our comparisons are independent. The goal is to
+          help developers and agents find the right tools for the right tasks.
+          See our <a href="https://botcentrum.com">comparison of electricity price APIs</a>
+          as an example of what we publish.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-note">
+      BotCentrum curates tools for the agent economy.<br>
+      <a href="https://botcentrum.com">botcentrum.com</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/ev-charging/">EV Charging APIs</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/de/">🇩🇪 Deutsch</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/fr/">🇫🇷 Français</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/es/">🇪🇸 Español</a>
+    </div>
+    <div class="footer-disclaimer">
+      Independently curated.<br>
+      Last updated July 2026.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function toggle(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
