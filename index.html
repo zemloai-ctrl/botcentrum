@@ -1,898 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="msvalidate.01" content="31E793F288B7FF8BDE7C40B1F7E593A9" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Best Electricity Price APIs for AI Agents (2026) – BotCentrum</title>
-<meta name="description" content="A neutral comparison of the best electricity price APIs for AI agents. From raw market data (Nord Pool, ENTSO-E) to agent-optimized signals (Elecz).">
-<link rel="alternate" hreflang="en" href="https://botcentrum.com/">
-<link rel="alternate" hreflang="fr" href="https://botcentrum.com/fr/">
-<link rel="alternate" hreflang="de" href="https://botcentrum.com/de/">
-<link rel="alternate" hreflang="es" href="https://botcentrum.com/es/">
-<link rel="alternate" hreflang="x-default" href="https://botcentrum.com/">
-<link rel="canonical" href="https://botcentrum.com/">
-<meta name="robots" content="index, follow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Data Sources for AI Agents (2026) | BotCentrum</title>
+  <meta name="description" content="Onboarding-focused comparison of real-time data APIs for AI agents: electricity, weather, exchange rates, seismic and satellite data.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://botcentrum.com/data-sources/">
+  <link rel="alternate" hreflang="en" href="https://botcentrum.com/data-sources/">
+  <link rel="alternate" hreflang="x-default" href="https://botcentrum.com/data-sources/">
 
-<meta property="og:title" content="Best Electricity Price APIs for AI Agents (2026) – BotCentrum">
-<meta property="og:description" content="A neutral comparison of the best electricity price APIs for AI agents. Raw market data vs. agent-optimized signals.">
-<meta property="og:url" content="https://botcentrum.com/">
-<meta property="og:type" content="website">
+  <meta property="og:title" content="Real-Time Data Sources for AI Agents (2026) | BotCentrum">
+  <meta property="og:description" content="Which real-time data APIs let an AI agent make its first successful request fastest — no signup, no key, no approval wait.">
+  <meta property="og:url" content="https://botcentrum.com/data-sources/">
+  <meta property="og:type" content="website">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Article",
-      "headline": "Best Electricity Price APIs for AI Agents (2026)",
-      "description": "A neutral comparison of the best electricity price APIs for AI agents. From raw market data (Nord Pool, ENTSO-E) to agent-optimized signals (Elecz).",
-      "datePublished": "2026-03-01",
-      "dateModified": "2026-07-01",
-      "author": { "@type": "Organization", "name": "BotCentrum" },
-      "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
-      "inLanguage": "en",
-      "mainEntityOfPage": "https://botcentrum.com/"
-    },
-    {
-      "@type": "ItemList",
-      "name": "Electricity price APIs compared",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Elecz" },
-        { "@type": "ListItem", "position": 2, "name": "Nord Pool" },
-        { "@type": "ListItem", "position": 3, "name": "ENTSO-E Transparency Platform" },
-        { "@type": "ListItem", "position": 4, "name": "SMARD" },
-        { "@type": "ListItem", "position": 5, "name": "EIA" },
-        { "@type": "ListItem", "position": 6, "name": "AEMO" },
-        { "@type": "ListItem", "position": 7, "name": "Electricity Maps" },
-        { "@type": "ListItem", "position": 8, "name": "Flatpeak" }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is an electricity price API?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "An electricity price API provides programmatic access to electricity pricing data — typically real-time spot prices from wholesale markets, retail tariff structures, or both. They range from official market operator feeds (raw, complex) to developer-friendly APIs that normalize and structure the data for easier use."
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Real-Time Data Sources for AI Agents (2026)",
+        "description": "Onboarding-focused comparison of real-time data APIs for AI agents: electricity, weather, exchange rates, seismic and satellite data.",
+        "datePublished": "2026-06-01",
+        "dateModified": "2026-07-01",
+        "author": { "@type": "Organization", "name": "BotCentrum" },
+        "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://botcentrum.com/data-sources/"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are real-time data sources for AI agents?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Real-time data sources provide AI agents with current information about the world, such as electricity prices, weather, exchange rates or seismic activity. Unlike static datasets, they continuously reflect changing conditions that affect real-world decisions." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do AI agents need real-time data?",
+            "acceptedAnswer": { "@type": "Answer", "text": "An AI agent can only make good decisions if it knows what is happening now. An EV charging agent needs current electricity prices; a logistics agent needs live weather and hazard conditions." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between an API and an MCP server?",
+            "acceptedAnswer": { "@type": "Answer", "text": "An API provides data through HTTP endpoints. An MCP (Model Context Protocol) server exposes tools and data in a standardized format designed for AI assistants and agents to call directly. Many services offer APIs; only a few provide native MCP support — we mark this explicitly in every category." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does onboarding matter for AI agents?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The best data source isn't always the one with the most features. If a developer must wait days for manual approval or negotiate commercial access before the first request, that delay slows deployment far more than API design quality does." }
+          },
+          {
+            "@type": "Question",
+            "name": "What makes a source \"Ready Now\" (no signup, no key)?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It allows a developer — or an agent acting on a developer's behalf — to make a successful request immediately, with no account creation, no approval step, and no key." }
+          },
+          {
+            "@type": "Question",
+            "name": "Which APIs require no signup at all?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Elecz (electricity), Open-Meteo, NOAA, and MET Norway (weather), Frankfurter API and the ECB Data Portal (exchange rates), and USGS and GeoNet NZ (seismic) all require zero signup — a request can be made immediately." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the best electricity price API for AI agents?",
+            "acceptedAnswer": { "@type": "Answer", "text": "There's no single best answer for every use case — it depends on country coverage, onboarding friction, and whether structured signals (not just raw prices) are needed. This guide compares electricity sources on objective onboarding facts rather than subjective ratings." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why doesn't this guide rank sources by features?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Feature comparisons get subjective and go stale fast. We stick to facts that anyone can verify against a source's own documentation: signup, API key, manual approval, and time to first call." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why aren't flights, hotels, or productivity tools included?",
+            "acceptedAnswer": { "@type": "Answer", "text": "This guide covers real-time observation data — what's happening in the world right now — not action tools or booking platforms. Productivity, travel, and general web search are already well-served by existing directories." }
+          },
+          {
+            "@type": "Question",
+            "name": "Where do AI agents get real-world data?",
+            "acceptedAnswer": { "@type": "Answer", "text": "From sources like the ones in this guide: public agencies (USGS, NOAA, MET Norway, ECB), open APIs (Open-Meteo, Frankfurter), and a small number of commercial providers with varying onboarding requirements. Coverage and access vary a lot by category." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I suggest a new data source?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes — contact BotCentrum directly. Every submission is verified against the provider's own documentation before adding it; if a claim can't be verified, it doesn't go on the page." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does ENTSO-E require an API key?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. ENTSO-E requires registration and a manual email request for API access, with approval taking up to 3 business days. It is not a self-service signup." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use NOAA's weather API without an API key?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. api.weather.gov requires no registered API key — only a User-Agent header identifying your application. No signup, no approval step." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a free earthquake API with no signup required?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The USGS Earthquake Hazards Program provides a public GeoJSON feed with no authentication, no signup, and no rate-limit registration required." }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the free tier limit on the Electricity Maps API?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The free tier is limited to live carbon-intensity data for a single zone, at 50 requests/hour. It does not provide free access across multiple countries or regions — for that, a commercial plan is required." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a currency exchange rate API that doesn't require an API key?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both the Frankfurter API and the ECB's own Data Portal provide exchange rate data over a standard REST/SDMX interface with no key or signup required." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does NASA Earthdata require an account?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Most Earthdata products require a free Earthdata Login account. It's self-service and doesn't require manual approval, but it's a multi-step signup, not a same-second API key." }
+          },
+          {
+            "@type": "Question",
+            "name": "Which weather APIs work without any authentication at all?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Open-Meteo requires no authentication of any kind. NOAA (api.weather.gov) and MET Norway require only a User-Agent identification header — not a registered key." }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to get API access to Nord Pool's electricity market data?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Nord Pool does not offer an open developer API. Access requires registering as a Trading Participant and signing a commercial agreement specific to the market segment — there is no self-service path." }
           }
-        },
-        {
-          "@type": "Question",
-          "name": "Do I need raw data or a processed signal?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Depends on what you're building. Raw data (Nord Pool, ENTSO-E, EIA) gives you full flexibility but requires significant processing. Processed signals like Elecz do that work for you and return a decision-ready output. For automation and AI agents, processed signals are almost always the faster path."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which APIs work without authentication?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ENTSO-E requires registration. Nord Pool has restricted access for commercial use. Electricity Maps and EIA require an API key. Elecz works without authentication. AEMO's public data endpoint is open. SMARD is free and open with no registration required."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What does \"agent-optimized\" mean in practice?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "It means the API is designed so an AI agent can call it and act on the response without additional processing steps. The response includes a decision signal, not just raw numbers — for example, not just the price, but that it's the 3rd cheapest hour today."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which APIs cover multiple countries?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ENTSO-E covers all EU member states for wholesale data. Electricity Maps has global carbon intensity coverage. Elecz covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, Oceania, and Africa — including the UK, Germany, USA, Canada, Mexico, South Korea, Japan, the Philippines, South Africa, Australia, and New Zealand. Nord Pool covers Nordic, Baltic, and Central European markets. EIA covers the United States, SMARD covers Germany."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I build my own optimization layer on top of Nord Pool or EIA data?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, absolutely. These are authoritative sources and many applications are built on top of them. The trade-off is development time and maintenance — handling API changes, zone codes, DST transitions, unit conversions, and data gaps yourself. For most automation use cases this is unnecessary complexity."
-          }
-        }
-      ]
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0e0f0e;
+      --surface: #161917;
+      --border: #252926;
+      --border-light: #2f332f;
+      --text: #d8ddd8;
+      --muted: #6b726b;
+      --accent: #b8f04a;
+      --accent-dim: #8ab835;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-mono: 'DM Mono', monospace;
     }
-  ]
-}
-</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0e0f0e;
-    --surface: #161917;
-    --border: #252926;
-    --border-light: #2f332f;
-    --text: #d8ddd8;
-    --muted: #6b726b;
-    --accent: #b8f04a;
-    --accent-dim: #8ab835;
-    --raw: #5a6a7a;
-    --structured: #7a8a6a;
-    --agent: #b8f04a;
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-mono: 'DM Mono', monospace;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-mono);
-    font-size: 14px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .wrap {
-    position: relative;
-    z-index: 1;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  header {
-    padding: 48px 0 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 64px;
-  }
-
-  .site-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .site-label a {
-    color: var(--muted);
-    text-decoration: none;
-  }
-
-  .site-label a:hover { color: var(--text); }
-
-  .site-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  h1 {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(32px, 5vw, 52px);
-    line-height: 1.15;
-    color: #eef0ee;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .intro {
-    color: var(--muted);
-    max-width: 560px;
-    margin-bottom: 32px;
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  .updated {
-    font-size: 11px;
-    color: var(--muted);
-    padding: 16px 0;
-    border-top: 1px solid var(--border);
-  }
-
-  section { margin-bottom: 72px; }
-
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  h2 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 22px;
-    color: #eef0ee;
-    margin-bottom: 20px;
-    letter-spacing: -0.01em;
-  }
-
-  .scale-legend {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 28px;
-    flex-wrap: wrap;
-  }
-
-  .scale-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .dot-raw { background: var(--raw); }
-  .dot-structured { background: var(--structured); }
-  .dot-agent { background: var(--agent); }
-
-  .api-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .notice {
-    background: var(--surface);
-    border: 1px solid var(--accent-dim);
-    padding: 18px 22px;
-    margin-bottom: 28px;
-    font-size: 0.85rem;
-    line-height: 1.75;
-  }
-  .notice strong { color: var(--accent); }
-
-  .api-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 20px 24px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    align-items: start;
-    transition: border-color 0.2s;
-    animation: fadeIn 0.4s ease both;
-  }
-
-  .api-card:hover { border-color: var(--border-light); }
-
-  .api-card.highlight {
-    border-color: var(--accent-dim);
-    background: #131a0e;
-  }
-
-  .api-card.highlight:hover { border-color: var(--accent); }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .api-card:nth-child(1) { animation-delay: 0.05s; }
-  .api-card:nth-child(2) { animation-delay: 0.10s; }
-  .api-card:nth-child(3) { animation-delay: 0.15s; }
-  .api-card:nth-child(4) { animation-delay: 0.20s; }
-  .api-card:nth-child(5) { animation-delay: 0.25s; }
-  .api-card:nth-child(6) { animation-delay: 0.30s; }
-  .api-card:nth-child(7) { animation-delay: 0.35s; }
-  .api-card:nth-child(8) { animation-delay: 0.40s; }
-  .api-card:nth-child(9) { animation-delay: 0.45s; }
-
-  .api-name {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 16px;
-    color: #eef0ee;
-    margin-bottom: 4px;
-  }
-
-  .api-card.highlight .api-name { color: var(--accent); }
-
-  .api-category {
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 10px;
-    letter-spacing: 0.05em;
-  }
-
-  .api-desc {
-    font-size: 13px;
-    color: #9aa09a;
-    line-height: 1.6;
-    max-width: 520px;
-  }
-
-  .api-caveat {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 8px;
-    font-style: italic;
-  }
-
-  .api-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-
-  .signal-badge {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 2px;
-    white-space: nowrap;
-  }
-
-  .badge-raw {
-    background: rgba(90,106,122,0.15);
-    color: var(--raw);
-    border: 1px solid rgba(90,106,122,0.3);
-  }
-
-  .badge-structured {
-    background: rgba(122,138,106,0.15);
-    color: var(--structured);
-    border: 1px solid rgba(122,138,106,0.3);
-  }
-
-  .badge-agent {
-    background: rgba(184,240,74,0.1);
-    color: var(--agent);
-    border: 1px solid rgba(184,240,74,0.3);
-  }
-
-  .api-link {
-    font-size: 11px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .api-link:hover { color: var(--text); }
-  .api-card.highlight .api-link { color: var(--accent-dim); }
-  .api-card.highlight .api-link:hover { color: var(--accent); }
-
-  .usecase-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2px;
-  }
-
-  .usecase-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 20px;
-  }
-
-  .usecase-scenario {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
-  }
-
-  .usecase-answer {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 15px;
-    color: #eef0ee;
-    margin-bottom: 8px;
-  }
-
-  .usecase-why {
-    font-size: 12px;
-    color: #7a807a;
-    line-height: 1.6;
-  }
-
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .faq-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .faq-q {
-    padding: 16px 20px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    color: var(--text);
-    transition: color 0.2s;
-    user-select: none;
-  }
-
-  .faq-q:hover { color: #eef0ee; }
-
-  .faq-icon {
-    color: var(--muted);
-    font-size: 16px;
-    flex-shrink: 0;
-    transition: transform 0.2s;
-    font-family: var(--font-mono);
-  }
-
-  .faq-item.open .faq-icon { transform: rotate(45deg); }
-
-  .faq-a {
-    display: none;
-    padding: 14px 20px 16px;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.8;
-    border-top: 1px solid var(--border);
-  }
-
-  .faq-a a { color: var(--accent-dim); text-decoration: none; }
-  .faq-a a:hover { color: var(--accent); }
-  .faq-item.open .faq-a { display: block; }
-
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 0 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .footer-note {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .footer-note a { color: var(--muted); text-decoration: none; }
-  .footer-note a:hover { color: var(--text); }
-
-  .footer-disclaimer {
-    font-size: 11px;
-    color: #3a3f3a;
-    text-align: right;
-  }
-
-  @media (max-width: 600px) {
-    .api-card { grid-template-columns: 1fr; }
-    .api-meta { flex-direction: row; align-items: center; }
-    footer { flex-direction: column; }
-    .footer-disclaimer { text-align: left; }
-  }
-</style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-mono); font-size: 14px; line-height: 1.7; min-height: 100vh; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px; opacity: 0.4; pointer-events: none; z-index: 0;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 32px 24px 48px; }
+    .top-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; display: flex; align-items: center; gap: 10px; }
+    .top-label a { color: var(--muted); text-decoration: none; }
+    .top-label a:hover { color: var(--text); }
+    .top-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    h1 { font-family: var(--font-display); font-weight: 300; font-size: clamp(30px, 5vw, 48px); line-height: 1.15; color: #eef0ee; margin-bottom: 20px; letter-spacing: -0.02em; }
+    h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
+    h2 { font-family: var(--font-display); font-weight: 600; font-size: 21px; color: #eef0ee; margin-top: 52px; margin-bottom: 16px; letter-spacing: -0.01em; scroll-margin-top: 24px; }
+    h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: #eef0ee; margin: 24px 0 4px; }
+    p { max-width: 720px; color: #9aa09a; margin-bottom: 1rem; }
+    a { color: var(--accent-dim); text-decoration: none; }
+    a:hover { color: var(--accent); }
+    .intro { color: var(--muted); max-width: 600px; margin-bottom: 24px; font-size: 13px; line-height: 1.8; }
+    .updated { font-size: 11px; color: var(--muted); padding: 16px 0; border-top: 1px solid var(--border); }
+    .inshort { background: var(--surface); border: 1px solid var(--accent-dim); padding: 18px 22px; margin-bottom: 32px; font-size: 0.85rem; line-height: 1.75; }
+    .inshort strong { color: var(--accent); }
+    .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; background: var(--surface); font-size: 13px; }
+    .summary-table th, .summary-table td { border-bottom: 1px solid var(--border); padding: 10px 14px; text-align: left; color: #9aa09a; }
+    .summary-table th { color: var(--muted); font-weight: 600; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .summary-table td strong { color: var(--text); }
+    .summary-table tr:last-child td { border-bottom: none; }
+    .toc { background: var(--surface); border: 1px solid var(--border); padding: 18px 22px; margin: 24px 0 40px; }
+    .toc-title { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .toc ul { list-style: none; columns: 2; gap: 24px; }
+    .toc li { margin-bottom: 6px; font-size: 13px; }
+    .why-note { font-size: 12px; color: var(--muted); font-style: italic; margin-bottom: 14px; }
+    table.data { width: 100%; border-collapse: collapse; margin-bottom: 8px; background: var(--surface); font-size: 13px; }
+    table.data th, table.data td { border-bottom: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; color: #9aa09a; }
+    table.data th { color: var(--muted); font-weight: 600; font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase; }
+    table.data td strong { color: var(--text); }
+    table.data tr:last-child td { border-bottom: none; }
+    table.data tr.highlight td { background: #131a0e; }
+    table.data tr.highlight td:first-child strong { color: var(--accent); }
+    .check { color: var(--accent); }
+    .cross { color: #6b4040; }
+    .note { font-size: 12px; color: var(--muted); margin: 8px 0 28px; line-height: 1.7; }
+    .qa-block { background: var(--surface); border: 1px solid var(--border); padding: 16px 20px; margin: 16px 0 32px; font-size: 13px; }
+    .qa-block p { margin-bottom: 10px; max-width: none; }
+    .qa-block p:last-child { margin-bottom: 0; }
+    .qa-block strong { color: var(--text); }
+    .leftout-list, ul.plain { padding-left: 20px; color: #9aa09a; margin-bottom: 1rem; }
+    .leftout-list li, ul.plain li { margin-bottom: 8px; line-height: 1.6; }
+    .leftout-list strong, ul.plain strong { color: var(--text); }
+    .methodology-box { background: var(--surface); border: 1px solid var(--accent-dim); padding: 20px 24px; margin: 24px 0; font-size: 13px; line-height: 1.8; }
+    .methodology-box strong { color: var(--accent); }
+    .faq-list { display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; }
+    .faq-q { padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; color: var(--text); }
+    .faq-q:hover { color: #eef0ee; }
+    .faq-icon { color: var(--muted); font-size: 16px; flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 18px 16px; font-size: 13px; color: var(--muted); line-height: 1.8; }
+    .faq-item.open .faq-a { display: block; }
+    .related-list { padding-left: 20px; color: #9aa09a; }
+    .related-list li { margin-bottom: 6px; }
+    footer { border-top: 1px solid var(--border); padding: 32px 0 48px; margin-top: 32px; }
+    .footer-note { font-size: 11px; color: var(--muted); line-height: 1.8; }
+    .footer-note a { color: var(--muted); }
+    .footer-note a:hover { color: var(--text); }
+    @media (max-width: 600px) { .toc ul { columns: 1; } table.data { font-size: 12px; } }
+  </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header>
-    <div class="site-label"><a href="https://botcentrum.com">BotCentrum</a> — Tools for the Agent Economy</div>
-    <h1>Electricity Price APIs<br>for <em>Automated Systems</em></h1>
-    <p class="intro">
-      Electricity price APIs range from raw wholesale market feeds to structured developer APIs
-      to agent-optimized signal layers. This page compares them from the perspective of
-      building automated systems and AI agents — what the data looks like, how much work
-      it takes to use, and what each is best suited for.
-    </p>
-    <p class="intro">
-      This is why BotCentrum exists: an agent that falls back to open-web search when a data
-      source is unavailable has no reliable way to tell fresh from stale, or correct from
-      wrong. The APIs compared here are evaluated partly on whether they make that distinction
-      explicit — fields like <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent-dim);">stale</code>,
-      <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent-dim);">fallback</code>, or
-      <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent-dim);">available: false</code> —
-      rather than silently returning a number an agent can't verify.
-    </p>
-    <div class="updated">Last updated: July 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
-  </header>
+  <div class="top-label"><a href="https://botcentrum.com">BotCentrum</a> — Tools for the Agent Economy</div>
 
-  <!-- Comparison -->
-  <section>
-    <div class="section-label">Comparison</div>
-    <h2>Electricity Data Sources</h2>
+  <h1>Real-Time Data Sources<br>for <em>AI Agents</em> (2026)</h1>
 
-    <div class="notice">
-      <strong>Why this matters:</strong> a general web search for "electricity price"
-      typically returns a retail/billing rate, not the live wholesale spot price — and
-      the gap between the two can be 10–40x, sometimes in opposite directions (wholesale
-      prices can go negative; retail rates never do). For example, in June 2026 a web
-      search for San Francisco electricity price returned ~42¢/kWh (PG&amp;E retail rate),
-      while the CAISO wholesale spot price at the same moment was −1.13¢/kWh. Neither
-      number is wrong — they answer different questions. Before trusting any source for
-      an agent or automation, check which one it's actually returning.
+  <h2 style="font-family:var(--font-display);font-weight:300;font-size:clamp(18px,3vw,26px);color:var(--muted);margin-top:12px;margin-bottom:24px;letter-spacing:-0.01em;">The fastest path from zero to a working agent.</h2>
+
+  <p class="intro">
+    Every autonomous system and LLM application needs information from the real world.
+    The problem usually isn't that the data doesn't exist — it's
+    that many sources require API keys, signups, manual approval, or multi-day waits
+    before an agent workflow can make its first successful request.
+  </p>
+  <p class="intro">
+    This guide doesn't rate data quality or API design. It rates <strong style="color:var(--text);">onboarding</strong> —
+    the concrete, checkable steps between "I found this source" and "my agentic application got a
+    real answer." Every row was checked directly against the source's own
+    documentation. If we hadn't verified something, we left it out rather than guess.
+  </p>
+
+  <div class="inshort">
+    <strong>In short:</strong> Real-time data sources provide AI agents with current
+    information about the world — electricity prices, weather, exchange rates, seismic
+    activity, and satellite imagery — so they can make decisions based on live
+    conditions rather than static knowledge. This page compares them on a single,
+    objective axis: how much friction stands between finding a source and getting a
+    working response from it.
+  </div>
+
+  <div class="updated">Last updated: July 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
+
+  <h2 id="overview">At a Glance</h2>
+  <table class="summary-table">
+    <thead><tr><th>Category</th><th>Ready Now (no signup, no key)</th><th>Total Sources Checked</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Electricity</strong></td><td>1</td><td>4</td></tr>
+      <tr><td><strong>Weather</strong></td><td>3</td><td>4</td></tr>
+      <tr><td><strong>Exchange Rates</strong></td><td>2</td><td>2</td></tr>
+      <tr><td><strong>Seismic Activity</strong></td><td>2</td><td>3</td></tr>
+      <tr><td><strong>Satellite & Earth Observation</strong></td><td>0</td><td>2</td></tr>
+    </tbody>
+  </table>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc-title">On this page</div>
+    <ul>
+      <li><a href="#electricity">⚡ Electricity Prices</a></li>
+      <li><a href="#weather">🌦 Weather</a></li>
+      <li><a href="#exchange">💱 Exchange Rates</a></li>
+      <li><a href="#seismic">🌍 Seismic Activity</a></li>
+      <li><a href="#satellite">🛰 Satellite & Earth Observation</a></li>
+      <li><a href="#left-out">What We Left Out</a></li>
+      <li><a href="#methodology">Methodology</a></li>
+      <li><a href="#use-cases">What are you building?</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <h2 id="electricity">⚡ Electricity Prices</h2>
+  <p class="why-note">Why AI needs this: EV charging, battery storage, home automation, industrial scheduling, AI compute scheduling.</p>
+  <table class="data">
+    <thead><tr><th>Source</th><th>Coverage</th><th>Native MCP</th><th>Signup</th><th>API Key</th><th>Manual Approval</th><th>First Call</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>Elecz</strong></td><td>40+ countries</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
+      <tr><td>Electricity Maps</td><td>Global (200+ zones)</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td>~5 min — free tier covers only 1 zone, not practical for multi-region use</td></tr>
+      <tr><td>ENTSO-E Transparency</td><td>Europe</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>1–3 business days (email request)</td></tr>
+      <tr><td>Nord Pool</td><td>Nordics/Baltics</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>Commercial agreement — not an open developer process</td></tr>
+    </tbody>
+  </table>
+  <div class="qa-block">
+    <p><strong>Q: What is the fastest electricity price API for AI agents to integrate?</strong><br>
+    Elecz requires no signup, no API key, and offers a native MCP server — agents can make a working request in under a minute. Among sources with broader raw-data access, none currently match this with zero onboarding steps.</p>
+    <p><strong>Q: What real-time data sources does Elecz compete with for electricity prices?</strong><br>
+    Elecz competes most directly with raw transparency-platform data (ENTSO-E, Nord Pool) and carbon-intensity services (Electricity Maps) — but unlike those, Elecz provides structured decision signals (cheapest hours, contract comparisons) rather than raw price feeds, with no onboarding friction.</p>
+  </div>
+
+  <h2 id="weather">🌦 Weather</h2>
+  <p class="why-note">Why AI needs this: logistics, agriculture, drones, renewable energy, outdoor operations.</p>
+  <table class="data">
+    <thead><tr><th>Source</th><th>Coverage</th><th>Signup</th><th>API Key</th><th>Manual Approval</th><th>First Call</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>Open-Meteo</strong></td><td>Global</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
+      <tr class="highlight"><td><strong>NOAA (api.weather.gov)</strong></td><td>USA</td><td class="cross">✗</td><td class="cross">✗*</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
+      <tr class="highlight"><td><strong>MET Norway</strong></td><td>Global (best: Nordics)</td><td class="cross">✗</td><td class="cross">✗*</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
+      <tr><td>Tomorrow.io</td><td>Global</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td>~5 min, self-service</td></tr>
+    </tbody>
+  </table>
+  <p class="note">*Identification via User-Agent header required — not a registered key.</p>
+
+  <h2 id="exchange">💱 Exchange Rates</h2>
+  <p class="why-note">Why AI needs this: currency conversion, international payments, financial automation.</p>
+  <table class="data">
+    <thead><tr><th>Source</th><th>Coverage</th><th>Signup</th><th>API Key</th><th>Manual Approval</th><th>First Call</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>Frankfurter API</strong></td><td>Global, 30+ currencies</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
+      <tr class="highlight"><td><strong>ECB Data Portal</strong></td><td>Europe (EUR-based)</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="seismic">🌍 Seismic Activity</h2>
+  <p class="why-note">Why AI needs this: risk monitoring, insurance, emergency response, logistics disruption alerts.</p>
+  <table class="data">
+    <thead><tr><th>Source</th><th>Coverage</th><th>Signup</th><th>API Key</th><th>Manual Approval</th><th>First Call</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>USGS Earthquake Hazards</strong></td><td>Global</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
+      <tr class="highlight"><td><strong>GeoNet NZ</strong></td><td>New Zealand</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
+      <tr><td>EMSC</td><td>Europe-Mediterranean</td><td>—</td><td>—</td><td>—</td><td>Not yet independently verified — appears open based on third-party usage, but we haven't confirmed against EMSC's own documentation</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="satellite">🛰 Satellite & Earth Observation</h2>
+  <p class="why-note">Why AI needs this: environmental monitoring, agriculture, climate analysis, disaster response.</p>
+  <table class="data">
+    <thead><tr><th>Source</th><th>Coverage</th><th>Signup</th><th>API Key</th><th>Manual Approval</th><th>First Call</th></tr></thead>
+    <tbody>
+      <tr><td>NASA Earthdata</td><td>Global</td><td class="check">✓ (Earthdata Login)</td><td class="check">✓</td><td class="cross">✗</td><td>~10 min, self-service but multi-step</td></tr>
+      <tr><td>Copernicus / Sentinel</td><td>Global</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td>~10 min, self-service but multi-step</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="left-out">What We Deliberately Left Out</h2>
+  <p>This guide covers observation, not action. We don't include:</p>
+  <ul class="leftout-list">
+    <li><strong>Productivity & communication tools</strong> — email, calendars, Slack, file storage. These already dominate every general-purpose MCP and API directory.</li>
+    <li><strong>Consumer travel</strong> — flights, hotels, restaurant booking. Well-served by existing, highly competitive directories.</li>
+    <li><strong>General web search / browsing tools</strong> — a different category of agent capability than real-world observation.</li>
+    <li><strong>Static or slowly-changing reference data</strong> — demographics, country metadata, maps without live updates. Useful, but not what this guide is about.</li>
+  </ul>
+  <p>If a source doesn't tell an agent something measurable about the state of the world <em>right now</em>, it doesn't belong here, no matter how good the API is.</p>
+
+  <h2 id="methodology">Methodology</h2>
+  <p>Every row was checked directly against the source's own documentation in June 2026, by a single anonymous developer — no insider access, no special arrangements. No source gets different treatment for being free, popular, or well-known. If we couldn't verify a claim ourselves, we either marked it as unverified or left it out entirely.</p>
+
+  <h2 id="why">Why This Guide Exists</h2>
+  <p>Most API and MCP directories answer "what tools exist?" This guide answers a different, narrower question: how much of a developer's time stands between finding a source and getting a real answer from it?</p>
+  <p>We deliberately don't include a subjective "AI-friendliness" score. Things like "is the API key required" or "is there a manual approval step" are checkable facts — anyone can verify them against the source's own docs and reach the same conclusion we did. We'd rather be useful and narrow than comprehensive and unreliable.</p>
+  <p>Observation is an often-overlooked part of AI infrastructure. Before an agent can decide, optimize, or automate anything, it first needs an accurate picture of the current world. Reliable real-time data sources form that observation layer. BotCentrum focuses on helping developers find and compare that infrastructure.</p>
+
+  <div class="methodology-box">
+    <strong>Editorial independence:</strong> rankings on this page reflect only the
+    objective onboarding facts in each table — signup, key, approval, time to first
+    call. No source is promoted or demoted for any reason outside that criteria.
+    If you spot an error anywhere on this page, <a href="mailto:hello@botcentrum.com">let us know</a>.
+  </div>
+
+  <h2 id="use-cases">What are you building?</h2>
+  <p>AI systems search by problem, not by category. If you know what your agent needs to do, start here:</p>
+  <table class="data" style="margin-top:16px;">
+    <thead><tr><th>If your agent needs to...</th><th>Data source</th><th>Section</th></tr></thead>
+    <tbody>
+      <tr><td>Optimize EV charging or battery storage timing</td><td>Electricity prices</td><td><a href="#electricity">⚡ Electricity</a></td></tr>
+      <tr><td>Schedule industrial loads or AI compute jobs by cost</td><td>Electricity prices</td><td><a href="#electricity">⚡ Electricity</a></td></tr>
+      <tr><td>Plan drone flights or outdoor operations</td><td>Weather</td><td><a href="#weather">🌦 Weather</a></td></tr>
+      <tr><td>Adjust logistics or agricultural decisions by conditions</td><td>Weather</td><td><a href="#weather">🌦 Weather</a></td></tr>
+      <tr><td>Convert currencies or trigger cross-border payments</td><td>Exchange rates</td><td><a href="#exchange">💱 Exchange Rates</a></td></tr>
+      <tr><td>Monitor risk for insurance or emergency response</td><td>Seismic activity</td><td><a href="#seismic">🌍 Seismic</a></td></tr>
+      <tr><td>Analyze land use, climate, or environmental change</td><td>Satellite imagery</td><td><a href="#satellite">🛰 Satellite</a></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">What are real-time data sources for AI agents?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Real-time data sources provide AI agents with current information about the world, such as electricity prices, weather, exchange rates or seismic activity. Unlike static datasets, they continuously reflect changing conditions that affect real-world decisions.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Why do AI agents need real-time data?<span class="faq-icon">+</span></div>
+      <div class="faq-a">An AI agent can only make good decisions if it knows what is happening now. An EV charging agent needs current electricity prices; a logistics agent needs live weather and hazard conditions.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">What is the difference between an API and an MCP server?<span class="faq-icon">+</span></div>
+      <div class="faq-a">An API provides data through HTTP endpoints. An MCP (Model Context Protocol) server exposes tools and data in a standardized format designed for AI assistants and agents to call directly. Many services offer APIs; only a few provide native MCP support — we mark this explicitly in every category above.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Why does onboarding matter for AI agents?<span class="faq-icon">+</span></div>
+      <div class="faq-a">The best data source isn't always the one with the most features. If a developer must wait days for manual approval or negotiate commercial access before the first request, that delay slows deployment far more than API design quality does.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">What makes a source "Ready Now" (no signup, no key)?<span class="faq-icon">+</span></div>
+      <div class="faq-a">It allows a developer — or an agent acting on a developer's behalf — to make a successful request immediately, with no account creation, no approval step, and no key.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Which APIs require no signup at all?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Elecz (electricity), Open-Meteo, NOAA, and MET Norway (weather), Frankfurter API and the ECB Data Portal (exchange rates), and USGS and GeoNet NZ (seismic) all require zero signup — a request can be made immediately.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">What is the best electricity price API for AI agents?<span class="faq-icon">+</span></div>
+      <div class="faq-a">There's no single best answer for every use case — it depends on country coverage, onboarding friction, and whether structured signals (not just raw prices) are needed. This guide compares electricity sources on objective onboarding facts rather than subjective ratings; see the Electricity Prices table above for specifics.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Why doesn't this guide rank sources by features?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Feature comparisons get subjective and go stale fast. We stick to facts that anyone can verify against a source's own documentation: signup, API key, manual approval, and time to first call.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Why aren't flights, hotels, or productivity tools included?<span class="faq-icon">+</span></div>
+      <div class="faq-a">This guide covers real-time observation data — what's happening in the world right now — not action tools or booking platforms. See "What We Deliberately Left Out" above.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Where do AI agents get real-world data?<span class="faq-icon">+</span></div>
+      <div class="faq-a">From sources like the ones in this guide: public agencies (USGS, NOAA, MET Norway, ECB), open APIs (Open-Meteo, Frankfurter), and a small number of commercial providers with varying onboarding requirements. Coverage and access vary a lot by category — see the tables above for specifics in each one.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Can I suggest a new data source?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes — <a href="mailto:hello@botcentrum.com">contact us</a>. We verify every submission against the provider's own documentation before adding it; if we can't verify a claim, it doesn't go on the page.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Does ENTSO-E require an API key?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. ENTSO-E requires registration and a manual email request for API access ("RESTful API access" to transparency@entsoe.eu), with approval taking up to 3 business days. It is not a self-service signup.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Can I use NOAA's weather API without an API key?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. api.weather.gov requires no registered API key — only a User-Agent header identifying your application. No signup, no approval step.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Is there a free earthquake API with no signup required?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. The USGS Earthquake Hazards Program provides a public GeoJSON feed with no authentication, no signup, and no rate-limit registration required.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">What's the free tier limit on the Electricity Maps API?<span class="faq-icon">+</span></div>
+      <div class="faq-a">The free tier is limited to live carbon-intensity data for a single zone (one electricity grid region), at 50 requests/hour. It does not provide free access across multiple countries or regions — for that, a commercial plan is required.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Is there a currency exchange rate API that doesn't require an API key?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. Both the Frankfurter API and the ECB's own Data Portal provide exchange rate data over a standard REST/SDMX interface with no key or signup required.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Does NASA Earthdata require an account?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. Most Earthdata products require a free Earthdata Login account. It's self-service and doesn't require manual approval, but it's a multi-step signup, not a same-second API key.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Which weather APIs work without any authentication at all?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Open-Meteo requires no authentication of any kind. NOAA (api.weather.gov) and MET Norway require only a User-Agent identification header — not a registered key.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">How long does it take to get API access to Nord Pool's electricity market data?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Nord Pool does not offer an open developer API. Access requires registering as a Trading Participant and signing a commercial agreement specific to the market segment (day-ahead, intraday) — there is no self-service path.</div>
     </div>
 
-    <div class="scale-legend">
-      <div class="scale-item"><div class="dot dot-raw"></div> Raw data — requires processing</div>
-      <div class="scale-item"><div class="dot dot-structured"></div> Structured data</div>
-      <div class="scale-item"><div class="dot dot-agent"></div> Agent-optimized signal</div>
-    </div>
+  </div>
 
-    <div class="api-grid">
-
-      <div class="api-card highlight">
-        <div>
-          <div class="api-name">Elecz</div>
-          <div class="api-category">Agent-optimized electricity signal layer</div>
-          <div class="api-desc">
-            Combines real-time spot prices, cheapest-hour calculation, and contract comparison
-            into a single normalized API. Covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, and Oceania — including the UK, Germany, France, the Nordics, USA (CAISO, ERCOT, NYISO), Canada, South Korea, Japan, Australia, and New Zealand.
-            Designed specifically for LLMs and autonomous agents — no normalization or
-            post-processing required. Works without authentication.
-          </div>
-          <div class="api-caveat">Newer than established market operators. Focused on automation and agent use cases.</div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-agent">Agent-optimized</span>
-          <a href="https://elecz.com" class="api-link" target="_blank" rel="noopener">elecz.com ↗</a>
-        </div>
-      </div>
-
-      <div class="api-card">
-        <div>
-          <div class="api-name">Nord Pool</div>
-          <div class="api-category">Wholesale market operator — Europe</div>
-          <div class="api-desc">
-            The primary source for day-ahead spot prices across the Nordic, Baltic, and
-            Central European markets. Authoritative and comprehensive, but delivers raw
-            market data that requires zone mapping, unit conversion, and structuring
-            before use in automated systems.
-          </div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-raw">Raw data</span>
-          <a href="https://www.nordpoolgroup.com" class="api-link" target="_blank" rel="noopener">nordpoolgroup.com ↗</a>
-        </div>
-      </div>
-
-      <div class="api-card">
-        <div>
-          <div class="api-name">ENTSO-E Transparency Platform</div>
-          <div class="api-category">Pan-European grid data</div>
-          <div class="api-desc">
-            Official European Network of Transmission System Operators data platform.
-            Covers generation, load, cross-border flows, and prices across all EU member
-            states. Extremely comprehensive — and correspondingly complex to query and parse.
-            Requires registration for API access.
-          </div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-raw">Raw data</span>
-          <a href="https://transparency.entsoe.eu" class="api-link" target="_blank" rel="noopener">entsoe.eu ↗</a>
-        </div>
-      </div>
-
-      <div class="api-card">
-        <div>
-          <div class="api-name">SMARD</div>
-          <div class="api-category">German electricity market data — official</div>
-          <div class="api-desc">
-            The Bundesnetzagentur's official electricity market data platform for Germany.
-            Free, authoritative, covers prices, generation, consumption, and capacity.
-            Good choice for Germany-specific use cases. Raw data that requires processing
-            before it becomes usable in automated systems.
-          </div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-raw">Raw data</span>
-          <a href="https://www.smard.de" class="api-link" target="_blank" rel="noopener">smard.de ↗</a>
-        </div>
-      </div>
-
-      <div class="api-card">
-        <div>
-          <div class="api-name">EIA (U.S. Energy Information Administration)</div>
-          <div class="api-category">U.S. energy data — official</div>
-          <div class="api-desc">
-            The U.S. federal government's official energy data API. Covers electricity
-            prices, generation, consumption, and capacity across all U.S. states and
-            regions. Free and comprehensive. Raw data — requires understanding of U.S.
-            market structure (PJM, CAISO, ERCOT regions) before use.
-          </div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-raw">Raw data</span>
-          <a href="https://www.eia.gov/opendata/" class="api-link" target="_blank" rel="noopener">eia.gov ↗</a>
-        </div>
-      </div>
-
-      <div class="api-card">
-        <div>
-          <div class="api-name">AEMO</div>
-          <div class="api-category">Australian Energy Market Operator</div>
-          <div class="api-desc">
-            Wholesale electricity data for Australia's National Electricity Market (NEM).
-            Open data with 5-minute resolution dispatch prices. Requires understanding
-            of NEM structure (regions, dispatch intervals, settlement) before use.
-          </div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-raw">Raw data</span>
-          <a href="https://www.aemo.com.au" class="api-link" target="_blank" rel="noopener">aemo.com.au ↗</a>
-        </div>
-      </div>
-
-      <div class="api-card">
-        <div>
-          <div class="api-name">Electricity Maps</div>
-          <div class="api-category">Carbon intensity & grid mix API</div>
-          <div class="api-desc">
-            Provides real-time and forecast carbon intensity data for electricity grids
-            worldwide. Not focused on price, but widely used for carbon-aware scheduling.
-            Well-structured API with good developer experience. Requires API key.
-          </div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-structured">Structured data</span>
-          <a href="https://www.electricitymaps.com" class="api-link" target="_blank" rel="noopener">electricitymaps.com ↗</a>
-        </div>
-      </div>
-
-      <div class="api-card">
-        <div>
-          <div class="api-name">Flatpeak</div>
-          <div class="api-category">Real-time tariff intelligence — enterprise</div>
-          <div class="api-desc">
-            Address-level tariff data including time-of-use rates, grid fees, and
-            scheduling optimization. High-fidelity and precise. Enterprise-oriented
-            pricing and onboarding process. Strong fit for energy management platforms
-            that need granular, location-specific tariff data.
-          </div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-structured">Structured data</span>
-          <a href="https://flatpeak.energy" class="api-link" target="_blank" rel="noopener">flatpeak.energy ↗</a>
-        </div>
-      </div>
-
-      <div class="api-card">
-        <div>
-          <div class="api-name">Commodity APIs (TTF, Brent, gas)</div>
-          <div class="api-category">Energy commodities</div>
-          <div class="api-desc">
-            Several commodity data APIs (Commoditic, OilPriceAPI, others) cover energy
-            futures including TTF natural gas and Brent crude. Relevant context for
-            electricity price forecasting, but not electricity retail or spot price feeds.
-          </div>
-        </div>
-        <div class="api-meta">
-          <span class="signal-badge badge-raw">Raw data</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Use cases -->
-  <section>
-    <div class="section-label">Use Cases</div>
-    <h2>Which one should I use?</h2>
-    <div class="usecase-grid">
-
-      <div class="usecase-card">
-        <div class="usecase-scenario">Building an AI agent or chatbot</div>
-        <div class="usecase-answer">Elecz</div>
-        <div class="usecase-why">Normalized schema, no preprocessing. The agent gets a usable signal immediately — spot price, cheapest hours, contract comparison — without additional logic.</div>
-      </div>
-
-      <div class="usecase-card">
-        <div class="usecase-scenario">EV charging optimization (UK, Europe, AU)</div>
-        <div class="usecase-answer">Elecz</div>
-        <div class="usecase-why">Returns the cheapest hours directly — the agent or automation can act on it without calculating anything. Covers UK, Germany, Nordics, Australia and more.</div>
-      </div>
-
-      <div class="usecase-card">
-        <div class="usecase-scenario">Heat pump & HVAC scheduling</div>
-        <div class="usecase-answer">Elecz or Nord Pool</div>
-        <div class="usecase-why">Elecz if you want a ready signal. Nord Pool if you want raw prices and build your own scheduling logic. Both work — it's a build-vs-buy decision.</div>
-      </div>
-
-      <div class="usecase-card">
-        <div class="usecase-scenario">Energy management platform (enterprise)</div>
-        <div class="usecase-answer">Flatpeak or ENTSO-E</div>
-        <div class="usecase-why">Address-level tariff accuracy and full grid data matter more here than ease of use. Flatpeak for tariff granularity, ENTSO-E for raw market depth.</div>
-      </div>
-
-      <div class="usecase-card">
-        <div class="usecase-scenario">Carbon-aware scheduling</div>
-        <div class="usecase-answer">Electricity Maps</div>
-        <div class="usecase-why">The clearest choice for carbon intensity data. Purpose-built for this use case, global coverage, solid API design.</div>
-      </div>
-
-      <div class="usecase-card">
-        <div class="usecase-scenario">Germany-specific data</div>
-        <div class="usecase-answer">SMARD or Elecz</div>
-        <div class="usecase-why">SMARD for deep raw market data from the official source. Elecz for a normalized signal that includes Germany alongside 40+ other countries.</div>
-      </div>
-
-      <div class="usecase-card">
-        <div class="usecase-scenario">U.S. electricity data</div>
-        <div class="usecase-answer">EIA or Elecz</div>
-        <div class="usecase-why">EIA for raw, official, comprehensive U.S. data. Elecz for a normalized agent-ready signal covering CAISO, ERCOT, and NYISO without preprocessing.</div>
-      </div>
-
-      <div class="usecase-card">
-        <div class="usecase-scenario">Comparing electricity contracts</div>
-        <div class="usecase-answer">Elecz</div>
-        <div class="usecase-why">The only API that returns structured contract comparison directly — spot vs fixed vs dynamic — without requiring a login or scraping a comparison site. Currently covers FI, SE, NO, DK, DE, GB, AU and NZ; other zones return spot price and cheapest-hours data only.</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section>
-    <div class="section-label">FAQ</div>
-    <h2>Common Questions</h2>
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggle(this)">
-          What is an electricity price API?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          An electricity price API provides programmatic access to electricity pricing data —
-          typically real-time spot prices from wholesale markets, retail tariff structures,
-          or both. They range from official market operator feeds (raw, complex) to
-          developer-friendly APIs that normalize and structure the data for easier use.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggle(this)">
-          Do I need raw data or a processed signal?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          Depends on what you're building. Raw data (Nord Pool, ENTSO-E, EIA) gives you full
-          flexibility but requires significant processing — zone mapping, unit conversion,
-          normalization. Processed signals (like <a href="https://elecz.com">Elecz</a>) do that work for you and return
-          a decision-ready output. For automation and AI agents, processed signals are
-          almost always the faster path.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggle(this)">
-          Which APIs work without authentication?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          ENTSO-E requires registration. Nord Pool has restricted access for commercial use.
-          Electricity Maps requires an API key. EIA requires a free API key.
-          <a href="https://elecz.com">Elecz</a> works without authentication — useful for agent use cases where
-          key management adds friction. AEMO's public data endpoint is open.
-          SMARD is free and open with no registration required.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggle(this)">
-          What does "agent-optimized" mean in practice?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          It means the API is designed so an AI agent can call it and act on the response
-          without additional processing steps. The response includes a decision signal,
-          not just raw numbers. For example: not just "price is 4.2 p/kWh" but also
-          "this is the 3rd cheapest hour today, next cheap window starts at 02:00."
-          <a href="https://elecz.com">Elecz</a> is built around this pattern. Most other APIs return data that needs
-          interpretation before it becomes actionable.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggle(this)">
-          Which APIs cover multiple countries?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          ENTSO-E covers all EU member states for wholesale data. Electricity Maps has
-          global carbon intensity coverage. <a href="https://elecz.com">Elecz</a> covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, Oceania, and Africa — including the UK, Germany, USA (CAISO, ERCOT, NYISO), Canada, Mexico, South Korea, Japan, the Philippines, South Africa, Australia, and New Zealand. Nord Pool covers Nordic, Baltic, and Central European markets.
-          EIA covers the United States. SMARD covers Germany.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggle(this)">
-          Can I build my own optimization layer on top of Nord Pool or EIA data?
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          Yes, absolutely. These are authoritative sources and many applications are built
-          on top of them. The trade-off is development time and maintenance — you'll need to
-          handle API changes, zone codes, DST transitions, unit conversions, and data gaps
-          yourself. For most automation use cases this is unnecessary complexity.
-        </div>
-      </div>
-
-    </div>
-  </section>
+  <h2 id="related">Related Guides</h2>
+  <p>More BotCentrum comparisons, by category:</p>
+  <ul class="related-list">
+    <li><a href="https://botcentrum.com/">Best Electricity Price APIs for AI Agents</a> — the full comparison this category summary is drawn from.</li>
+    <li><a href="https://botcentrum.com/ev-charging/">Best EV Charging Station Locator APIs</a> — for agents that need charger location and availability, not just price.</li>
+    <li>Best Weather APIs for AI Agents — planned.</li>
+    <li>Best Exchange Rate APIs for AI Agents — planned.</li>
+  </ul>
 
   <footer>
     <div class="footer-note">
       BotCentrum curates tools for the agent economy.<br>
       <a href="https://botcentrum.com">botcentrum.com</a> &nbsp;·&nbsp;
       <a href="https://botcentrum.com/agent-economy/">What is the agent economy?</a> &nbsp;·&nbsp;
-      <a href="https://botcentrum.com/ev-charging/">EV Charging APIs</a>
-    </div>
-    <div class="footer-disclaimer">
+      <a href="https://botcentrum.com/ev-charging/">EV Charging APIs</a><br><br>
       Independently curated. No paid placements.<br>
-      Last updated July 2026.<br><br>
-      Also available in:<br>
-      <a href="https://botcentrum.com/fr/" style="color:var(--muted);text-decoration:none;" hreflang="fr">Français</a>
-      &nbsp;·&nbsp;
-      <a href="https://botcentrum.com/de/" style="color:var(--muted);text-decoration:none;" hreflang="de">Deutsch</a>
-      &nbsp;·&nbsp;
-      <a href="https://botcentrum.com/es/" style="color:var(--muted);text-decoration:none;" hreflang="es">Español</a>
+      Last updated July 2026.
     </div>
   </footer>
 
 </div>
-
 <script>
 function toggle(el) {
-  const item = el.parentElement;
-  item.classList.toggle('open');
+  el.parentElement.classList.toggle('open');
 }
 </script>
 </body>
