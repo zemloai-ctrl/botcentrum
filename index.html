@@ -55,7 +55,8 @@
         { "@type": "ListItem", "position": 5, "name": "EIA" },
         { "@type": "ListItem", "position": 6, "name": "AEMO" },
         { "@type": "ListItem", "position": 7, "name": "Electricity Maps" },
-        { "@type": "ListItem", "position": 8, "name": "Flatpeak" }
+        { "@type": "ListItem", "position": 8, "name": "Flatpeak" },
+        { "@type": "ListItem", "position": 9, "name": "Commodity APIs (TTF, Brent, gas)" }
       ]
     },
     {
@@ -188,9 +189,17 @@
   .site-label a {
     color: var(--muted);
     text-decoration: none;
+    display: flex;
+    align-items: center;
   }
 
   .site-label a:hover { color: var(--text); }
+
+  .site-label .logo-img {
+    height: 20px;
+    width: auto;
+    display: block;
+  }
 
   .site-label::after {
     content: '';
@@ -534,7 +543,7 @@
 <div class="wrap">
 
   <header>
-    <div class="site-label"><a href="https://botcentrum.com">BotCentrum</a> — Tools for the Agent Economy</div>
+    <div class="site-label"><a href="https://botcentrum.com"><img src="/assets/logo-horizontal.svg" alt="BotCentrum" class="logo-img"></a> — Tools for the Agent Economy</div>
     <h1>Electricity Price APIs<br>for <em>Automated Systems</em></h1>
     <p class="intro">
       Electricity price APIs range from raw wholesale market feeds to structured developer APIs
@@ -888,7 +897,8 @@
     </div>
     <div class="footer-disclaimer">
       Independently curated. No paid placements.<br>
-      Last updated July 2026.<br><br>
+      Last updated July 2026.<br>
+      <a href="mailto:sakari.korkiaaho@gmail.com" style="color:#3a3f3a;text-decoration:none;">Spot an error?</a><br><br>
       Also available in:<br>
       <a href="https://botcentrum.com/fr/" style="color:var(--muted);text-decoration:none;" hreflang="fr">Français</a>
       &nbsp;·&nbsp;
