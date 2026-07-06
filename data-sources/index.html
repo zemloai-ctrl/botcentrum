@@ -58,7 +58,7 @@
           {
             "@type": "Question",
             "name": "What is the difference between an API and an MCP server?",
-            "acceptedAnswer": { "@type": "Answer", "text": "An API provides data through HTTP endpoints. An MCP (Model Context Protocol) server exposes tools and data in a standardized format designed for AI assistants and agents to call directly. Many services offer APIs; only a few provide native MCP support — we mark this explicitly in every category." }
+            "acceptedAnswer": { "@type": "Answer", "text": "An API provides data through HTTP endpoints. An MCP (Model Context Protocol) server exposes tools and data in a standardized format designed for AI assistants and agents to call directly. Many services offer APIs; only a few provide native MCP support — this is marked explicitly in every category." }
           },
           {
             "@type": "Question",
@@ -83,7 +83,7 @@
           {
             "@type": "Question",
             "name": "Why doesn't this guide rank sources by features?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Feature comparisons get subjective and go stale fast. We stick to facts that anyone can verify against a source's own documentation: signup, API key, manual approval, and time to first call." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Feature comparisons get subjective and go stale fast. This guide sticks to facts that anyone can verify against a source's own documentation: signup, API key, manual approval, and time to first call." }
           },
           {
             "@type": "Question",
@@ -246,7 +246,7 @@
     This guide doesn't rate data quality or API design. It rates <strong style="color:var(--text);">onboarding</strong> —
     the concrete, checkable steps between "I found this source" and "my agent got a
     real answer." Every row was checked directly against the source's own
-    documentation. If we hadn't verified something, we left it out rather than guess.
+    documentation. Anything that couldn't be verified was left out rather than guessed at.
   </p>
 
   <div class="inshort">
@@ -280,7 +280,7 @@
       <li><a href="#exchange">💱 Exchange Rates</a></li>
       <li><a href="#seismic">🌍 Seismic Activity</a></li>
       <li><a href="#satellite">🛰 Satellite & Earth Observation</a></li>
-      <li><a href="#left-out">What We Left Out</a></li>
+      <li><a href="#left-out">What Was Left Out</a></li>
       <li><a href="#methodology">Methodology</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -334,7 +334,7 @@
     <tbody>
       <tr class="highlight"><td><strong>USGS Earthquake Hazards</strong></td><td>Global</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
       <tr class="highlight"><td><strong>GeoNet NZ</strong></td><td>New Zealand</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>&lt;1 min</td></tr>
-      <tr><td>EMSC</td><td>Europe-Mediterranean</td><td>—</td><td>—</td><td>—</td><td>Not yet independently verified — appears open based on third-party usage, but we haven't confirmed against EMSC's own documentation</td></tr>
+      <tr><td>EMSC</td><td>Europe-Mediterranean</td><td>—</td><td>—</td><td>—</td><td>Not yet independently verified — appears open based on third-party usage, but not yet confirmed against EMSC's own documentation</td></tr>
     </tbody>
   </table>
 
@@ -348,8 +348,8 @@
     </tbody>
   </table>
 
-  <h2 id="left-out">What We Deliberately Left Out</h2>
-  <p>This guide covers observation, not action. We don't include:</p>
+  <h2 id="left-out">What Was Deliberately Left Out</h2>
+  <p>This guide covers observation, not action. It does not include:</p>
   <ul class="leftout-list">
     <li><strong>Productivity & communication tools</strong> — email, calendars, Slack, file storage. These already dominate every general-purpose MCP and API directory.</li>
     <li><strong>Consumer travel</strong> — flights, hotels, restaurant booking. Well-served by existing, highly competitive directories.</li>
@@ -359,17 +359,17 @@
   <p>If a source doesn't tell an agent something measurable about the state of the world <em>right now</em>, it doesn't belong here, no matter how good the API is.</p>
 
   <h2 id="methodology">Methodology</h2>
-  <p>Every row was checked directly against the source's own documentation in June 2026, by a single anonymous developer — no insider access, no special arrangements. No source gets different treatment for being free, popular, or well-known. If we couldn't verify a claim ourselves, we either marked it as unverified or left it out entirely.</p>
+  <p>Every row was checked directly against the source's own documentation in June 2026, by a single anonymous developer — no insider access, no special arrangements. No source gets different treatment for being free, popular, or well-known. Claims that couldn't be independently verified were either marked as unverified or left out entirely.</p>
 
   <h2 id="why">Why This Guide Exists</h2>
   <p>Most API and MCP directories answer "what tools exist?" This guide answers a different, narrower question: how much of a developer's time stands between finding a source and getting a real answer from it?</p>
-  <p>We deliberately don't include a subjective "AI-friendliness" score. Things like "is the API key required" or "is there a manual approval step" are checkable facts — anyone can verify them against the source's own docs and reach the same conclusion we did. We'd rather be useful and narrow than comprehensive and unreliable.</p>
+  <p>This guide deliberately doesn't include a subjective "AI-friendliness" score. Things like "is the API key required" or "is there a manual approval step" are checkable facts — anyone can verify them against the source's own docs and reach the same conclusion. Useful and narrow beats comprehensive and unreliable.</p>
 
   <div class="methodology-box">
     <strong>Editorial independence:</strong> rankings on this page reflect only the
     objective onboarding facts in each table — signup, key, approval, time to first
     call. No source is promoted or demoted for any reason outside that criteria.
-    If you spot an error anywhere on this page, <a href="mailto:hello@botcentrum.com">let us know</a>.
+    Errors can be reported to <a href="mailto:sakari.korkiaaho@gmail.com">sakari.korkiaaho@gmail.com</a>.
   </div>
 
   <h2 id="faq">Frequently Asked Questions</h2>
@@ -385,7 +385,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">What is the difference between an API and an MCP server?<span class="faq-icon">+</span></div>
-      <div class="faq-a">An API provides data through HTTP endpoints. An MCP (Model Context Protocol) server exposes tools and data in a standardized format designed for AI assistants and agents to call directly. Many services offer APIs; only a few provide native MCP support — we mark this explicitly in every category above.</div>
+      <div class="faq-a">An API provides data through HTTP endpoints. An MCP (Model Context Protocol) server exposes tools and data in a standardized format designed for AI assistants and agents to call directly. Many services offer APIs; only a few provide native MCP support — that distinction is marked explicitly in every category above.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">Why does onboarding matter for AI agents?<span class="faq-icon">+</span></div>
@@ -405,11 +405,11 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">Why doesn't this guide rank sources by features?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Feature comparisons get subjective and go stale fast. We stick to facts that anyone can verify against a source's own documentation: signup, API key, manual approval, and time to first call.</div>
+      <div class="faq-a">Feature comparisons get subjective and go stale fast. This guide sticks to facts that anyone can verify against a source's own documentation: signup, API key, manual approval, and time to first call.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">Why aren't flights, hotels, or productivity tools included?<span class="faq-icon">+</span></div>
-      <div class="faq-a">This guide covers real-time observation data — what's happening in the world right now — not action tools or booking platforms. See "What We Deliberately Left Out" above.</div>
+      <div class="faq-a">This guide covers real-time observation data — what's happening in the world right now — not action tools or booking platforms. See "What Was Deliberately Left Out" above.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">Where do AI agents get real-world data?<span class="faq-icon">+</span></div>
@@ -417,7 +417,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">Can I suggest a new data source?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Yes — <a href="mailto:hello@botcentrum.com">contact us</a>. We verify every submission against the provider's own documentation before adding it; if we can't verify a claim, it doesn't go on the page.</div>
+      <div class="faq-a">Yes — <a href="mailto:sakari.korkiaaho@gmail.com">get in touch</a>. Every submission is verified against the provider's own documentation before adding it; if a claim can't be verified, it doesn't go on the page.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">Does ENTSO-E require an API key?<span class="faq-icon">+</span></div>
