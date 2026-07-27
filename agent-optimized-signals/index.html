@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agent-Optimized Signals: A Taxonomy | BotCentrum</title>
-<meta name="description" content="A taxonomy of agent-optimized signals — data structured for autonomous systems to act on directly. Electricity and carbon are mapped; four verticals are not.">
+<meta name="description" content="A taxonomy of agent-optimized signals — data structured for autonomous systems to act on directly. Electricity and carbon are reviewed; four verticals are not.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://botcentrum.com/agent-optimized-signals/">
 
@@ -29,7 +29,7 @@
     {
       "@type": "Article",
       "headline": "Agent-Optimized Signals: A Taxonomy",
-      "description": "A taxonomy of agent-optimized signals — data processed and structured for autonomous systems to act on directly, as opposed to raw data that needs interpretation first. Tracks which verticals have a mature implementation and which don't.",
+      "description": "A taxonomy of agent-optimized signals — data processed and structured for autonomous systems to act on directly, as opposed to raw data that needs interpretation first. Tracks which verticals BotCentrum has reviewed an implementation for.",
       "datePublished": "2026-07-28",
       "dateModified": "2026-07-28",
       "author": { "@type": "Organization", "name": "BotCentrum" },
@@ -51,6 +51,8 @@
     --muted: #6b726b;
     --accent: #b8f04a;
     --accent-dim: #8ab835;
+    --raw: #5a6a7a;
+    --structured: #7a8a6a;
     --font-display: 'Fraunces', Georgia, serif;
     --font-mono: 'DM Mono', monospace;
   }
@@ -126,10 +128,7 @@
     letter-spacing: -0.02em;
   }
 
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
+  h1 em { font-style: italic; color: var(--accent); }
 
   .intro {
     color: var(--muted);
@@ -184,13 +183,49 @@
 
   .prose p { margin-bottom: 16px; }
   .prose p:last-child { margin-bottom: 0; }
-
   .prose a { color: var(--accent-dim); text-decoration: none; }
   .prose a:hover { color: var(--accent); }
-
   .prose strong { color: var(--text); font-weight: 500; }
 
-  /* Concept / taxonomy cards */
+  .lead-line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 17px;
+    color: #eef0ee;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    max-width: 620px;
+  }
+
+  /* Ladder anchor — visual only, not re-explained here */
+  .ladder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 24px 0 28px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ladder-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ladder-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .ladder-dot.raw { background: var(--raw); }
+  .ladder-dot.structured { background: var(--structured); }
+  .ladder-dot.agent { background: var(--accent); }
+  .ladder-arrow { color: var(--border-light); }
+  .ladder a { color: var(--accent-dim); text-decoration: none; letter-spacing: normal; text-transform: none; }
+  .ladder a:hover { color: var(--accent); }
+
+  /* Taxonomy cards */
   .concept-grid {
     display: flex;
     flex-direction: column;
@@ -205,8 +240,8 @@
     animation: fadeIn 0.4s ease both;
   }
 
-  .concept-card.implemented { border-left: 2px solid var(--accent-dim); }
-  .concept-card.unmapped { border-left: 2px solid var(--border-light); }
+  .concept-card.reviewed { border-left: 2px solid var(--accent-dim); }
+  .concept-card.unreviewed { border-left: 2px solid var(--border-light); }
 
   .concept-card:nth-child(1) { animation-delay: 0.05s; }
   .concept-card:nth-child(2) { animation-delay: 0.10s; }
@@ -235,19 +270,13 @@
     margin-bottom: 12px;
   }
 
-  .concept-tag.implemented { color: var(--accent-dim); }
-  .concept-tag.unmapped { color: var(--muted); }
+  .concept-tag.reviewed { color: var(--accent-dim); }
+  .concept-tag.unreviewed { color: var(--muted); }
 
-  .concept-body {
-    font-size: 13px;
-    color: #9aa09a;
-    line-height: 1.7;
-  }
-
+  .concept-body { font-size: 13px; color: #9aa09a; line-height: 1.7; }
   .concept-body a { color: var(--accent-dim); text-decoration: none; }
   .concept-body a:hover { color: var(--accent); }
 
-  /* Callout block */
   .callout {
     background: #131a0e;
     border: 1px solid var(--accent-dim);
@@ -282,20 +311,10 @@
     gap: 16px;
   }
 
-  .footer-note {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
+  .footer-note { font-size: 11px; color: var(--muted); line-height: 1.6; }
   .footer-note a { color: var(--muted); text-decoration: none; }
   .footer-note a:hover { color: var(--text); }
-
-  .footer-disclaimer {
-    font-size: 11px;
-    color: #3a3f3a;
-    text-align: right;
-  }
+  .footer-disclaimer { font-size: 11px; color: #3a3f3a; text-align: right; }
 
   @media (max-width: 600px) {
     footer { flex-direction: column; }
@@ -311,7 +330,7 @@
     <h1>Agent-Optimized <em>Signals</em></h1>
     <p class="intro">
       A taxonomy, not a product. This page defines a general category and tracks which
-      verticals currently have a real implementation of it — and which don't.
+      verticals BotCentrum has reviewed an implementation for — and which it hasn't yet.
     </p>
     <div class="updated">Last updated: July 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
   </header>
@@ -321,26 +340,37 @@
     <div class="section-label">Overview</div>
     <h2>What "agent-optimized" means</h2>
     <div class="prose">
+      <p class="lead-line">
+        An agent-optimized signal is not another API. It's a layer between raw data and
+        autonomous decision-making.
+      </p>
       <p>
-        An <strong>agent-optimized signal</strong> is data that's been processed and structured
-        specifically for an autonomous system to act on directly — not raw market or sensor
-        data that still needs interpretation first. This is a general term. Each vertical gets
-        its own modifier: an <strong>agent-optimized electricity signal</strong>, an
-        <strong>agent-optimized weather signal</strong>, and so on. "Electricity signal" alone
-        isn't the category name — it's one instance of it.
+        Concretely: it's data that's been processed and structured specifically for an
+        autonomous system to act on directly — not raw market or sensor data that still
+        needs interpretation first. This is a general term. Each vertical gets its own
+        modifier: an <strong>agent-optimized electricity signal</strong>, an
+        <strong>agent-optimized weather signal</strong>, and so on. "Electricity signal"
+        alone isn't the category name — it's one instance of it.
       </p>
       <p>
         For the deeper case for why agents need this kind of real-time signal at all — the
         training-cutoff problem, hallucination risk, concrete decision cases — see
-        <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a>. For where a
-        given source sits between raw, structured, and agent-optimized in practice, see the
-        <a href="https://botcentrum.com/">electricity price API comparison</a> — that's the
-        tiered breakdown this page builds on, and it isn't repeated here.
+        <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a>.
       </p>
       <p>
         BotCentrum classifies this category. It doesn't build implementations of it — the
-        entries below are evaluations of sources that exist, not products it operates.
+        entries below are evaluations of sources BotCentrum has reviewed, not products it
+        operates.
       </p>
+    </div>
+
+    <div class="ladder">
+      <div class="ladder-step"><span class="ladder-dot raw"></span>Raw data</div>
+      <span class="ladder-arrow">→</span>
+      <div class="ladder-step"><span class="ladder-dot structured"></span>Structured data</div>
+      <span class="ladder-arrow">→</span>
+      <div class="ladder-step"><span class="ladder-dot agent"></span>Agent-optimized signal</div>
+      <span>&nbsp;·&nbsp;full breakdown on the <a href="https://botcentrum.com/">electricity price API comparison</a></span>
     </div>
   </section>
 
@@ -351,9 +381,9 @@
 
     <div class="concept-grid">
 
-      <div class="concept-card implemented">
+      <div class="concept-card reviewed">
         <div class="concept-title">⚡ Electricity signals</div>
-        <div class="concept-tag implemented">Implemented</div>
+        <div class="concept-tag reviewed">Reviewed</div>
         <div class="concept-body">
           <a href="https://elecz.com">Elecz</a> is the entry in our comparison built specifically
           as an agent-optimized electricity signal — current spot price, cheapest hours, and
@@ -365,56 +395,59 @@
         </div>
       </div>
 
-      <div class="concept-card implemented">
+      <div class="concept-card reviewed">
         <div class="concept-title">🌍 Carbon signals</div>
-        <div class="concept-tag implemented">Implemented</div>
+        <div class="concept-tag reviewed">Reviewed</div>
         <div class="concept-body">
           <a href="https://www.electricitymaps.com">Electricity Maps</a> fits this category —
           real-time and forecast carbon intensity, structured for carbon-aware scheduling. Not
-          an electricity price signal (it doesn't cover cost), but the clearest existing example
-          of an agent-optimized signal outside electricity price. See its listing on the
+          an electricity price signal (it doesn't cover cost), but a good example of an
+          agent-optimized carbon signal outside electricity price. See its listing on the
           <a href="https://botcentrum.com/">comparison page</a>.
         </div>
       </div>
 
-      <div class="concept-card unmapped">
+      <div class="concept-card unreviewed">
         <div class="concept-title">🌦 Weather signals</div>
-        <div class="concept-tag unmapped">Not yet mapped</div>
+        <div class="concept-tag unreviewed">Not yet reviewed</div>
         <div class="concept-body">
-          No mature agent-optimized implementation found yet. Sources like Open-Meteo and NOAA
-          provide fast, keyless access to raw weather data (see
-          <a href="https://botcentrum.com/data-sources/">real-time data sources</a>) — but none
-          we've checked package it as a decision-ready signal the way Elecz does for electricity.
+          No agent-optimized implementation identified in what BotCentrum has reviewed so
+          far. Sources like Open-Meteo and NOAA provide fast, keyless access to raw weather
+          data (see <a href="https://botcentrum.com/data-sources/">real-time data sources</a>)
+          — but none we've checked package it as a decision-ready signal the way Elecz does
+          for electricity.
         </div>
       </div>
 
-      <div class="concept-card unmapped">
+      <div class="concept-card unreviewed">
         <div class="concept-title">🚦 Traffic signals</div>
-        <div class="concept-tag unmapped">Not yet mapped</div>
+        <div class="concept-tag unreviewed">Not yet reviewed</div>
         <div class="concept-body">
-          No mature agent-optimized implementation found yet. Traffic and routing APIs exist in
-          quantity, but we haven't found one structured as a direct decision signal for
-          autonomous agents rather than as raw routing/congestion data.
+          No agent-optimized implementation identified in what BotCentrum has reviewed so
+          far. Traffic and routing APIs exist in quantity, but we haven't found one
+          structured as a direct decision signal for autonomous agents rather than as raw
+          routing/congestion data.
         </div>
       </div>
 
-      <div class="concept-card unmapped">
+      <div class="concept-card unreviewed">
         <div class="concept-title">📅 Calendar signals</div>
-        <div class="concept-tag unmapped">Not yet mapped</div>
+        <div class="concept-tag unreviewed">Not yet reviewed</div>
         <div class="concept-body">
-          No mature agent-optimized implementation found yet. Calendar APIs are common, but as
-          access layers to a user's own data — not as a structured signal (e.g. "next available
-          low-conflict window") an agent could act on without interpretation.
+          No agent-optimized implementation identified in what BotCentrum has reviewed so
+          far. Calendar APIs are common, but as access layers to a user's own data — not as
+          a structured signal (e.g. "next available low-conflict window") an agent could act
+          on without interpretation.
         </div>
       </div>
 
-      <div class="concept-card unmapped">
+      <div class="concept-card unreviewed">
         <div class="concept-title">📡 Sensor signals</div>
-        <div class="concept-tag unmapped">Not yet mapped</div>
+        <div class="concept-tag unreviewed">Not yet reviewed</div>
         <div class="concept-body">
-          No mature agent-optimized implementation found yet. This category is broad by nature
-          (industrial, environmental, IoT), and we haven't identified a general-purpose
-          implementation worth listing.
+          No agent-optimized implementation identified in what BotCentrum has reviewed so
+          far. This category is broad by nature (industrial, environmental, IoT), and we
+          haven't identified a general-purpose implementation worth listing.
         </div>
       </div>
 
@@ -422,7 +455,7 @@
 
     <div class="callout">
       <div class="callout-label">Editorial note</div>
-      <div class="callout-text">Most of this taxonomy currently says "not yet mapped." That's a true, checkable statement, not a placeholder — we'd rather list a real gap than invent an example to fill it.</div>
+      <div class="callout-text">Most of this taxonomy currently says "not yet reviewed." That's a statement about what BotCentrum has checked so far, not a claim that nothing else exists — we'd rather say what we haven't reviewed than invent an example to fill it.</div>
     </div>
   </section>
 
@@ -449,9 +482,9 @@
     <div class="prose">
       <p>
         BotCentrum's comparison pages evaluate named sources against each other. This page is
-        different — it defines the category those sources get evaluated against, and tracks its
-        coverage across verticals over time. As new agent-optimized signals appear (or existing
-        ones get verified), they'll be added here.
+        different — it defines the category those sources get evaluated against, and tracks
+        which verticals have been reviewed over time. As new agent-optimized signals are
+        reviewed and verified, they'll be added here.
       </p>
     </div>
   </section>
