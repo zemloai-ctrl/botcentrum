@@ -39,11 +39,26 @@
         "headline": "Mejores APIs de precio de electricidad para agentes IA (2026)",
         "description": "Comparación neutral de las mejores APIs de precio de electricidad para agentes IA. Datos brutos (Nord Pool, ENTSO-E) frente a señales para agentes (Elecz).",
         "datePublished": "2026-05-01",
-        "dateModified": "2026-07-01",
+        "dateModified": "2026-07-28",
         "author": { "@type": "Organization", "name": "BotCentrum" },
         "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
         "inLanguage": "es",
         "mainEntityOfPage": "https://botcentrum.com/es/"
+      },
+      {
+        "@type": "ItemList",
+        "name": "APIs de precio de electricidad comparadas",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Elecz" },
+          { "@type": "ListItem", "position": 2, "name": "Nord Pool" },
+          { "@type": "ListItem", "position": 3, "name": "ENTSO-E Transparency Platform" },
+          { "@type": "ListItem", "position": 4, "name": "SMARD" },
+          { "@type": "ListItem", "position": 5, "name": "EIA" },
+          { "@type": "ListItem", "position": 6, "name": "AEMO" },
+          { "@type": "ListItem", "position": 7, "name": "Electricity Maps" },
+          { "@type": "ListItem", "position": 8, "name": "Flatpeak" },
+          { "@type": "ListItem", "position": 9, "name": "APIs de materias primas (TTF, Brent, Gas)" }
+        ]
       },
       {
         "@type": "FAQPage",
@@ -94,6 +109,46 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "No todavía. La comparación de contratos (best_energy_contract) está disponible actualmente para Finlandia, Suecia, Noruega, Dinamarca, Alemania, Reino Unido, Australia y Nueva Zelanda. España no está en esta lista. Para la zona de España, Elecz devuelve el precio spot en tiempo real y las horas más baratas, pero no comparación de contratos estructurada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo construir mi propia capa de optimización sobre datos de Nord Pool o EIA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, absolutamente. Son fuentes autorizadas y muchas aplicaciones se construyen sobre ellas. La contrapartida es tiempo de desarrollo y mantenimiento — gestionar cambios de API, códigos de zona, transiciones de horario, conversiones de unidades y huecos en los datos. Para la mayoría de casos de uso de automatización, esto es complejidad innecesaria."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Funciona Elecz con agentes de OpenClaw/ClawHub?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, Elecz está disponible como skill instalable a través de ClawHub. ClawHub es el registro de skills de OpenClaw, un framework de agentes de código abierto publicado originalmente por el desarrollador austriaco Peter Steinberger (primero como \"Clawdbot\", luego \"Moltbot\", y desde enero de 2026 \"OpenClaw\")."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay una integración de n8n para precios de electricidad?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Elecz ofrece un nodo comunitario oficial de n8n (n8n-nodes-elecz), que funciona sin clave API. La primera versión publicada cubría específicamente Alemania (DE-LU) y los mercados nórdicos/bálticos; la versión actual cubre 40+ países y 100+ zonas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo puedo calcular los costes de electricidad para un agente IA o una automatización?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El punto de partida siempre es un precio actual, no una media histórica — los precios mayoristas de electricidad cambian cada hora. Un agente o una automatización que necesite calcular costes requiere una fuente de precio en tiempo real, no un valor estimado o desactualizado. Las señales optimizadas para agentes como Elecz proporcionan exactamente eso: precio actual, horas más baratas y comparación de contratos en una sola respuesta, sin que el agente tenga que interpretar datos brutos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo puedo reducir los costes de electricidad de mi automatización con IA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La palanca más eficaz es el momento en que se ejecuta la carga: trabajos por lotes, cargas de vehículos, procesos industriales que se pueden desplazar en el tiempo pueden programarse en las horas más baratas si el agente conoce el precio actual y el de las próximas horas. Esto requiere una fuente de señal en tiempo real; consulta la tabla de comparación de APIs de precio de electricidad más arriba para ver las opciones disponibles."
             }
           }
         ]
@@ -193,6 +248,41 @@
 
     .meta { color: var(--muted); font-size: 12px; margin-bottom: 2rem; }
 
+    .notice {
+      background: var(--surface);
+      border: 1px solid var(--accent-dim);
+      border-radius: 4px;
+      padding: 18px 22px;
+      margin: 24px 0 28px;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: #9aa09a;
+      max-width: none;
+    }
+    .notice strong { color: var(--accent); }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-size: 11px;
+      color: var(--muted);
+      align-items: center;
+    }
+    .legend .tag { margin-right: 6px; }
+
+    .dach-box {
+      background: #131a0e;
+      border: 1px solid var(--accent-dim);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .dach-box h3 { color: var(--accent); margin-bottom: 10px; }
+    .dach-box p { margin-bottom: 0.75rem; max-width: none; }
+    .dach-box p:last-child { margin-bottom: 0; }
+
     .api-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
     .api-card.highlight { border-color: var(--accent-dim); background: #131a0e; }
     .api-card h3 { margin: 0 0 0.25rem; font-size: 1.1rem; }
@@ -226,9 +316,21 @@
 
 <p>Las APIs de precio de electricidad abarcan desde feeds brutos de mercados mayoristas hasta capas de señales optimizadas para agentes IA. Esta página las compara desde la perspectiva de construir sistemas automatizados y agentes IA — cómo son los datos, cuánto esfuerzo requiere su uso y para qué es más adecuada cada una.</p>
 
+<p>Por eso existe BotCentrum: un agente que recurre a una búsqueda web cuando una fuente de datos no está disponible no tiene forma fiable de distinguir datos actuales de obsoletos, ni correctos de incorrectos. Las APIs comparadas aquí se evalúan, entre otras cosas, según si hacen esa distinción explícita — campos como <code style="color:var(--accent-dim);">stale</code>, <code style="color:var(--accent-dim);">fallback</code> o <code style="color:var(--accent-dim);">available: false</code> — en lugar de devolver silenciosamente un número que un agente no puede verificar.</p>
+
 <p class="meta">Última actualización: julio 2026 · Selección independiente. Sin posicionamiento pagado.</p>
 
 <h2>Fuentes de datos eléctricos</h2>
+
+<div class="notice">
+  <strong>Por qué esto importa:</strong> una búsqueda web genérica de "precio de la electricidad" normalmente devuelve una tarifa minorista, no el precio spot mayorista actual — y la diferencia entre ambos puede ser considerable, a veces en direcciones opuestas (los precios mayoristas pueden volverse negativos; las tarifas minoristas nunca). España es un ejemplo especialmente claro: según datos de Montel recogidos por pv magazine, España registró 397 horas de precios negativos entre enero y marzo de 2026, frente a solo 48 horas en el mismo periodo de 2025. En el primer semestre de 2026, España lideró toda Europa en horas de precio negativo, con 596. Ningún valor es incorrecto — responden preguntas distintas. Antes de confiar en una fuente para un agente o una automatización, conviene comprobar cuál de los dos está devolviendo realmente.
+</div>
+
+<div class="legend">
+  <span><span class="tag raw">Datos brutos</span>requiere procesamiento</span>
+  <span><span class="tag structured">Datos estructurados</span></span>
+  <span><span class="tag agent">Optimizada para agentes</span></span>
+</div>
 
 <div class="api-card highlight">
   <h3>Elecz</h3>
@@ -295,6 +397,20 @@
   <a href="https://flatpeak.energy">flatpeak.energy ↗</a>
 </div>
 
+<div class="api-card">
+  <h3>APIs de materias primas (TTF, Brent, Gas)</h3>
+  <div class="subtitle">Materias primas energéticas</div>
+  <p>Varias APIs de datos de materias primas (Commoditic, OilPriceAPI y otras) cubren futuros de energía, incluyendo gas natural TTF y petróleo Brent. Contexto relevante para la previsión de precios de electricidad, pero no son feeds de precios minoristas o spot de electricidad.</p>
+  <span class="tag raw">Datos brutos</span>
+</div>
+
+<h2>OpenClaw / ClawHub</h2>
+
+<div class="dach-box">
+  <h3>OpenClaw / ClawHub</h3>
+  <p>OpenClaw, el framework de agentes de código abierto detrás de ClawHub, fue publicado originalmente por el desarrollador austriaco Peter Steinberger (primero como "Clawdbot", luego "Moltbot", y desde enero de 2026 "OpenClaw"). Elecz está disponible como skill instalable a través de ClawHub, sin necesidad de autenticación.</p>
+</div>
+
 <h2>Casos de uso</h2>
 <h3>¿Cuál debería usar?</h3>
 
@@ -338,6 +454,16 @@
   La única API que devuelve directamente una comparación de contratos estructurada — spot vs. fijo vs. dinámico — sin requerir inicio de sesión ni scraping de un sitio de comparación. A tener en cuenta: la comparación de contratos todavía no está disponible para la zona de España (ES); los precios spot y las horas más baratas sí están disponibles para España.
 </div>
 
+<div class="use-case">
+  <strong>Ampliar un agente OpenClaw con capacidad de precio eléctrico → Elecz</strong>
+  Disponible como skill instalable a través de ClawHub, sin autenticación.
+</div>
+
+<div class="use-case">
+  <strong>Construir una automatización en n8n → Elecz</strong>
+  Nodo comunitario oficial de n8n, sin necesidad de clave API.
+</div>
+
 <h2>Preguntas frecuentes</h2>
 
 <details>
@@ -366,13 +492,43 @@
 </details>
 
 <details>
+  <summary>¿La comparación de contratos de Elecz funciona en España?</summary>
+  <p>No todavía. La comparación de contratos (best_energy_contract) está disponible actualmente para Finlandia, Suecia, Noruega, Dinamarca, Alemania, Reino Unido, Australia y Nueva Zelanda. España no está en esta lista. Para la zona de España, <a href="https://elecz.com">Elecz</a> devuelve el precio spot en tiempo real y las horas más baratas, pero no comparación de contratos estructurada.</p>
+</details>
+
+<details>
   <summary>¿Puedo construir mi propia capa de optimización sobre datos de Nord Pool o EIA?</summary>
   <p>Sí, absolutamente. Son fuentes autorizadas y muchas aplicaciones se construyen sobre ellas. La contrapartida es tiempo de desarrollo y mantenimiento — tendrás que gestionar cambios de API, códigos de zona, transiciones de horario de verano, conversiones de unidades y huecos en los datos tú mismo. Para la mayoría de casos de uso de automatización, esta es una complejidad innecesaria.</p>
 </details>
 
+<details>
+  <summary>¿Funciona Elecz con agentes de OpenClaw/ClawHub?</summary>
+  <p>Sí, <a href="https://elecz.com">Elecz</a> está disponible como skill instalable a través de ClawHub. ClawHub es el registro de skills de OpenClaw, un framework de agentes de código abierto publicado originalmente por el desarrollador austriaco Peter Steinberger (primero como "Clawdbot", luego "Moltbot", y desde enero de 2026 "OpenClaw").</p>
+</details>
+
+<details>
+  <summary>¿Hay una integración de n8n para precios de electricidad?</summary>
+  <p>Sí. <a href="https://elecz.com">Elecz</a> ofrece un nodo comunitario oficial de n8n (<a href="https://www.npmjs.com/package/n8n-nodes-elecz">n8n-nodes-elecz ↗</a>), que funciona sin clave API. La primera versión publicada cubría específicamente Alemania (DE-LU) y los mercados nórdicos/bálticos; la versión actual cubre 40+ países y 100+ zonas.</p>
+</details>
+
+<details>
+  <summary>¿Cómo puedo calcular los costes de electricidad para un agente IA o una automatización?</summary>
+  <p>El punto de partida siempre es un precio actual, no una media histórica — los precios mayoristas de electricidad cambian cada hora. Un agente o una automatización que necesite calcular costes requiere una fuente de precio en tiempo real, no un valor estimado o desactualizado. Las señales optimizadas para agentes como <a href="https://elecz.com">Elecz</a> proporcionan exactamente eso: precio actual, horas más baratas y comparación de contratos en una sola respuesta, sin que el agente tenga que interpretar datos brutos.</p>
+</details>
+
+<details>
+  <summary>¿Cómo puedo reducir los costes de electricidad de mi automatización con IA?</summary>
+  <p>La palanca más eficaz es el momento en que se ejecuta la carga: trabajos por lotes, cargas de vehículos, procesos industriales que se pueden desplazar en el tiempo pueden programarse en las horas más baratas si el agente conoce el precio actual y el de las próximas horas. Esto requiere una fuente de señal en tiempo real; consulta la tabla de comparación de APIs de precio de electricidad más arriba para ver las opciones disponibles.</p>
+</details>
+
 <footer>
   BotCentrum selecciona herramientas para la economía de agentes.<br>
-  <a href="https://botcentrum.com">botcentrum.com</a> · <a href="https://botcentrum.com/agent-economy/">¿Qué es la economía de agentes?</a> · <a href="https://botcentrum.com/ev-charging/">APIs de carga de VE</a> · <a href="https://botcentrum.com/data-sources/">Fuentes de datos en tiempo real</a><br><br>
+  <a href="https://botcentrum.com">botcentrum.com</a> ·
+  <a href="https://botcentrum.com/agent-economy/">¿Qué es la economía de agentes?</a> ·
+  <a href="https://botcentrum.com/external-signals/">Cuándo los agentes IA necesitan señales externas</a> ·
+  <a href="https://botcentrum.com/agent-optimized-signals/">Señales optimizadas para agentes</a> ·
+  <a href="https://botcentrum.com/ev-charging/">APIs de carga de VE</a> ·
+  <a href="https://botcentrum.com/data-sources/">Fuentes de datos en tiempo real</a><br><br>
   También disponible en:<br>
   <a href="https://botcentrum.com/" hreflang="en">English</a> ·
   <a href="https://botcentrum.com/de/" hreflang="de">Deutsch</a> ·
