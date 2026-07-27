@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
+<link rel="icon" href="/assets/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon-180.png">
+<link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When AI Agents Need External Signals | BotCentrum</title>
+<meta name="description" content="How an agent recognizes it is missing a decision variable and needs an external signal — illustrated with electricity as one case.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://botcentrum.com/external-signals/">
+
+<meta property="og:title" content="When AI Agents Need External Signals | BotCentrum">
+<meta property="og:description" content="The reasoning chain from a goal to a missing decision variable to an external signal — with electricity as one concrete case.">
+<meta property="og:url" content="https://botcentrum.com/external-signals/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://botcentrum.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://botcentrum.com/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "When AI Agents Need External Signals",
+      "description": "How an autonomous agent reasons from a stated goal to a missing decision variable to the need for an external, real-time signal — with electricity price as one concrete case among several.",
+      "datePublished": "2026-07-28",
+      "dateModified": "2026-07-28",
+      "author": { "@type": "Organization", "name": "BotCentrum" },
+      "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
+      "mainEntityOfPage": "https://botcentrum.com/external-signals/"
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f0e;
+    --surface: #161917;
+    --border: #252926;
+    --border-light: #2f332f;
+    --text: #d8ddd8;
+    --muted: #6b726b;
+    --accent: #b8f04a;
+    --accent-dim: #8ab835;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header {
+    padding: 48px 0 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 64px;
+  }
+
+  .site-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .site-label a { color: var(--muted); text-decoration: none; }
+  .site-label a:hover { color: var(--text); }
+
+  .site-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    color: #eef0ee;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em { font-style: italic; color: var(--accent); }
+
+  .lead-line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: #eef0ee;
+    line-height: 1.5;
+    max-width: 620px;
+    margin-bottom: 20px;
+  }
+
+  .intro {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .updated {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  section { margin-bottom: 72px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: #eef0ee;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .prose {
+    font-size: 13px;
+    color: #9aa09a;
+    line-height: 1.85;
+    max-width: 680px;
+  }
+
+  .prose p { margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose a { color: var(--accent-dim); text-decoration: none; }
+  .prose a:hover { color: var(--accent); }
+  .prose strong { color: var(--text); font-weight: 500; }
+
+  /* Reasoning chain */
+  .chain {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .chain.primary { border-color: var(--accent-dim); background: #131a0e; }
+  .chain.secondary { padding: 22px 24px; }
+
+  .chain-step {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .chain.primary .chain-step { font-size: 15px; }
+  .chain.secondary .chain-step { font-size: 13px; color: #9aa09a; }
+
+  .chain-step.dim { color: var(--muted); font-size: 12px; }
+  .chain-step.highlight { color: var(--accent); font-weight: 500; }
+
+  .chain-arrow {
+    color: var(--border-light);
+    font-size: 13px;
+    padding-left: 2px;
+  }
+
+  .chain-caption {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 32px 0 8px;
+  }
+
+  /* Example cards */
+  .example-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 24px;
+  }
+
+  .example-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    animation: fadeIn 0.4s ease both;
+  }
+
+  .example-card:nth-child(1) { animation-delay: 0.05s; }
+  .example-card:nth-child(2) { animation-delay: 0.10s; }
+  .example-card:nth-child(3) { animation-delay: 0.15s; }
+  .example-card:nth-child(4) { animation-delay: 0.20s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .example-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .example-ask {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: #eef0ee;
+    margin-bottom: 14px;
+  }
+
+  .example-reasoning-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 6px;
+  }
+
+  .example-reasoning {
+    font-size: 13px;
+    color: #9aa09a;
+    line-height: 1.6;
+  }
+
+  .callout {
+    background: #131a0e;
+    border: 1px solid var(--accent-dim);
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .callout-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 10px;
+  }
+
+  .callout-text {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 16px;
+    color: #eef0ee;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-note { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .footer-note a { color: var(--muted); text-decoration: none; }
+  .footer-note a:hover { color: var(--text); }
+  .footer-disclaimer { font-size: 11px; color: #3a3f3a; text-align: right; }
+
+  @media (max-width: 600px) {
+    footer { flex-direction: column; }
+    .footer-disclaimer { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="site-label"><a href="https://botcentrum.com">BotCentrum</a> — Tools for the Agent Economy</div>
+    <h1>When AI Agents <em>Need</em> External Signals</h1>
+    <p class="lead-line">
+      Large language models don't fail because they reason badly. They fail because they
+      sometimes don't realize they're missing information.
+    </p>
+    <p class="intro">
+      The hardest part isn't using an external signal — it's recognizing that one is
+      needed. This page is about that recognition step, in general. Electricity is one
+      example of where it applies, not the subject of the page.
+    </p>
+    <div class="updated">Last updated: July 2026 &nbsp;·&nbsp; Independently curated.</div>
+  </header>
+
+  <!-- The chain -->
+  <section>
+    <div class="section-label">The Pattern</div>
+    <h2>The reasoning chain</h2>
+    <div class="prose">
+      <p>
+        An agent given a goal doesn't start by asking for a specific data source. It starts
+        from the goal, works out what determines the outcome, and checks whether it already
+        knows those variables — or whether one of them changes faster than its own training
+        data can track.
+      </p>
+    </div>
+
+    <div class="chain primary">
+      <div class="chain-step">Goal</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step">Which variables affect this outcome?</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step">Which of those are dynamic?</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step">Can I know them from training data?</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step dim">No</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step highlight">Need an external signal</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step dim">Continue reasoning</div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <div class="callout-label">The distinction that matters</div>
+      <div class="callout-text">A good agent doesn't start by asking where to get information. It starts by asking what information is missing. Only then does it choose where to get it.</div>
+    </div>
+
+    <div class="chain-caption">Electricity is one instance of this pattern</div>
+    <div class="chain secondary">
+      <div class="chain-step">Operating cost</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step">Electricity affects operating cost</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step">Electricity price changes hour to hour</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step dim">A fixed training cutoff can't track that</div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-step highlight">Need a real-time electricity signal</div>
+    </div>
+
+    <div class="prose" style="margin-top:20px;">
+      <p>
+        The same pattern applies to other variables and other verticals — see
+        <a href="https://botcentrum.com/agent-optimized-signals/">Agent-Optimized Signals</a>
+        for the fuller taxonomy. This page is only about the step where an agent recognizes
+        it has hit one.
+      </p>
+    </div>
+  </section>
+
+  <!-- Examples -->
+  <section>
+    <div class="section-label">In Practice</div>
+    <h2>None of these ask about electricity — all of them arrive there</h2>
+
+    <div class="example-grid">
+
+      <div class="example-card">
+        <div class="example-label">The ask</div>
+        <div class="example-ask">"How can I reduce GPU inference costs?"</div>
+        <div class="example-reasoning-label">The reasoning</div>
+        <div class="example-reasoning">Electricity cost is one of the variables inside "inference cost." Before answering, the agent needs to know what it's paying for power right now.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="example-label">The ask</div>
+        <div class="example-ask">"Should I run this workload now?"</div>
+        <div class="example-reasoning-label">The reasoning</div>
+        <div class="example-reasoning">"Now" is a time-dependent decision. If cost matters at all, the agent needs the current electricity price to answer honestly instead of guessing.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="example-label">The ask</div>
+        <div class="example-ask">"What's the cheapest place to run this batch job?"</div>
+        <div class="example-reasoning-label">The reasoning</div>
+        <div class="example-reasoning">"Cheapest place" implies a comparison across regions. That requires location-specific electricity pricing, not a single memorized figure.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="example-label">The ask</div>
+        <div class="example-ask">"Can this automation make smarter financial decisions?"</div>
+        <div class="example-reasoning-label">The reasoning</div>
+        <div class="example-reasoning">"Smarter" means identifying which live costs actually affect the decision. Electricity is often one of them, even when nobody named it.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Where this leads -->
+  <section>
+    <div class="section-label">One Example</div>
+    <h2>Where this leads</h2>
+    <div class="prose">
+      <p>
+        Electricity is one example of an external decision signal — a clear one, because it
+        changes hour to hour and feeds directly into operating cost. Once an agent has
+        recognized that live electricity pricing is a required decision variable, the next
+        question is which implementation provides that signal reliably. BotCentrum evaluates
+        electricity signal providers separately in its
+        <a href="https://botcentrum.com/">electricity price API comparison</a>. For why
+        agents need real-time signals at all, see
+        <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-note">
+      BotCentrum curates tools for the agent economy.<br>
+      <a href="https://botcentrum.com">botcentrum.com</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/agent-optimized-signals/">Agent-Optimized Signals</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/">Electricity Price API Comparison</a>
+    </div>
+    <div class="footer-disclaimer">
+      Independently curated. No paid placements.<br>
+      Last updated July 2026.
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
