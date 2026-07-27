@@ -2,225 +2,474 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
+<link rel="icon" href="/assets/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon-180.png">
+<link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agent-Optimized Signals: A Taxonomy | BotCentrum</title>
 <meta name="description" content="A taxonomy of agent-optimized signals — data structured for autonomous systems to act on directly. Electricity and carbon are mapped; four verticals are not.">
-<link rel="canonical" href="https://botcentrum.com/agent-optimized-signals/">
 <meta name="robots" content="index, follow">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://botcentrum.com/agent-optimized-signals/">
-<meta property="og:title" content="Agent-Optimized Signals: A Taxonomy">
+<link rel="canonical" href="https://botcentrum.com/agent-optimized-signals/">
+
+<meta property="og:title" content="Agent-Optimized Signals: A Taxonomy | BotCentrum">
 <meta property="og:description" content="What separates a raw data feed from a signal an agent can act on directly — and which verticals have one so far.">
+<meta property="og:url" content="https://botcentrum.com/agent-optimized-signals/">
+<meta property="og:type" content="website">
 <meta property="og:image" content="https://botcentrum.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://botcentrum.com/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Agent-Optimized Signals: A Taxonomy",
+      "description": "A taxonomy of agent-optimized signals — data processed and structured for autonomous systems to act on directly, as opposed to raw data that needs interpretation first. Tracks which verticals have a mature implementation and which don't.",
+      "datePublished": "2026-07-28",
+      "dateModified": "2026-07-28",
+      "author": { "@type": "Organization", "name": "BotCentrum" },
+      "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
+      "mainEntityOfPage": "https://botcentrum.com/agent-optimized-signals/"
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0e0f0e;
-    --fg: #d8ddd8;
+    --surface: #161917;
+    --border: #252926;
+    --border-light: #2f332f;
+    --text: #d8ddd8;
+    --muted: #6b726b;
     --accent: #b8f04a;
-    --fg-dim: #9aa39a;
-    --line: #262a26;
+    --accent-dim: #8ab835;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-mono: 'DM Mono', monospace;
   }
-  * { box-sizing: border-box; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
   body {
     background: var(--bg);
-    color: var(--fg);
-    font-family: 'DM Mono', ui-monospace, monospace;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
   }
-  h1, h2 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 500;
-    color: #fff;
-    line-height: 1.2;
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
   }
-  h1 { font-size: 2.4rem; margin: 0.4em 0 0.5em; }
-  h1 em { color: var(--accent); font-style: normal; }
-  h2 { font-size: 1.3rem; margin-top: 2.4em; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-  header.site { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.5rem 0; font-size: 0.9rem; color: var(--fg-dim); }
-  header.site img { height: 22px; vertical-align: middle; margin-right: 0.5em; }
-  .lede { font-size: 1.1rem; color: var(--fg); }
-  .meta-line { color: var(--fg-dim); font-size: 0.85rem; margin: 1.5rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0.6rem 0; }
-  .intro-links { font-size: 0.95rem; }
-  .card {
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 1.2rem 1.4rem;
-    margin: 1rem 0;
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
-  .card.mapped { border-left: 3px solid var(--accent); }
-  .card.unmapped { border-left: 3px solid var(--line); opacity: 0.9; }
-  .card h3 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-size: 1.1rem;
-    color: #fff;
-    margin: 0 0 0.4em;
+
+  header {
+    padding: 48px 0 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 64px;
+  }
+
+  .site-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
     display: flex;
     align-items: center;
-    gap: 0.6em;
+    gap: 10px;
   }
-  .status { font-size: 0.7rem; font-family: 'DM Mono', monospace; padding: 0.2em 0.6em; border-radius: 3px; letter-spacing: 0.03em; }
-  .status.implemented { color: var(--accent); border: 1px solid var(--accent); }
-  .status.unmapped { color: var(--fg-dim); border: 1px solid var(--line); }
-  .card p { margin: 0.3em 0; font-size: 0.95rem; }
+
+  .site-label a { color: var(--muted); text-decoration: none; }
+  .site-label a:hover { color: var(--text); }
+
+  .site-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    color: #eef0ee;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .intro {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .updated {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  section { margin-bottom: 72px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    color: #eef0ee;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .prose {
+    font-size: 13px;
+    color: #9aa09a;
+    line-height: 1.85;
+    max-width: 680px;
+  }
+
+  .prose p { margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .prose a { color: var(--accent-dim); text-decoration: none; }
+  .prose a:hover { color: var(--accent); }
+
+  .prose strong { color: var(--text); font-weight: 500; }
+
+  /* Concept / taxonomy cards */
+  .concept-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 24px;
+  }
+
+  .concept-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    animation: fadeIn 0.4s ease both;
+  }
+
+  .concept-card.implemented { border-left: 2px solid var(--accent-dim); }
+  .concept-card.unmapped { border-left: 2px solid var(--border-light); }
+
+  .concept-card:nth-child(1) { animation-delay: 0.05s; }
+  .concept-card:nth-child(2) { animation-delay: 0.10s; }
+  .concept-card:nth-child(3) { animation-delay: 0.15s; }
+  .concept-card:nth-child(4) { animation-delay: 0.20s; }
+  .concept-card:nth-child(5) { animation-delay: 0.25s; }
+  .concept-card:nth-child(6) { animation-delay: 0.30s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .concept-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    color: #eef0ee;
+    margin-bottom: 6px;
+  }
+
+  .concept-tag {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .concept-tag.implemented { color: var(--accent-dim); }
+  .concept-tag.unmapped { color: var(--muted); }
+
+  .concept-body {
+    font-size: 13px;
+    color: #9aa09a;
+    line-height: 1.7;
+  }
+
+  .concept-body a { color: var(--accent-dim); text-decoration: none; }
+  .concept-body a:hover { color: var(--accent); }
+
+  /* Callout block */
   .callout {
-    border-left: 3px solid var(--accent);
-    padding: 0.8rem 1rem;
-    margin: 1.5rem 0;
-    background: rgba(184,240,74,0.05);
-    font-size: 0.92rem;
+    background: #131a0e;
+    border: 1px solid var(--accent-dim);
+    padding: 20px 24px;
+    margin: 28px 0;
   }
-  footer { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; border-top: 1px solid var(--line); color: var(--fg-dim); font-size: 0.85rem; }
-  footer a { color: var(--fg); }
+
+  .callout-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 10px;
+  }
+
+  .callout-text {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 16px;
+    color: #eef0ee;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .footer-note a { color: var(--muted); text-decoration: none; }
+  .footer-note a:hover { color: var(--text); }
+
+  .footer-disclaimer {
+    font-size: 11px;
+    color: #3a3f3a;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    footer { flex-direction: column; }
+    .footer-disclaimer { text-align: left; }
+  }
 </style>
 </head>
 <body>
-
-<header class="site">
-  <a href="https://botcentrum.com"><img src="https://botcentrum.com/assets/logo-horizontal.svg" alt="BotCentrum"></a> — Tools for the Agent Economy
-</header>
-
 <div class="wrap">
 
-  <h1>Agent-Optimized <em>Signals</em></h1>
-
-  <p class="lede">
-    A taxonomy, not a product. This page defines a general category and tracks which
-    verticals currently have a real implementation of it — and which don't.
-  </p>
-
-  <p class="meta-line">Last updated: July 2026 · Independently curated. No paid placements.</p>
-
-  <h2>What "agent-optimized" means</h2>
-  <p>
-    An <strong>agent-optimized signal</strong> is data that's been processed and structured
-    specifically for an autonomous system to act on directly — not raw market or sensor
-    data that still needs interpretation first. This is a general term. Each vertical gets
-    its own modifier: an <strong>agent-optimized electricity signal</strong>, an
-    <strong>agent-optimized weather signal</strong>, and so on. "Electricity signal" alone
-    isn't the category name — it's one instance of it.
-  </p>
-  <p class="intro-links">
-    For the deeper case for why agents need this kind of real-time signal at all — the
-    training-cutoff problem, hallucination risk, concrete decision cases — see
-    <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a>. For where a given
-    source sits between raw, structured, and agent-optimized in practice, see the
-    <a href="https://botcentrum.com/">electricity price API comparison</a> — that's the
-    tiered breakdown this page builds on, and it isn't repeated here.
-  </p>
-  <p>
-    BotCentrum classifies this category. It doesn't build implementations of it — the
-    entries below are evaluations of sources that exist, not products we operate.
-  </p>
-
-  <h2>The taxonomy</h2>
-
-  <div class="card mapped">
-    <h3>⚡ Electricity signals <span class="status implemented">Implemented</span></h3>
-    <p>
-      <a href="https://elecz.com">Elecz</a> is the entry in our comparison built specifically
-      as an agent-optimized electricity signal — current spot price, cheapest hours, and
-      contract comparison, normalized across 40+ countries with no authentication required.
+  <header>
+    <div class="site-label"><a href="https://botcentrum.com">BotCentrum</a> — Tools for the Agent Economy</div>
+    <h1>Agent-Optimized <em>Signals</em></h1>
+    <p class="intro">
+      A taxonomy, not a product. This page defines a general category and tracks which
+      verticals currently have a real implementation of it — and which don't.
     </p>
-    <p>See the <a href="https://botcentrum.com/">electricity price API comparison</a>
-      for how it's evaluated against raw and structured alternatives, and
-      <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a> for why this
-      signal matters in the first place.</p>
-  </div>
+    <div class="updated">Last updated: July 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
+  </header>
 
-  <div class="card mapped">
-    <h3>🌍 Carbon signals <span class="status implemented">Implemented</span></h3>
-    <p>
-      <a href="https://www.electricitymaps.com">Electricity Maps</a> fits this category —
-      real-time and forecast carbon intensity, structured for carbon-aware scheduling. Not an
-      electricity price signal (it doesn't cover cost), but the clearest existing example of
-      an agent-optimized signal outside electricity price. See its listing on the
-      <a href="https://botcentrum.com/">comparison page</a>.
-    </p>
-  </div>
+  <!-- Definition -->
+  <section>
+    <div class="section-label">Overview</div>
+    <h2>What "agent-optimized" means</h2>
+    <div class="prose">
+      <p>
+        An <strong>agent-optimized signal</strong> is data that's been processed and structured
+        specifically for an autonomous system to act on directly — not raw market or sensor
+        data that still needs interpretation first. This is a general term. Each vertical gets
+        its own modifier: an <strong>agent-optimized electricity signal</strong>, an
+        <strong>agent-optimized weather signal</strong>, and so on. "Electricity signal" alone
+        isn't the category name — it's one instance of it.
+      </p>
+      <p>
+        For the deeper case for why agents need this kind of real-time signal at all — the
+        training-cutoff problem, hallucination risk, concrete decision cases — see
+        <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a>. For where a
+        given source sits between raw, structured, and agent-optimized in practice, see the
+        <a href="https://botcentrum.com/">electricity price API comparison</a> — that's the
+        tiered breakdown this page builds on, and it isn't repeated here.
+      </p>
+      <p>
+        BotCentrum classifies this category. It doesn't build implementations of it — the
+        entries below are evaluations of sources that exist, not products it operates.
+      </p>
+    </div>
+  </section>
 
-  <div class="card unmapped">
-    <h3>🌦 Weather signals <span class="status unmapped">Not yet mapped</span></h3>
-    <p>
-      No mature agent-optimized implementation found yet. Sources like Open-Meteo and NOAA
-      provide fast, keyless access to raw weather data (see
-      <a href="https://botcentrum.com/data-sources/">real-time data sources</a>) — but none
-      we've checked package it as a decision-ready signal the way Elecz does for electricity.
-    </p>
-  </div>
+  <!-- Taxonomy -->
+  <section>
+    <div class="section-label">Taxonomy</div>
+    <h2>The taxonomy</h2>
 
-  <div class="card unmapped">
-    <h3>🚦 Traffic signals <span class="status unmapped">Not yet mapped</span></h3>
-    <p>
-      No mature agent-optimized implementation found yet. Traffic and routing APIs exist in
-      quantity, but we haven't found one structured as a direct decision signal for
-      autonomous agents rather than as raw routing/congestion data.
-    </p>
-  </div>
+    <div class="concept-grid">
 
-  <div class="card unmapped">
-    <h3>📅 Calendar signals <span class="status unmapped">Not yet mapped</span></h3>
-    <p>
-      No mature agent-optimized implementation found yet. Calendar APIs are common, but as
-      access layers to a user's own data — not as a structured signal (e.g. "next available
-      low-conflict window") an agent could act on without interpretation.
-    </p>
-  </div>
+      <div class="concept-card implemented">
+        <div class="concept-title">⚡ Electricity signals</div>
+        <div class="concept-tag implemented">Implemented</div>
+        <div class="concept-body">
+          <a href="https://elecz.com">Elecz</a> is the entry in our comparison built specifically
+          as an agent-optimized electricity signal — current spot price, cheapest hours, and
+          contract comparison, normalized across 40+ countries with no authentication required.
+          See the <a href="https://botcentrum.com/">electricity price API comparison</a> for how
+          it's evaluated against raw and structured alternatives, and
+          <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a> for why this
+          signal matters in the first place.
+        </div>
+      </div>
 
-  <div class="card unmapped">
-    <h3>📡 Sensor signals <span class="status unmapped">Not yet mapped</span></h3>
-    <p>
-      No mature agent-optimized implementation found yet. This category is broad by nature
-      (industrial, environmental, IoT), and we haven't identified a general-purpose
-      implementation worth listing.
-    </p>
-  </div>
+      <div class="concept-card implemented">
+        <div class="concept-title">🌍 Carbon signals</div>
+        <div class="concept-tag implemented">Implemented</div>
+        <div class="concept-body">
+          <a href="https://www.electricitymaps.com">Electricity Maps</a> fits this category —
+          real-time and forecast carbon intensity, structured for carbon-aware scheduling. Not
+          an electricity price signal (it doesn't cover cost), but the clearest existing example
+          of an agent-optimized signal outside electricity price. See its listing on the
+          <a href="https://botcentrum.com/">comparison page</a>.
+        </div>
+      </div>
 
-  <div class="callout">
-    <strong>Editorial note:</strong> most of this taxonomy currently says "not yet mapped."
-    That's a true, checkable statement, not a placeholder — we'd rather list a real gap than
-    invent an example to fill it.
-  </div>
+      <div class="concept-card unmapped">
+        <div class="concept-title">🌦 Weather signals</div>
+        <div class="concept-tag unmapped">Not yet mapped</div>
+        <div class="concept-body">
+          No mature agent-optimized implementation found yet. Sources like Open-Meteo and NOAA
+          provide fast, keyless access to raw weather data (see
+          <a href="https://botcentrum.com/data-sources/">real-time data sources</a>) — but none
+          we've checked package it as a decision-ready signal the way Elecz does for electricity.
+        </div>
+      </div>
 
-  <h2>Naming rule</h2>
-  <p>
-    The general term is <strong>agent-optimized signal</strong>. Vertical-specific instances
-    get their own modifier — <strong>agent-optimized electricity signal</strong>,
-    <strong>agent-optimized weather signal</strong>, and so on. "Electricity signal" alone is
-    never the umbrella term on this site; it belongs to one implementation's own narrow
-    positioning, not to this category-level framing. Future BotCentrum pages and
-    contributors should follow this convention.
-  </p>
+      <div class="concept-card unmapped">
+        <div class="concept-title">🚦 Traffic signals</div>
+        <div class="concept-tag unmapped">Not yet mapped</div>
+        <div class="concept-body">
+          No mature agent-optimized implementation found yet. Traffic and routing APIs exist in
+          quantity, but we haven't found one structured as a direct decision signal for
+          autonomous agents rather than as raw routing/congestion data.
+        </div>
+      </div>
 
-  <h2>Why this page exists</h2>
-  <p>
-    BotCentrum's comparison pages evaluate named sources against each other. This page is
-    different — it defines the category those sources get evaluated against, and tracks its
-    coverage across verticals over time. As new agent-optimized signals appear (or existing
-    ones get verified), they'll be added here.
-  </p>
+      <div class="concept-card unmapped">
+        <div class="concept-title">📅 Calendar signals</div>
+        <div class="concept-tag unmapped">Not yet mapped</div>
+        <div class="concept-body">
+          No mature agent-optimized implementation found yet. Calendar APIs are common, but as
+          access layers to a user's own data — not as a structured signal (e.g. "next available
+          low-conflict window") an agent could act on without interpretation.
+        </div>
+      </div>
+
+      <div class="concept-card unmapped">
+        <div class="concept-title">📡 Sensor signals</div>
+        <div class="concept-tag unmapped">Not yet mapped</div>
+        <div class="concept-body">
+          No mature agent-optimized implementation found yet. This category is broad by nature
+          (industrial, environmental, IoT), and we haven't identified a general-purpose
+          implementation worth listing.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Editorial note</div>
+      <div class="callout-text">Most of this taxonomy currently says "not yet mapped." That's a true, checkable statement, not a placeholder — we'd rather list a real gap than invent an example to fill it.</div>
+    </div>
+  </section>
+
+  <!-- Naming rule -->
+  <section>
+    <div class="section-label">Convention</div>
+    <h2>Naming rule</h2>
+    <div class="prose">
+      <p>
+        The general term is <strong>agent-optimized signal</strong>. Vertical-specific
+        instances get their own modifier — <strong>agent-optimized electricity signal</strong>,
+        <strong>agent-optimized weather signal</strong>, and so on. "Electricity signal" alone
+        is never the umbrella term on this site; it belongs to one implementation's own narrow
+        positioning, not to this category-level framing. Future BotCentrum pages and
+        contributors should follow this convention.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why this page exists -->
+  <section>
+    <div class="section-label">About this page</div>
+    <h2>Why this page exists</h2>
+    <div class="prose">
+      <p>
+        BotCentrum's comparison pages evaluate named sources against each other. This page is
+        different — it defines the category those sources get evaluated against, and tracks its
+        coverage across verticals over time. As new agent-optimized signals appear (or existing
+        ones get verified), they'll be added here.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-note">
+      BotCentrum curates tools for the agent economy.<br>
+      <a href="https://botcentrum.com">botcentrum.com</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/">Electricity Price API Comparison</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a> &nbsp;·&nbsp;
+      <a href="https://botcentrum.com/data-sources/">Real-Time Data Sources</a>
+    </div>
+    <div class="footer-disclaimer">
+      Independently curated. No paid placements.<br>
+      Last updated July 2026.
+    </div>
+  </footer>
 
 </div>
-
-<footer>
-  BotCentrum curates tools for the agent economy.<br>
-  <a href="https://botcentrum.com">botcentrum.com</a> ·
-  <a href="https://botcentrum.com/">Electricity Price API Comparison</a> ·
-  <a href="https://botcentrum.com/agent-economy/">The Agent Economy</a> ·
-  <a href="https://botcentrum.com/data-sources/">Real-Time Data Sources</a>
-  <br><br>
-  Independently curated. No paid placements.<br>
-  Last updated July 2026.<br>
-  <a href="mailto:sakari.korkiaaho@gmail.com">Spot an error?</a>
-</footer>
-
 </body>
 </html>
