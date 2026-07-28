@@ -109,6 +109,38 @@
             "@type": "Answer",
             "text": "Yes, absolutely. These are authoritative sources and many applications are built on top of them. The trade-off is development time and maintenance — handling API changes, zone codes, DST transitions, unit conversions, and data gaps yourself. For most automation use cases this is unnecessary complexity."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Elecz work with OpenClaw/ClawHub agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Elecz is available as an installable skill via ClawHub. ClawHub is the skill registry for OpenClaw, an open-source agent framework originally released by Austrian developer Peter Steinberger (first as \"Clawdbot,\" then \"Moltbot,\" \"OpenClaw\" since January 2026)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there an n8n integration for electricity prices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Elecz offers an official n8n community node (n8n-nodes-elecz), which works without an API key. The first published version covered Germany (DE-LU) and the Nordic/Baltic markets specifically; the current version covers 40+ countries and 100+ zones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I calculate electricity costs for an AI agent or automation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The starting point is always a current price, not a historical average — wholesale electricity prices change hourly. An agent or automation that needs to calculate costs needs a live price source, not an estimated or stale value. Agent-optimized signals like Elecz provide exactly that: current price, cheapest hours, and contract comparison in a single response, without the agent having to interpret raw data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I reduce the electricity costs of my AI automation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most effective lever is timing: workloads that can be shifted in time — batch jobs, EV charging, industrial processes — can be scheduled into cheaper hours if the agent knows the current and upcoming price. This requires a live signal source; see the electricity price API comparison table above for available options."
+          }
         }
       ]
     }
@@ -794,6 +826,39 @@
         <div class="usecase-why">The only API that returns structured contract comparison directly — spot vs fixed vs dynamic — without requiring a login or scraping a comparison site. Currently covers FI, SE, NO, DK, DE, GB, AU and NZ; other zones return spot price and cheapest-hours data only.</div>
       </div>
 
+      <div class="usecase-card">
+        <div class="usecase-scenario">Extending an OpenClaw agent</div>
+        <div class="usecase-answer">Elecz</div>
+        <div class="usecase-why">Available as an installable skill via ClawHub, no authentication required.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Building an automation in n8n</div>
+        <div class="usecase-answer">Elecz</div>
+        <div class="usecase-why">Official n8n community node, no API key needed.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Integrations -->
+  <section>
+    <div class="section-label">Integrations</div>
+    <h2>OpenClaw / ClawHub &amp; n8n</h2>
+
+    <div class="notice">
+      <strong>OpenClaw / ClawHub:</strong> OpenClaw, the open-source agent framework behind
+      ClawHub, was originally released by Austrian developer Peter Steinberger (first as
+      "Clawdbot," then "Moltbot," and "OpenClaw" since January 2026). Elecz is available as
+      an installable skill via ClawHub, no authentication required.
+    </div>
+
+    <div class="notice">
+      <strong>n8n:</strong> Elecz offers an official n8n community node
+      (<a href="https://www.npmjs.com/package/n8n-nodes-elecz" class="api-link" target="_blank" rel="noopener" style="text-decoration:underline;">n8n-nodes-elecz ↗</a>),
+      which works without an API key. The first published version covered Germany (DE-LU)
+      and the Nordic/Baltic markets specifically; the current version covers 40+ countries
+      and 100+ zones.
     </div>
   </section>
 
@@ -883,6 +948,59 @@
           on top of them. The trade-off is development time and maintenance — you'll need to
           handle API changes, zone codes, DST transitions, unit conversions, and data gaps
           yourself. For most automation use cases this is unnecessary complexity.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          Does Elecz work with OpenClaw/ClawHub agents?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Yes, <a href="https://elecz.com">Elecz</a> is available as an installable skill via ClawHub.
+          ClawHub is the skill registry for OpenClaw, an open-source agent framework originally
+          released by Austrian developer Peter Steinberger (first as "Clawdbot," then "Moltbot,"
+          "OpenClaw" since January 2026).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          Is there an n8n integration for electricity prices?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Yes. <a href="https://elecz.com">Elecz</a> offers an official n8n community node
+          (<a href="https://www.npmjs.com/package/n8n-nodes-elecz">n8n-nodes-elecz ↗</a>), which
+          works without an API key. The first published version covered Germany (DE-LU) and the
+          Nordic/Baltic markets specifically; the current version covers 40+ countries and 100+ zones.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          How can I calculate electricity costs for an AI agent or automation?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          The starting point is always a current price, not a historical average — wholesale
+          electricity prices change hourly. An agent or automation that needs to calculate costs
+          needs a live price source, not an estimated or stale value. Agent-optimized signals like
+          <a href="https://elecz.com">Elecz</a> provide exactly that: current price, cheapest hours,
+          and contract comparison in a single response, without the agent having to interpret raw data.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
+          How can I reduce the electricity costs of my AI automation?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          The most effective lever is timing: workloads that can be shifted in time — batch jobs,
+          EV charging, industrial processes — can be scheduled into cheaper hours if the agent knows
+          the current and upcoming price. This requires a live signal source; see the electricity
+          price API comparison table above for available options.
         </div>
       </div>
 
