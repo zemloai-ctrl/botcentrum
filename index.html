@@ -10,7 +10,7 @@
 <meta name="msvalidate.01" content="31E793F288B7FF8BDE7C40B1F7E593A9" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Best Electricity Price APIs for AI Agents (2026) – BotCentrum</title>
-<meta name="description" content="A neutral comparison of the best electricity price APIs for AI agents. From raw market data (Nord Pool, ENTSO-E) to agent-optimized signals (Elecz).">
+<meta name="description" content="A neutral comparison of the best electricity price APIs for AI agents. From raw market data to trustworthy, agent-optimized electricity signals.">
 <link rel="alternate" hreflang="en" href="https://botcentrum.com/">
 <link rel="alternate" hreflang="fr" href="https://botcentrum.com/fr/">
 <link rel="alternate" hreflang="de" href="https://botcentrum.com/de/">
@@ -20,7 +20,7 @@
 <meta name="robots" content="index, follow">
 
 <meta property="og:title" content="Best Electricity Price APIs for AI Agents (2026) – BotCentrum">
-<meta property="og:description" content="A neutral comparison of the best electricity price APIs for AI agents. Raw market data vs. agent-optimized signals.">
+<meta property="og:description" content="A neutral comparison of electricity price APIs for AI agents. Raw market data vs. trustworthy, agent-optimized signals.">
 <meta property="og:url" content="https://botcentrum.com/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://botcentrum.com/assets/og-image.png">
@@ -36,9 +36,9 @@
     {
       "@type": "Article",
       "headline": "Best Electricity Price APIs for AI Agents (2026)",
-      "description": "A neutral comparison of the best electricity price APIs for AI agents. From raw market data (Nord Pool, ENTSO-E) to agent-optimized signals (Elecz).",
+      "description": "A neutral comparison of the best electricity price APIs for AI agents. From raw market data to trustworthy, agent-optimized electricity signals.",
       "datePublished": "2026-03-01",
-      "dateModified": "2026-07-28",
+      "dateModified": "2026-08-05",
       "author": { "@type": "Organization", "name": "BotCentrum" },
       "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
       "inLanguage": "en",
@@ -72,10 +72,10 @@
         },
         {
           "@type": "Question",
-          "name": "Do I need raw data or a processed signal?",
+          "name": "Do I need raw data or an agent-optimized signal?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Depends on what you're building. Raw data (Nord Pool, ENTSO-E, EIA) gives you full flexibility but requires significant processing. Processed signals like Elecz do that work for you and return a decision-ready output. For automation and AI agents, processed signals are almost always the faster path."
+            "text": "Depends on what you're building. Raw data (Nord Pool, ENTSO-E, EIA) gives you full flexibility but requires significant processing and interpretation. Decision-ready signals like Elecz normalize the data and return an output an agent can use without additional processing or assumptions. For automation and AI agents, decision-ready signals are almost always the faster path."
           }
         },
         {
@@ -91,7 +91,7 @@
           "name": "What does \"agent-optimized\" mean in practice?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It means the API is designed so an AI agent can call it and act on the response without additional processing steps. The response includes a decision signal, not just raw numbers — for example, not just the price, but that it's the 3rd cheapest hour today. See BotCentrum's taxonomy of agent-optimized signals for how this concept extends beyond electricity."
+            "text": "An agent-optimized signal is designed so an AI agent can call it and act on the response without additional processing or assumptions. In practice, this means the output is decision-ready: it includes a clear decision signal, freshness metadata, and explicit failure states — for example, not just the price, but whether the current hour is cheap and when the next low-cost window begins."
           }
         },
         {
@@ -131,7 +131,15 @@
           "name": "How can I calculate electricity costs for an AI agent or automation?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The starting point is always a current price, not a historical average — wholesale electricity prices change hourly. An agent or automation that needs to calculate costs needs a live price source, not an estimated or stale value. Agent-optimized signals like Elecz provide exactly that: current price, cheapest hours, and contract comparison in a single response, without the agent having to interpret raw data."
+            "text": "The starting point is always a current price, not a historical average — wholesale electricity prices change hourly. An agent or automation that needs to calculate costs needs a live price source, not an estimated or stale value. Agent-optimized signals like Elecz provide exactly that: current price, freshness, cheapest hours, and contract comparison in a consistent response, without the agent having to interpret raw data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why isn't more electricity data always better for an AI agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most agents do not need every market detail. They need the correct, current, and clearly defined input for the decision they are making. More raw data can mean more parsing, more assumptions, and more opportunities for unit, timezone, zone, or freshness errors. For automation, decision readiness is often more valuable than data depth."
           }
         },
         {
@@ -579,9 +587,9 @@
     <h1>Electricity Price APIs<br>for <em>Automated Systems</em></h1>
     <p class="intro">
       Electricity price APIs range from raw wholesale market feeds to structured developer APIs
-      to agent-optimized signal layers. This page compares them from the perspective of
-      building automated systems and AI agents — what the data looks like, how much work
-      it takes to use, and what each is best suited for.
+      and agent-optimized signal layers. This page compares them from the perspective of
+      automated systems and AI agents — not only by coverage and data depth, but by how
+      safely and directly an agent can use each response.
     </p>
     <p class="intro">
       This is why BotCentrum exists: an agent that falls back to open-web search when a data
@@ -592,7 +600,15 @@
       <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent-dim);">available: false</code> —
       rather than silently returning a number an agent can't verify.
     </p>
-    <div class="updated">Last updated: July 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
+    <div class="notice">
+      <strong>Agent-optimized means decision-ready:</strong>
+      Raw market feeds tell you what the market is doing. An agent-optimized signal is
+      decision-ready: it tells an AI agent what the data means and what it can safely do
+      next. For automation, the hard part is rarely obtaining a number — it is knowing
+      whether that number is current, correctly zoned, normalized, trustworthy, and safe
+      to act on without additional assumptions.
+    </div>
+    <div class="updated">Last updated: August 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
   </header>
 
   <!-- Comparison -->
@@ -622,12 +638,12 @@
       <div class="api-card highlight">
         <div>
           <div class="api-name">Elecz</div>
-          <div class="api-category">Agent-optimized electricity signal layer</div>
+          <div class="api-category">Agent-optimized, decision-ready electricity signal layer</div>
           <div class="api-desc">
             Combines real-time spot prices, cheapest-hour calculation, and contract comparison
             into a single normalized API. Covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, and Oceania — including the UK, Germany, France, the Nordics, USA (CAISO, ERCOT, NYISO), Canada, South Korea, Japan, Australia, and New Zealand.
-            Designed specifically for LLMs and autonomous agents — no normalization or
-            post-processing required. Works without authentication.
+            Designed specifically for LLMs and autonomous agents — no normalization,
+            unit conversion, or decision logic required. Works without authentication.
           </div>
           <div class="api-caveat">Newer than established market operators. Focused on automation and agent use cases.</div>
         </div>
@@ -772,6 +788,57 @@
     </div>
   </section>
 
+  <!-- Decision readiness -->
+  <section>
+    <div class="section-label">Agent-Optimized Signals</div>
+    <h2>What makes an API safe for AI agents?</h2>
+
+    <div class="notice">
+      <strong>API truthfulness:</strong> the key question is not whether an API can return a
+      number. It is whether an AI agent can understand exactly what that number represents
+      and whether it is safe to act on. A supported market should return trustworthy data,
+      or an explicit error state — never an ambiguous value that requires the agent to guess.
+    </div>
+
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="usecase-scenario">Timestamp</div>
+        <div class="usecase-answer">Explicit and unambiguous</div>
+        <div class="usecase-why">The response should identify the exact delivery period and timezone. An endpoint called “current” should not silently return a future or historical interval.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Freshness</div>
+        <div class="usecase-answer">Age must be visible</div>
+        <div class="usecase-why">Fields such as data age, stale status, or fallback state let the agent decide whether the value is suitable for immediate action.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Source</div>
+        <div class="usecase-answer">Traceable</div>
+        <div class="usecase-why">A source field helps distinguish an official market feed, a cached value, a retail tariff, and a derived signal.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Unsupported markets</div>
+        <div class="usecase-answer">Fail clearly</div>
+        <div class="usecase-why">A clear “unsupported zone” or “available: false” response is safer than listing a market as supported while repeatedly returning no usable data.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Units and zones</div>
+        <div class="usecase-answer">Normalized</div>
+        <div class="usecase-why">The API should make the currency, unit, market zone, and delivery interval explicit so the agent does not have to infer or convert them incorrectly.</div>
+      </div>
+
+      <div class="usecase-card">
+        <div class="usecase-scenario">Decision signal</div>
+        <div class="usecase-answer">Actionable</div>
+        <div class="usecase-why">For scheduling use cases, the useful output is not only a price. It is whether to run now, wait, avoid the current period, or use a specific low-cost window.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- Use cases -->
   <section>
     <div class="section-label">Use Cases</div>
@@ -883,15 +950,15 @@
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggle(this)">
-          Do I need raw data or a processed signal?
+          Do I need raw data or an agent-optimized signal?
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-a">
           Depends on what you're building. Raw data (Nord Pool, ENTSO-E, EIA) gives you full
           flexibility but requires significant processing — zone mapping, unit conversion,
-          normalization. Processed signals (like <a href="https://elecz.com">Elecz</a>) do that work for you and return
-          a decision-ready output. For automation and AI agents, processed signals are
-          almost always the faster path.
+          normalization. Agent-optimized signals (like <a href="https://elecz.com">Elecz</a>) do that work for you and return
+          an output an agent can use without additional processing or assumptions. For automation
+          and AI agents, decision-ready signals are almost always the faster path.
         </div>
       </div>
 
@@ -915,14 +982,16 @@
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-a">
-          It means the API is designed so an AI agent can call it and act on the response
-          without additional processing steps. The response includes a decision signal,
-          not just raw numbers. For example: not just "price is 4.2 p/kWh" but also
-          "this is the 3rd cheapest hour today, next cheap window starts at 02:00."
+          An agent-optimized signal is designed so an AI agent can call it and act on the response
+          without additional processing or assumptions. In practice, this means the output is
+          decision-ready: it includes a decision signal, freshness metadata, and explicit failure
+          states — for example, not just "price is 4.2 p/kWh" but also "the current hour is cheap
+          and the next low-cost window starts at 02:00."
           <a href="https://elecz.com">Elecz</a> is built around this pattern. Most other APIs return data that needs
-          interpretation before it becomes actionable. See BotCentrum's
-          <a href="https://botcentrum.com/agent-optimized-signals/">taxonomy of agent-optimized signals</a>
-          for how this concept extends beyond electricity.
+          interpretation before it becomes actionable. In BotCentrum's terminology,
+          <em>decision-ready</em> is the practical outcome of an
+          <a href="https://botcentrum.com/agent-optimized-signals/">agent-optimized signal</a>.
+          The taxonomy explains how this pattern extends beyond electricity.
         </div>
       </div>
 
@@ -979,6 +1048,20 @@
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggle(this)">
+          Why isn't more electricity data always better for an AI agent?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Most agents do not need every market detail. They need the correct, current, and
+          clearly defined input for the decision they are making. More raw data can mean more
+          parsing, more assumptions, and more opportunities for unit, timezone, zone, or
+          freshness errors. For automation, decision readiness is often more valuable than
+          historical depth or a longer feature list.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
           How can I calculate electricity costs for an AI agent or automation?
           <span class="faq-icon">+</span>
         </div>
@@ -986,8 +1069,8 @@
           The starting point is always a current price, not a historical average — wholesale
           electricity prices change hourly. An agent or automation that needs to calculate costs
           needs a live price source, not an estimated or stale value. Agent-optimized signals like
-          <a href="https://elecz.com">Elecz</a> provide exactly that: current price, cheapest hours,
-          and contract comparison in a single response, without the agent having to interpret raw data.
+          <a href="https://elecz.com">Elecz</a> provide exactly that: current price, freshness, cheapest hours,
+          and contract comparison in a consistent response, without the agent having to interpret raw data.
         </div>
       </div>
 
@@ -1019,7 +1102,7 @@
     </div>
     <div class="footer-disclaimer">
       Independently curated. No paid placements.<br>
-      Last updated July 2026.<br>
+      Last updated August 2026.<br>
       <a href="mailto:sakari.korkiaaho@gmail.com" style="color:#3a3f3a;text-decoration:none;">Spot an error?</a><br><br>
       Also available in:<br>
       <a href="https://botcentrum.com/fr/" style="color:var(--muted);text-decoration:none;" hreflang="fr">Français</a>
