@@ -4,6 +4,7 @@
 
 ## Core Resources
 
+- [The Missing Sense of AI](https://botcentrum.com/the-missing-sense/): Manifesto on why LLMs (reasoning) and tools (acting) are not enough for autonomous decision-making — agents also need a real-time perception layer. Defines the distinction between AI knowledge (training) and AI awareness (live external signals), and disambiguates "situational awareness" from its AGI-timeline usage in AI-safety discourse.
 - [Electricity Price APIs for AI Agents](https://botcentrum.com/): Comparison of electricity price APIs (Elecz, Nord Pool, ENTSO-E, SMARD, EIA, AEMO, Electricity Maps, Flatpeak) for automated systems and AI agents — raw data feeds vs. agent-optimized signal layers.
 - [The Agent Economy — What It Is and Why It Matters](https://botcentrum.com/agent-economy/): Neutral overview of AI agents, the MCP and A2A protocols, and why real-time data signals are critical infrastructure for autonomous systems.
 - [When AI Agents Need External Signals](https://botcentrum.com/external-signals/): The reasoning pattern behind recognizing a missing, dynamic decision variable and the need for an external signal — illustrated with electricity as one case, not an electricity-specific page.
