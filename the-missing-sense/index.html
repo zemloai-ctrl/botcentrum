@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Missing Sense of AI | BotCentrum</title>
+<meta name="description" content="LLMs reason. Tools act. But agents still can't perceive the world in real time. A manifesto on the missing sense of the agent economy, and why external signals are the layer that's still unbuilt.">
+<link rel="canonical" href="https://botcentrum.com/the-missing-sense/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Missing Sense of AI">
+<meta property="og:description" content="Intelligence without perception is incomplete. A manifesto on the missing layer of the agent economy.">
+<meta property="og:url" content="https://botcentrum.com/the-missing-sense/">
+<meta property="og:site_name" content="BotCentrum">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Missing Sense of AI">
+<meta name="twitter:description" content="Intelligence without perception is incomplete. A manifesto on the missing layer of the agent economy.">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Missing Sense of AI",
+  "description": "LLMs reason. Tools act. But agents still can't perceive the world in real time — a manifesto on the missing layer of the agent economy.",
+  "author": {
+    "@type": "Person",
+    "name": "Sakari Korkia-Aho"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BotCentrum",
+    "url": "https://botcentrum.com"
+  },
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "mainEntityOfPage": "https://botcentrum.com/the-missing-sense/"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are external signals for AI agents?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "External signals are live, structured data feeds — electricity prices, weather, traffic, inventory, market data, sensor readings — that tell an agent what is currently true about the world, as opposed to what was true when its training data was collected."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between AI knowledge and AI awareness?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Knowledge is what a model learned during training — a compressed record of the past. Awareness is a live read of the specific variables a current decision depends on. A model can have deep knowledge of how a system works while having zero awareness of its current state."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why can't LLMs know real-time information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because training freezes a model's knowledge at a point in time. Any variable that keeps changing after that point — a price, a load, a delay — is invisible to the model unless it's supplied through an external signal at the moment of the decision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does \"situational awareness\" mean for an AI agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In its original, operational sense — the one used by pilots and operators — situational awareness is a live, moment-to-moment read of the variables relevant to a decision, not a long-range forecast. For an agent, this means an accurate read of the two or three variables that determine whether its current task succeeds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this the same \"situational awareness\" from AI-safety discussions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. That usage refers to a macro realization about the pace of AGI progress. This page uses the term's older, narrower meaning: real-time awareness of decision-relevant variables, which is a separate, and older, concept that happens to share the name."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #0e0f0e;
+    --surface: #161917;
+    --border: #252926;
+    --text: #d8ddd8;
+    --muted: #6b726b;
+    --accent: #b8f04a;
+    --accent-dim: #8ab835;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-dim); text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  h1, h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.15;
+  }
+
+  header, footer {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px 24px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+
+  header a.logo {
+    color: var(--text);
+    letter-spacing: 0.02em;
+    font-weight: 500;
+  }
+
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  h1.title {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    margin: 0 0 24px;
+  }
+
+  .dek {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.3rem;
+    color: var(--text);
+    border-left: 2px solid var(--accent);
+    padding-left: 18px;
+    margin: 0 0 48px;
+  }
+
+  article p {
+    font-size: 1.02rem;
+    color: var(--text);
+    margin: 0 0 22px;
+  }
+
+  article h2 {
+    font-size: 1.5rem;
+    margin: 56px 0 22px;
+  }
+
+  .callout {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--accent);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    padding: 22px 24px;
+    margin: 32px 0;
+  }
+
+  .signature {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .signature .name { color: var(--text); }
+
+  .faq {
+    margin-top: 64px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    padding: 18px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-item summary::after {
+    content: "+";
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] summary::after { content: "−"; }
+
+  .faq-item p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    padding-bottom: 20px;
+    margin: 0;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-bottom: 16px;
+  }
+
+  footer nav a { color: var(--muted); }
+  footer nav a:hover { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">BotCentrum</a>
+  <span>Observation layer</span>
+</header>
+
+<main>
+  <p class="eyebrow">Manifesto</p>
+  <h1 class="title">The Missing Sense of AI</h1>
+  <p class="dek">Intelligence without perception is incomplete.</p>
+
+  <article>
+    <p>Perception is not a feature. It is a prerequisite for decision-making. Without it, there is no situational awareness. Without situational awareness, there is no real optimization — only a well-reasoned guess.</p>
+
+    <p>For a few years now, the story of AI progress has been a story about the brain. Bigger models. More parameters. Longer reasoning chains. And more recently, hands — tools, function calls, agents that can act in the world on our behalf, not just talk about it.</p>
+
+    <p>Brain and hands. Almost nobody is talking about the missing sense.</p>
+
+    <h2>What LLMs actually have</h2>
+
+    <p>A large language model is, in a real sense, a kind of memory — an extraordinarily dense, compressed memory of what the world looked like up to a point in time. Ask it how electricity markets work, and it will explain marginal pricing, grid congestion, and negative pricing with real fluency. Ask it what the price is <em>right now</em>, and it has nothing. Not because the question is hard, but because the answer didn't exist yet when the memory was formed.</p>
+
+    <p>This is true of far more than electricity. It's true of any variable that changes faster than a model gets retrained: a price, a load, a delay, a threshold crossed an hour ago, a market that moved this morning. Training gives AI knowledge. It does not give AI awareness.</p>
+
+    <div class="callout">Stale data doesn't feel like a smaller version of the truth. It behaves like a hallucination — a confident, well-reasoned answer to a question the world has already stopped asking.</div>
+
+    <h2>Tools solved acting. They didn't solve sensing.</h2>
+
+    <p>The last two years gave agents hands. Function calling, tool use, MCP — the ability to reach out and <em>do</em> something: send an email, book a flight, execute a trade. This was treated, correctly, as a breakthrough. An agent that can act is far more useful than one that can only describe.</p>
+
+    <p>But most tool integrations are still framed as actions, not as perception. The quieter and arguably more important category is the one nobody named cleanly: the APIs that don't do anything, that simply tell the agent what is currently true. A live price. A live weather condition. A live traffic state. A live stock level. These aren't integrations in the usual sense. They're senses.</p>
+
+    <h2>Situational awareness, the other meaning</h2>
+
+    <p>The phrase "situational awareness" has recently come to mean something specific in AI circles: a macro realization about how fast AGI is arriving, and who has grasped it. That's a legitimate use of the term, and not a new one — it borrows from a much older, narrower meaning.</p>
+
+    <p>In its original sense — the one it still has for a pilot, a soldier, an operator — situational awareness is not a forecast. It is the live, moment-to-moment read of the variables a decision actually depends on. It expires. It has to be re-established constantly, because the situation keeps moving underneath it.</p>
+
+    <p>That older meaning is the one an agent needs. Not a five-year view of where AI is heading, but an accurate read of the two or three variables that determine whether the task in front of it succeeds right now. A model can be arbitrarily intelligent and still make a bad decision on stale information — the same way a brilliant analyst makes a bad call from yesterday's numbers.</p>
+
+    <h2>What's needed is a sensor layer</h2>
+
+    <p>The internet, as it exists, was built for humans to read. Pages, articles, dashboards — information formatted for a person to interpret and act on. Agents can technically read this too, but it's the wrong shape: too much noise, too little structure, no guarantee the number on the page is still true by the time it's parsed.</p>
+
+    <p>The first internet connected people to information. What agents need now is narrower but harder: a way to connect their reasoning to what is actually true, at the moment they need to act on it.</p>
+
+    <p>What the agent economy needs instead is closer to a nervous system than a library: narrow, current, structured signals — electricity prices, weather, traffic, inventory, market data, sensor readings — built to be perceived by a machine at the moment of a decision, not browsed by a human at leisure. Not bigger context windows. Not more training data. A live feed of exactly the variables that matter, refreshed as often as the world changes them.</p>
+
+    <p>Not all of it moves at the same speed. Some signals drift — a price, a weather pattern, a queue depth. Others break the pattern without warning: an earthquake, a volcanic eruption, a tsunami warning. An agent doesn't need to reason its way through a sudden event like that. It needs the signal fast. A real nervous system doesn't just track the world continuously — it also carries an alarm, the instant something breaks the pattern. A sensor layer has to do both.</p>
+
+    <h2>Why this is what BotCentrum is for</h2>
+
+    <p>This site was not built to be a directory of APIs. It exists to describe how agents come to know what is currently true about the world they're acting in — the reasoning pattern behind recognizing a missing variable, the shape a signal needs to take to be usable by a machine, and which implementations, in practice, provide it well.</p>
+
+    <p>Brains reason. Hands act. But an agent still needs a way to perceive the world it's reasoning and acting in — accurately, and in the moment. That's the missing sense.</p>
+
+    <div class="callout">The next stage of AI will not be defined only by better reasoning or better tools. It will be defined by better perception.</div>
+
+    <p>This is where BotCentrum starts.</p>
+
+    <div class="signature">
+      <span class="name">Sakari Korkia-Aho</span><br>
+      Kokkola, Summer 2026
+    </div>
+  </article>
+
+  <section class="faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">FAQ</h2>
+
+    <details class="faq-item">
+      <summary>What are external signals for AI agents?</summary>
+      <p>External signals are live, structured data feeds — electricity prices, weather, traffic, inventory, market data, sensor readings — that tell an agent what is currently true about the world, as opposed to what was true when its training data was collected.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>What is the difference between AI knowledge and AI awareness?</summary>
+      <p>Knowledge is what a model learned during training — a compressed record of the past. Awareness is a live read of the specific variables a current decision depends on. A model can have deep knowledge of how a system works while having zero awareness of its current state.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Why can't LLMs know real-time information?</summary>
+      <p>Because training freezes a model's knowledge at a point in time. Any variable that keeps changing after that point — a price, a load, a delay — is invisible to the model unless it's supplied through an external signal at the moment of the decision.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>What does "situational awareness" mean for an AI agent?</summary>
+      <p>In its original, operational sense — the one used by pilots and operators — situational awareness is a live, moment-to-moment read of the variables relevant to a decision, not a long-range forecast. For an agent, this means an accurate read of the two or three variables that determine whether its current task succeeds.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Is this the same "situational awareness" from AI-safety discussions?</summary>
+      <p>No. That usage refers to a macro realization about the pace of AGI progress. This page uses the term's older, narrower meaning: real-time awareness of decision-relevant variables, which is a separate, and older, concept that happens to share the name.</p>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <nav aria-label="Site">
+    <a href="/">botcentrum.com</a>
+    <a href="/agent-economy/">What is the agent economy?</a>
+    <a href="/external-signals/">When AI Agents Need External Signals</a>
+    <a href="/agent-optimized-signals/">Agent-Optimized Signals: A Taxonomy</a>
+    <a href="/ev-charging/">EV Charging APIs</a>
+    <a href="/data-sources/">Data Sources</a>
+  </nav>
+  <p>© 2026 BotCentrum — independent observation layer for the agent economy.</p>
+</footer>
+
+</body>
+</html>
