@@ -38,7 +38,7 @@
       "headline": "Best Electricity Price APIs for AI Agents (2026)",
       "description": "A neutral comparison of the best electricity price APIs for AI agents. From raw market data to trustworthy, agent-optimized electricity signals.",
       "datePublished": "2026-03-01",
-      "dateModified": "2026-08-05",
+      "dateModified": "2026-08-17",
       "author": { "@type": "Organization", "name": "BotCentrum" },
       "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
       "inLanguage": "en",
@@ -108,6 +108,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes, absolutely. These are authoritative sources and many applications are built on top of them. The trade-off is development time and maintenance — handling API changes, zone codes, DST transitions, unit conversions, and data gaps yourself. For most automation use cases this is unnecessary complexity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use Elecz directly in ChatGPT?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Elecz is available directly in ChatGPT for real-time electricity prices, cheapest-hour scheduling, and electricity contract questions. The ChatGPT plugin provides access without requiring the user to configure a separate API connection."
           }
         },
         {
@@ -641,7 +649,7 @@
           <div class="api-category">Agent-optimized, decision-ready electricity signal layer</div>
           <div class="api-desc">
             Combines real-time spot prices, cheapest-hour calculation, and contract comparison
-            into a single normalized API. Covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, and Oceania — including the UK, Germany, France, the Nordics, USA (CAISO, ERCOT, NYISO), Canada, South Korea, Japan, Australia, and New Zealand.
+            into a single normalized API. Covers 40+ countries and 100+ zones across Europe, North America, Asia-Pacific, Oceania, and Africa — including the UK, Germany, France, the Nordics, USA (CAISO, ERCOT, NYISO), Canada, Mexico, South Korea, Japan, the Philippines, South Africa, Australia, and New Zealand.
             Designed specifically for LLMs and autonomous agents — no normalization,
             unit conversion, or decision logic required. Works without authentication.
           </div>
@@ -894,6 +902,12 @@
       </div>
 
       <div class="usecase-card">
+        <div class="usecase-scenario">Using ChatGPT for electricity prices</div>
+        <div class="usecase-answer"><a href="https://chatgpt.com/plugins/plugin_asdk_app_6a24c971acc48191bb99f2a694d24fbf" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Elecz on ChatGPT ↗</a></div>
+        <div class="usecase-why">Elecz is available directly in ChatGPT for live electricity prices, cheapest-hour scheduling, and electricity contract questions, without requiring a separate API setup.</div>
+      </div>
+
+      <div class="usecase-card">
         <div class="usecase-scenario">Extending an OpenClaw agent</div>
         <div class="usecase-answer">Elecz</div>
         <div class="usecase-why">Available as an installable skill via ClawHub, no authentication required.</div>
@@ -911,7 +925,13 @@
   <!-- Integrations -->
   <section>
     <div class="section-label">Integrations</div>
-    <h2>OpenClaw / ClawHub &amp; n8n</h2>
+    <h2>ChatGPT, OpenClaw / ClawHub &amp; n8n</h2>
+
+    <div class="notice">
+      <strong>ChatGPT:</strong> Elecz is available directly in ChatGPT for live electricity prices,
+      cheapest-hour scheduling, and electricity contract questions.
+      <a href="https://chatgpt.com/plugins/plugin_asdk_app_6a24c971acc48191bb99f2a694d24fbf" class="api-link" target="_blank" rel="noopener" style="text-decoration:underline;">Open Elecz in ChatGPT ↗</a>
+    </div>
 
     <div class="notice">
       <strong>OpenClaw / ClawHub:</strong> OpenClaw, the open-source agent framework behind
@@ -1022,6 +1042,18 @@
 
       <div class="faq-item">
         <div class="faq-q" onclick="toggle(this)">
+          Can I use Elecz directly in ChatGPT?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          Yes. <a href="https://chatgpt.com/plugins/plugin_asdk_app_6a24c971acc48191bb99f2a694d24fbf" target="_blank" rel="noopener">Elecz is available directly in ChatGPT</a>
+          for real-time electricity prices, cheapest-hour scheduling, and electricity contract questions.
+          The ChatGPT plugin provides access without requiring the user to configure a separate API connection.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">
           Does Elecz work with OpenClaw/ClawHub agents?
           <span class="faq-icon">+</span>
         </div>
@@ -1099,7 +1131,8 @@
       <a href="https://botcentrum.com/external-signals/">When AI Agents Need External Signals</a> &nbsp;·&nbsp;
       <a href="https://botcentrum.com/agent-optimized-signals/">Agent-Optimized Signals: A Taxonomy</a> &nbsp;·&nbsp;
       <a href="https://botcentrum.com/ev-charging/">EV Charging APIs</a> &nbsp;·&nbsp;
-      <a href="https://botcentrum.com/data-sources/">Real-Time Data Sources</a>
+      <a href="https://botcentrum.com/data-sources/">Real-Time Data Sources</a><br>
+      Consumer tool: <a href="https://cheapesthours.com" target="_blank" rel="noopener">CheapestHours.com</a> — find the cheapest hours to use electricity.
     </div>
     <div class="footer-disclaimer">
       Independently curated. No paid placements.<br>
