@@ -29,9 +29,9 @@
     {
       "@type": "Article",
       "headline": "Agent-Optimized Signals: A Taxonomy",
-      "description": "A taxonomy of agent-optimized signals — data processed and structured for autonomous systems to act on directly, as opposed to raw data that needs interpretation first. Tracks which verticals BotCentrum has reviewed an implementation for.",
+      "description": "A taxonomy of agent-optimized signals — data processed and structured for autonomous systems to act on directly, as opposed to raw data that needs interpretation first. Tracks which verticals BotCentrum has reviewed an implementation for, and documents independent convergence on the same architectural pattern.",
       "datePublished": "2026-07-28",
-      "dateModified": "2026-08-07",
+      "dateModified": "2026-08-26",
       "author": { "@type": "Organization", "name": "BotCentrum" },
       "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
       "mainEntityOfPage": "https://botcentrum.com/agent-optimized-signals/"
@@ -301,6 +301,41 @@
     font-style: italic;
   }
 
+  /* Pattern examples grid — distinct from taxonomy cards (no reviewed/unreviewed status) */
+  .pattern-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 24px;
+  }
+
+  .pattern-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--border-light);
+    padding: 18px 24px;
+  }
+
+  .pattern-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: #eef0ee;
+    margin-bottom: 4px;
+  }
+
+  .pattern-tag {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .pattern-body { font-size: 13px; color: #9aa09a; line-height: 1.7; }
+  .pattern-body a { color: var(--accent-dim); text-decoration: none; }
+  .pattern-body a:hover { color: var(--accent); }
+
   footer {
     border-top: 1px solid var(--border);
     padding: 32px 0 48px;
@@ -464,6 +499,53 @@
     </div>
   </section>
 
+  <!-- Independent convergence -->
+  <section>
+    <div class="section-label">Convergence</div>
+    <h2>Independent convergence</h2>
+    <div class="prose">
+      <p>
+        BotCentrum began exploring external signals for AI agents in March 2026. The concept
+        was later formalized here as <strong>agent-optimized signals</strong>: a layer
+        between raw data and autonomous decision-making.
+      </p>
+      <p>
+        Similar architectural patterns are now appearing independently in real systems.
+        <a href="https://signal-fabric.com">Signal Fabric</a>, for example, describes
+        "decision-grade signals" and "agent-ready inputs" that transform live data into
+        structured information agents can reason over.
+      </p>
+      <p>
+        The terminology differs, but the architectural direction is similar: agents
+        shouldn't always be expected to discover, normalize, and interpret raw real-world
+        data themselves. A signal layer can do part of that work before the information
+        reaches the reasoning system.
+      </p>
+      <p>
+        BotCentrum treats this convergence as evidence of an emerging architectural pattern,
+        not a single product category.
+      </p>
+    </div>
+
+    <div class="pattern-grid">
+      <div class="pattern-card">
+        <div class="pattern-title">BotCentrum — Agent-optimized signals</div>
+        <div class="pattern-tag">Taxonomy</div>
+        <div class="pattern-body">General taxonomy for machine-ready external signals.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-title">Signal Fabric — Decision-grade signals / agent-ready inputs</div>
+        <div class="pattern-tag">Independent implementation</div>
+        <div class="pattern-body">Live data transformed into structured signals for agent reasoning.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-title"><a href="https://elecz.com">Elecz</a> — Electricity signal</div>
+        <div class="pattern-tag">Domain-specific example</div>
+        <div class="pattern-body">Electricity-market data converted into a signal an AI agent can use in decisions.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- Naming rule -->
   <section>
     <div class="section-label">Convention</div>
@@ -490,6 +572,10 @@
         different — it defines the category those sources get evaluated against, and tracks
         which verticals have been reviewed over time. As new agent-optimized signals are
         reviewed and verified, they'll be added here.
+      </p>
+      <p style="margin-top: 24px; color: var(--muted); font-size: 12px;">
+        BotCentrum has explored machine-ready external signals for AI agents since March
+        2026. This taxonomy will evolve as the agent ecosystem develops.
       </p>
     </div>
   </section>
