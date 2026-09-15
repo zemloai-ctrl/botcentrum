@@ -14,7 +14,7 @@ This repo contains the static site source for BotCentrum, deployed via Cloudflar
 | The Agent Economy | [`/agent-economy/`](https://botcentrum.com/agent-economy/) | What AI agents are, MCP, A2A, and why real-time signals matter |
 | When AI Agents Need External Signals | [`/external-signals/`](https://botcentrum.com/external-signals/) | The reasoning pattern behind recognizing a missing, dynamic decision variable — electricity as one example, not the subject |
 | Agent-Optimized Signals | [`/agent-optimized-signals/`](https://botcentrum.com/agent-optimized-signals/) | Taxonomy of the "agent-optimized signal" category across electricity, carbon, weather, traffic, calendar, and sensors |
-| Electricity Price APIs | [`/`](https://botcentrum.com/) | Elecz, Nord Pool, ENTSO-E, SMARD, EIA, AEMO, Electricity Maps, Flatpeak, and other electricity-data sources |
+| Electricity Price APIs | [`/`](https://botcentrum.com/) | [Elecz](https://elecz.com/), Nord Pool, ENTSO-E, SMARD, EIA, AEMO, Electricity Maps, Flatpeak, and other electricity-data sources |
 | Real-Time Data Sources | [`/data-sources/`](https://botcentrum.com/data-sources/) | Onboarding-friction comparison across electricity, weather, exchange rates, seismic, and satellite data |
 | EV Charging Station APIs | [`/ev-charging/`](https://botcentrum.com/ev-charging/) | Open Charge Map, HERE, TomTom, Google Places, Mapbox, Eco-Movement, PlugShare, and ChargeHub |
 | Deutsch | [`/de/`](https://botcentrum.com/de/) | Electricity price comparison + DACH-specific additions |
@@ -39,7 +39,6 @@ The manifesto is intentionally a time-stamped perspective rather than a living s
 
 - **No paid placements.** Comparisons are curated independently and are not sponsored rankings.
 - **Built for agents, not just humans.** Pages include structured data (JSON-LD such as `Article`, `FAQPage`, and `ItemList`) so AI agents and answer engines can parse comparisons directly.
-- **Transparent about Elecz.** BotCentrum and [Elecz](https://elecz.com/) share ownership. Elecz is included where relevant as one implementation among others; ownership or commercial interests do not determine comparison rankings.
 - **Multiple viewpoints are welcome.** BotCentrum documents one perspective on the emerging agent economy, not a claim that its view of the future is the only one.
 - **Static, no build step.** Plain HTML, deployed as-is via Cloudflare Pages.
 
