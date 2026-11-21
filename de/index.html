@@ -39,7 +39,7 @@
         "headline": "Beste Strompreis-APIs für KI-Agenten (2026)",
         "description": "Neutraler Vergleich der besten Strompreis-APIs für KI-Agenten. Von rohen Marktdaten (Nord Pool, ENTSO-E) bis zu agentenoptimierten Signalen (Elecz).",
         "datePublished": "2026-05-01",
-        "dateModified": "2026-07-28",
+        "dateModified": "2026-11-21",
         "author": { "@type": "Organization", "name": "BotCentrum" },
         "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
         "inLanguage": "de",
@@ -141,6 +141,22 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Der wirksamste Hebel ist Timing: Workloads, die zeitlich verschoben werden können — Batch-Jobs, Ladevorgänge, industrielle Prozesse — lassen sich in günstigere Stunden legen, wenn der Agent den aktuellen und den kommenden Preis kennt. Das setzt eine Live-Signalquelle voraus; siehe die Strompreis-API-Vergleichstabelle oben für verfügbare Optionen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie viel spart man, wenn man ein E-Auto nachts statt abends lädt?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mit einem dynamischen Stromtarif in Deutschland lag der Börsenpreis zwischen 18 und 21 Uhr im Zeitraum November 2025 bis November 2026 im Schnitt bei 16,8 ct/kWh, im jeweils günstigsten 3-Stunden-Fenster der Nacht bei 11,1 ct/kWh. Bei 2.500 kWh Ladestrom pro Jahr entspricht das rund 140 € (zzgl. MwSt. etwa 170 €). Grundlage: Day-Ahead-Preise DE-LU, Bundesnetzagentur | SMARD.de via Energy-Charts, ohne Netzentgelte, Umlagen und Steuern."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Lohnt sich ein Strompreissignal auch mit einem festen Stromtarif?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Für die Stromkosten nicht: Bei einem Festpreistarif kostet jede Kilowattstunde zu jeder Uhrzeit gleich viel. Ein Preissignal lohnt sich mit einem dynamischen Stromtarif, den seit dem 1. Januar 2025 alle Stromlieferanten in Deutschland Kunden mit intelligentem Messsystem anbieten müssen (§ 41a EnWG)."
             }
           }
         ]
@@ -275,6 +291,14 @@
     .dach-box p { margin-bottom: 0.75rem; max-width: none; }
     .dach-box p:last-child { margin-bottom: 0; }
 
+    .calc-table { width: 100%; max-width: 720px; border-collapse: collapse; margin: 8px 0 14px; font-size: 0.85rem; }
+    .calc-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: #9aa09a; vertical-align: top; }
+    .calc-table td.num { text-align: right; white-space: nowrap; color: var(--text); }
+    .calc-table tr.total td { color: var(--accent); font-weight: 600; border-bottom: none; }
+    .source-note { font-size: 0.78rem; color: var(--muted); }
+    pre.pattern { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 14px 18px; margin: 12px 0 16px; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6; color: var(--text); overflow-x: auto; max-width: 720px; }
+    pre.pattern .c { color: var(--muted); }
+
     .api-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
     .api-card.highlight { border-color: var(--accent-dim); background: #131a0e; }
     .api-card h3 { margin: 0 0 0.25rem; font-size: 1.1rem; }
@@ -310,7 +334,7 @@
 
 <p>Deshalb gibt es BotCentrum: Ein Agent, der bei Nichtverfügbarkeit einer Datenquelle auf eine Web-Suche zurückgreift, hat keine zuverlässige Möglichkeit, aktuelle von veralteten oder korrekte von falschen Daten zu unterscheiden. Die hier verglichenen APIs werden unter anderem danach bewertet, ob sie diese Unterscheidung explizit machen — Felder wie <code style="color:var(--accent-dim);">stale</code>, <code style="color:var(--accent-dim);">fallback</code> oder <code style="color:var(--accent-dim);">available: false</code> — statt stillschweigend eine Zahl zurückzugeben, die ein Agent nicht verifizieren kann.</p>
 
-<p class="meta">Zuletzt aktualisiert: Juli 2026 · Unabhängig zusammengestellt. Keine bezahlten Platzierungen.</p>
+<p class="meta">Zuletzt aktualisiert: November 2026 · Unabhängig zusammengestellt. Keine bezahlten Platzierungen.</p>
 
 <h2>Stromdatenquellen</h2>
 
@@ -407,6 +431,37 @@
   <h3>OpenClaw / ClawHub</h3>
   <p>OpenClaw, das quelloffene Agenten-Framework hinter ClawHub, wurde ursprünglich vom österreichischen Entwickler Peter Steinberger veröffentlicht (zunächst als "Clawdbot", dann "Moltbot", seit Januar 2026 "OpenClaw"). Elecz ist über ClawHub als Skill installierbar.</p>
 </div>
+
+<h2 id="rechenbeispiel">Rechenbeispiel: E-Auto laden mit und ohne Preissignal</h2>
+
+<p>Was ein Preissignal konkret bringt, zeigt ein alltäglicher Fall: Ein Elektroauto mit rund 15.000&nbsp;km Jahresfahrleistung braucht etwa 2.500&nbsp;kWh pro Jahr und wird abends an der heimischen Wallbox geladen. Verglichen werden zwei Varianten mit denselben Day-Ahead-Börsenpreisen der letzten zwölf Monate:</p>
+
+<div class="dach-box">
+  <h3>Abends sofort laden vs. günstigstes Nachtfenster</h3>
+  <table class="calc-table">
+    <tr><td>Laden direkt nach Feierabend (18–21&nbsp;Uhr), Durchschnitt</td><td class="num">16,8&nbsp;ct/kWh</td></tr>
+    <tr><td>Laden im günstigsten 3-Stunden-Fenster zwischen 18 und 7&nbsp;Uhr, Durchschnitt</td><td class="num">11,1&nbsp;ct/kWh</td></tr>
+    <tr><td>Differenz pro kWh</td><td class="num">5,7&nbsp;ct/kWh</td></tr>
+    <tr class="total"><td>Differenz bei 2.500&nbsp;kWh pro Jahr</td><td class="num">≈&nbsp;140&nbsp;€ (zzgl. MwSt. ≈&nbsp;170&nbsp;€)</td></tr>
+  </table>
+  <p>An 352 von 364 Tagen war das Nachtfenster günstiger als das Laden um 18&nbsp;Uhr. Das günstigste Fenster begann meist zwischen 1 und 3&nbsp;Uhr — aber nicht immer zur selben Zeit, weshalb ein fester Timer weniger spart als ein täglich aktuelles Signal. In den letzten 90 Tagen (August bis November 2026) lag der Unterschied sogar bei rund 9&nbsp;ct/kWh (23,9 gegenüber 14,9&nbsp;ct/kWh).</p>
+  <p class="source-note">Methode: Day-Ahead-Preise der Gebotszone DE-LU in Viertelstundenauflösung, 21.11.2025–19.11.2026, Quelle: Bundesnetzagentur | SMARD.de via Energy-Charts (Fraunhofer ISE), CC BY 4.0. Reine Börsenpreise ohne Netzentgelte, Umlagen und Steuern; feste Preisbestandteile fallen zu jeder Uhrzeit gleich an und ändern die Differenz nicht. Tageszeitabhängige Netzentgelte nach §&nbsp;14a EnWG sind nicht berücksichtigt.</p>
+</div>
+
+<h3>Wann sich das lohnt — und wann nicht</h3>
+<p>Die Ersparnis entsteht nur mit einem <strong>dynamischen Stromtarif</strong>, bei dem der Börsenpreis an den Kunden weitergegeben wird. Dafür ist ein intelligentes Messsystem (Smart Meter) nötig. Seit dem 1.&nbsp;Januar 2025 müssen alle Stromlieferanten in Deutschland Kunden mit Smart Meter einen solchen Tarif anbieten (§&nbsp;41a EnWG). Mit einem klassischen Festpreistarif kostet jede Kilowattstunde gleich viel — dann bringt ein Preissignal für das Laden keinen finanziellen Vorteil, und eine Automatisierung sollte einfach sofort laden.</p>
+
+<p>Dasselbe Muster gilt für jede verschiebbare Last: Wärmepumpe mit Pufferspeicher, Warmwasserbereitung, Wasch- und Spülmaschine, Heimspeicher oder Rechenjobs. Im Jahresmittel waren die Mittagsstunden (12–14&nbsp;Uhr) mit rund 6&nbsp;ct/kWh sogar die günstigsten des Tages — relevant für alle, die tagsüber laden können.</p>
+
+<h3>Das Muster für Automatisierungen und KI-Agenten</h3>
+<p>Faustregel: Wer eine Automatisierung für eine zeitlich verschiebbare Last baut, prüft zuerst den Tarif und — bei dynamischem Tarif — vor dem Start ein Preissignal.</p>
+<pre class="pattern"><span class="c"># Verschiebbare Last (z. B. Wallbox) mit Preissignal planen</span>
+if tarif == "dynamisch":
+    fenster = preissignal.guenstigstes_fenster(zone="DE", stunden=3, bis="07:00")
+    starte_laden(um=fenster.start)
+else:
+    starte_laden(um="jetzt")   <span class="c"># Festpreis: Uhrzeit ändert die Kosten nicht</span></pre>
+<p>Agentenoptimierte Signale liefern dieses Fenster direkt — bei <a href="https://elecz.com">Elecz</a> etwa als Feld <code style="color:var(--accent-dim);">best_window</code> des Signals für die günstigsten Stunden. Rohdatenquellen wie SMARD oder ENTSO-E eignen sich ebenfalls, erfordern aber die Fensterberechnung im eigenen Code.</p>
 
 <h2>Anwendungsfälle</h2>
 <h3>Welche sollte ich verwenden?</h3>
@@ -513,6 +568,16 @@
   <p>Der wirksamste Hebel ist Timing: Workloads, die zeitlich verschoben werden können — Batch-Jobs, Ladevorgänge, industrielle Prozesse — lassen sich in günstigere Stunden legen, wenn der Agent den aktuellen und den kommenden Preis kennt. Das setzt eine Live-Signalquelle voraus; siehe die Strompreis-API-Vergleichstabelle oben für verfügbare Optionen.</p>
 </details>
 
+<details>
+  <summary>Wie viel spart man, wenn man ein E-Auto nachts statt abends lädt?</summary>
+  <p>Mit einem dynamischen Stromtarif in Deutschland lag der Börsenpreis zwischen 18 und 21&nbsp;Uhr im Zeitraum November 2025 bis November 2026 im Schnitt bei 16,8&nbsp;ct/kWh, im jeweils günstigsten 3-Stunden-Fenster der Nacht bei 11,1&nbsp;ct/kWh. Bei 2.500&nbsp;kWh Ladestrom pro Jahr entspricht das rund 140&nbsp;€ (zzgl. MwSt. etwa 170&nbsp;€). Details und Methode im <a href="#rechenbeispiel">Rechenbeispiel</a> oben.</p>
+</details>
+
+<details>
+  <summary>Lohnt sich ein Strompreissignal auch mit einem festen Stromtarif?</summary>
+  <p>Für die Stromkosten nicht: Bei einem Festpreistarif kostet jede Kilowattstunde zu jeder Uhrzeit gleich viel. Ein Preissignal lohnt sich mit einem dynamischen Stromtarif, den seit dem 1.&nbsp;Januar 2025 alle Stromlieferanten in Deutschland Kunden mit intelligentem Messsystem anbieten müssen (§&nbsp;41a EnWG).</p>
+</details>
+
 <footer>
   BotCentrum kuratiert Werkzeuge für die Agenten-Ökonomie.<br>
   <a href="https://botcentrum.com">botcentrum.com</a> ·
@@ -526,7 +591,7 @@
   <a href="https://botcentrum.com/fr/" hreflang="fr">Français</a> ·
   <a href="https://botcentrum.com/es/" hreflang="es">Español</a><br><br>
   Unabhängig zusammengestellt. Keine bezahlten Platzierungen.<br>
-  Zuletzt aktualisiert Juli 2026.
+  Zuletzt aktualisiert November 2026.
 </footer>
 
 </div>
