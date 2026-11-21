@@ -148,7 +148,7 @@
             "name": "Wie viel spart man, wenn man ein E-Auto nachts statt abends lädt?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Mit einem dynamischen Stromtarif in Deutschland lag der Börsenpreis zwischen 18 und 21 Uhr im Zeitraum November 2025 bis November 2026 im Schnitt bei 16,8 ct/kWh, im jeweils günstigsten 3-Stunden-Fenster der Nacht bei 11,1 ct/kWh. Bei 2.500 kWh Ladestrom pro Jahr entspricht das rund 140 € (zzgl. MwSt. etwa 170 €). Grundlage: Day-Ahead-Preise DE-LU, Bundesnetzagentur | SMARD.de via Energy-Charts, ohne Netzentgelte, Umlagen und Steuern."
+              "text": "Mit einem dynamischen Stromtarif in Deutschland lag der Börsenpreis zwischen 18 und 21 Uhr im Zeitraum November 2025 bis November 2026 im Schnitt bei 16,8 ct/kWh, im jeweils günstigsten 3-Stunden-Fenster der Nacht bei 11,1 ct/kWh. Bei 2.500 kWh Ladestrom pro Jahr entspricht das einem historischen Preisunterschied von rund 140 € (zzgl. MwSt. etwa 170 €) — keine garantierte Ersparnis, da sie von der Preisgestaltung des Tarifs abhängt. Die günstigsten Stunden sollten immer innerhalb des Zeitraums gewählt werden, in dem das Auto angeschlossen ist. Grundlage: Day-Ahead-Preise DE-LU, Bundesnetzagentur | SMARD.de via Energy-Charts, ohne Netzentgelte, Umlagen und Steuern."
             }
           },
           {
@@ -444,23 +444,27 @@
     <tr><td>Differenz pro kWh</td><td class="num">5,7&nbsp;ct/kWh</td></tr>
     <tr class="total"><td>Differenz bei 2.500&nbsp;kWh pro Jahr</td><td class="num">≈&nbsp;140&nbsp;€ (zzgl. MwSt. ≈&nbsp;170&nbsp;€)</td></tr>
   </table>
-  <p>An 352 von 364 Tagen war das Nachtfenster günstiger als das Laden um 18&nbsp;Uhr. Das günstigste Fenster begann meist zwischen 1 und 3&nbsp;Uhr — aber nicht immer zur selben Zeit, weshalb ein fester Timer weniger spart als ein täglich aktuelles Signal. In den letzten 90 Tagen (August bis November 2026) lag der Unterschied sogar bei rund 9&nbsp;ct/kWh (23,9 gegenüber 14,9&nbsp;ct/kWh).</p>
+  <p>Das ist ein historischer Unterschied der Großhandelspreise, keine zugesagte Ersparnis: Wie viel davon tatsächlich beim Kunden ankommt, hängt von der Preisgestaltung des jeweiligen Tarifs ab. An 352 von 364 Tagen war das Nachtfenster günstiger als das Laden um 18&nbsp;Uhr. Das günstigste Fenster begann meist zwischen 1 und 3&nbsp;Uhr — aber nicht immer zur selben Zeit, weshalb ein fester Timer weniger spart als ein täglich aktuelles Signal. In den letzten 90 Tagen (August bis November 2026) lag der Unterschied sogar bei rund 9&nbsp;ct/kWh (23,9 gegenüber 14,9&nbsp;ct/kWh).</p>
   <p class="source-note">Methode: Day-Ahead-Preise der Gebotszone DE-LU in Viertelstundenauflösung, 21.11.2025–19.11.2026, Quelle: Bundesnetzagentur | SMARD.de via Energy-Charts (Fraunhofer ISE), CC BY 4.0. Reine Börsenpreise ohne Netzentgelte, Umlagen und Steuern; feste Preisbestandteile fallen zu jeder Uhrzeit gleich an und ändern die Differenz nicht. Tageszeitabhängige Netzentgelte nach §&nbsp;14a EnWG sind nicht berücksichtigt.</p>
 </div>
 
 <h3>Wann sich das lohnt — und wann nicht</h3>
 <p>Die Ersparnis entsteht nur mit einem <strong>dynamischen Stromtarif</strong>, bei dem der Börsenpreis an den Kunden weitergegeben wird. Dafür ist ein intelligentes Messsystem (Smart Meter) nötig. Seit dem 1.&nbsp;Januar 2025 müssen alle Stromlieferanten in Deutschland Kunden mit Smart Meter einen solchen Tarif anbieten (§&nbsp;41a EnWG). Mit einem klassischen Festpreistarif kostet jede Kilowattstunde gleich viel — dann bringt ein Preissignal für das Laden keinen finanziellen Vorteil, und eine Automatisierung sollte einfach sofort laden.</p>
 
-<p>Dasselbe Muster gilt für jede verschiebbare Last: Wärmepumpe mit Pufferspeicher, Warmwasserbereitung, Wasch- und Spülmaschine, Heimspeicher oder Rechenjobs. Im Jahresmittel waren die Mittagsstunden (12–14&nbsp;Uhr) mit rund 6&nbsp;ct/kWh sogar die günstigsten des Tages — relevant für alle, die tagsüber laden können.</p>
+<p>Dasselbe Muster gilt für jede verschiebbare Last: Wärmepumpe mit Pufferspeicher, Warmwasserbereitung, Wasch- und Spülmaschine, Heimspeicher oder Rechenjobs. Im Jahresmittel waren die Mittagsstunden (12–14&nbsp;Uhr) mit rund 6&nbsp;ct/kWh sogar die günstigsten des Tages. Die Regel lautet deshalb nicht „immer nachts laden“, sondern: <strong>die günstigsten Stunden innerhalb des Zeitraums wählen, in dem das Auto tatsächlich angeschlossen ist</strong> — für Pendler meist der Abend und die Nacht, für Homeoffice oder Wochenende oft der Mittag.</p>
 
 <h3>Das Muster für Automatisierungen und KI-Agenten</h3>
-<p>Faustregel: Wer eine Automatisierung für eine zeitlich verschiebbare Last baut, prüft zuerst den Tarif und — bei dynamischem Tarif — vor dem Start ein Preissignal.</p>
+<p>Faustregel: Wer eine Automatisierung für eine zeitlich verschiebbare Last baut, prüft zuerst den Tarif und — bei dynamischem Tarif — vor dem Start ein Preissignal für das verfügbare Zeitfenster. Fehlt das Signal, hat die Aufgabe Vorrang vor dem Preis: Das Auto muss zur Abfahrt geladen sein.</p>
 <pre class="pattern"><span class="c"># Verschiebbare Last (z. B. Wallbox) mit Preissignal planen</span>
-if tarif == "dynamisch":
-    fenster = preissignal.guenstigstes_fenster(zone="DE", stunden=3, bis="07:00")
-    starte_laden(um=fenster.start)
+if tarif != "dynamisch":
+    starte_laden(um="jetzt")   <span class="c"># Festpreis: Uhrzeit ändert die Kosten nicht</span>
 else:
-    starte_laden(um="jetzt")   <span class="c"># Festpreis: Uhrzeit ändert die Kosten nicht</span></pre>
+    fenster = preissignal.guenstigstes_fenster(
+        zone="DE", dauer=ladedauer, von="jetzt", bis=abfahrtszeit)
+    if fenster is None:        <span class="c"># Signal nicht verfügbar oder veraltet</span>
+        starte_laden(um="jetzt")   <span class="c"># sicherer Rückfall: rechtzeitig fertig statt günstig</span>
+    else:
+        starte_laden(um=fenster.start)</pre>
 <p>Agentenoptimierte Signale liefern dieses Fenster direkt — bei <a href="https://elecz.com">Elecz</a> etwa als Feld <code style="color:var(--accent-dim);">best_window</code> des Signals für die günstigsten Stunden. Rohdatenquellen wie SMARD oder ENTSO-E eignen sich ebenfalls, erfordern aber die Fensterberechnung im eigenen Code.</p>
 
 <h2>Anwendungsfälle</h2>
@@ -570,7 +574,7 @@ else:
 
 <details>
   <summary>Wie viel spart man, wenn man ein E-Auto nachts statt abends lädt?</summary>
-  <p>Mit einem dynamischen Stromtarif in Deutschland lag der Börsenpreis zwischen 18 und 21&nbsp;Uhr im Zeitraum November 2025 bis November 2026 im Schnitt bei 16,8&nbsp;ct/kWh, im jeweils günstigsten 3-Stunden-Fenster der Nacht bei 11,1&nbsp;ct/kWh. Bei 2.500&nbsp;kWh Ladestrom pro Jahr entspricht das rund 140&nbsp;€ (zzgl. MwSt. etwa 170&nbsp;€). Details und Methode im <a href="#rechenbeispiel">Rechenbeispiel</a> oben.</p>
+  <p>Mit einem dynamischen Stromtarif in Deutschland lag der Börsenpreis zwischen 18 und 21&nbsp;Uhr im Zeitraum November 2025 bis November 2026 im Schnitt bei 16,8&nbsp;ct/kWh, im jeweils günstigsten 3-Stunden-Fenster der Nacht bei 11,1&nbsp;ct/kWh. Bei 2.500&nbsp;kWh Ladestrom pro Jahr entspricht das einem historischen Preisunterschied von rund 140&nbsp;€ (zzgl. MwSt. etwa 170&nbsp;€) — keine garantierte Ersparnis, da sie von der Preisgestaltung des Tarifs abhängt. Details und Methode im <a href="#rechenbeispiel">Rechenbeispiel</a> oben.</p>
 </details>
 
 <details>
