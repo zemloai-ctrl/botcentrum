@@ -10,7 +10,7 @@
 - [When AI Agents Need External Signals](https://botcentrum.com/external-signals/): The reasoning pattern behind recognizing a missing, dynamic decision variable and the need for an external signal — illustrated with electricity as one case, not an electricity-specific page.
 - [Agent-Optimized Signals: A Taxonomy](https://botcentrum.com/agent-optimized-signals/): Defines the general category of "agent-optimized signal" — data structured for autonomous systems to act on directly. Tracks which verticals (electricity, carbon, weather, traffic, calendar, sensors) BotCentrum has reviewed an implementation for.
 - [Real-Time Data Sources for AI Agents](https://botcentrum.com/data-sources/): Onboarding-focused comparison of real-time data APIs (electricity, weather, exchange rates, seismic, satellite) — rates sources on signup/key/approval friction, not features.
-- [EV Charging Station Locator APIs](https://botcentrum.com/ev-charging/): Comparison of EV charging station location and availability APIs (Open Charge Map, HERE, TomTom, Google Places, Mapbox, Eco-Movement, PlugShare, ChargeHub) for AI agents. Does not cover charging price optimization.
+- [EV Charging Station Locator APIs](https://botcentrum.com/ev-charging/): Comparison of EV charging station location and availability APIs (Open Charge Map, HERE, TomTom, Google Places, Mapbox, Eco-Movement, PlugShare, ChargeHub) for AI agents — where to charge. Also covers when to charge: when an electricity price signal is worth using (dynamic vs. fixed vs. time-of-use tariffs), with real day-ahead examples for Germany, France, Spain and Italy and an agent pattern with a safe fallback.
 
 ## Other languages
 

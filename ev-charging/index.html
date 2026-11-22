@@ -32,7 +32,7 @@
         "headline": "Best EV Charging Station Locator APIs for AI Agents (2026)",
         "description": "Independent comparison of EV charging station locator APIs for AI agents: Open Charge Map, HERE, TomTom, Mapbox, ChargeHub.",
         "datePublished": "2026-06-01",
-        "dateModified": "2026-07-28",
+        "dateModified": "2026-11-22",
         "author": { "@type": "Organization", "name": "BotCentrum" },
         "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
         "mainEntityOfPage": "https://botcentrum.com/ev-charging/"
@@ -67,7 +67,15 @@
             "name": "Does this page cover EV charging price optimization?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. This page covers station location and availability data only. Electricity price optimization and cheapest-hour charging timing are a separate category, covered on BotCentrum's electricity price API comparison."
+              "text": "Partly. The comparison covers station location and availability APIs. A separate section covers charging timing: when an electricity price signal is worth using, how much it was worth in Germany, France, Spain and Italy, and an agent pattern with a safe fallback. Electricity price sources are compared on BotCentrum's electricity price API page."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should an AI agent check electricity prices before scheduling EV charging?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, if the user has a dynamic or hourly-indexed tariff and the car is plugged in longer than it needs to charge. Over the last twelve months the cheapest night window was 4–6 c€/kWh cheaper than charging right after getting home in Germany, France, Spain and Italy — roughly 100–140 € a year for a typical EV, as a historical wholesale difference rather than a guaranteed saving. With a fixed price or time-of-use bands, an hourly price signal does not change the bill. If the signal is unavailable, the agent should charge anyway so the car is ready on time."
             }
           },
           {
@@ -343,6 +351,11 @@
     }
     .faq-item.open .faq-a { display: block; }
 
+    pre.pattern { background: var(--surface); border: 1px solid var(--border); padding: 14px 18px; margin: 16px 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; color: var(--text); overflow-x: auto; }
+    pre.pattern .c { color: var(--muted); }
+    #where-and-when p { margin-bottom: 14px; }
+    #where-and-when .muted { margin-top: 10px; }
+
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 0 48px;
@@ -370,17 +383,17 @@
       status — the data an AI agent needs to answer: <strong>“Where is the
       nearest open charger my vehicle can use?”</strong>
     </p>
-    <div class="updated">Last updated: June 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
+    <div class="updated">Last updated: November 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
   </header>
 
   <main>
     <section class="notice">
       <strong>Scope note:</strong>
-      This page covers EV charging station locator APIs for automated systems.
-      It does not cover smart charging, electricity price optimization, home
-      charger management, OCPP backends, payment processing or fleet energy
-      scheduling. For electricity price data and cheapest-hour charging timing,
-      see <a href="https://elecz.com">Elecz</a>.
+      This page covers EV charging station locator APIs for automated systems —
+      the question of <em>where</em> to charge. One section below covers the
+      second decision an agent faces at home or at a depot: <em>when</em> to
+      charge, which depends on electricity prices and the user's tariff. OCPP
+      backends, payment processing and fleet energy management are out of scope.
     </section>
 
     <nav class="toc" aria-label="Table of contents">
@@ -389,6 +402,7 @@
         <li><a href="#quick-recommendation">Quick recommendation</a></li>
         <li><a href="#comparison">Comparison</a></li>
         <li><a href="#what-agents-need">What AI agents actually need</a></li>
+        <li><a href="#where-and-when">Where vs. when: location APIs and price signals</a></li>
         <li><a href="#open-vs-commercial">Open data vs commercial APIs</a></li>
         <li><a href="#by-use-case">Recommended choices by use case</a></li>
         <li><a href="#why-no-single-api">Why there is no single perfect EV charging API</a></li>
@@ -531,7 +545,75 @@
           <h3>Routing context</h3>
           <p>Distance, detour impact, opening hours, nearby alternatives and reliability.</p>
         </article>
+        <article class="card">
+          <h3>Timing</h3>
+          <p>For home and depot charging: the cheapest hours before departure — if the user's tariff follows the market.</p>
+        </article>
       </div>
+    </section>
+
+    <section id="where-and-when">
+      <div class="section-label">Charging decisions</div>
+      <h2>Where vs. when: location APIs and price signals</h2>
+      <p>
+        Locator APIs answer <strong>where</strong> to charge. For most charging
+        sessions — at home or at a depot, plugged in for hours — the more
+        valuable question is <strong>when</strong>. That answer does not come from
+        a station database; it comes from an electricity price signal, and only
+        matters if the user's tariff passes market prices through by the hour.
+      </p>
+      <p>
+        How much timing is worth, using the last twelve months of day-ahead
+        prices and a typical EV using about 2,500&nbsp;kWh per year (charging
+        right after getting home vs. in the cheapest 3-hour window of the night):
+      </p>
+      <table>
+        <thead>
+          <tr><th>Market</th><th>Charge on arrival</th><th>Cheapest night window</th><th>Difference / year</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Germany</strong> (<a href="https://botcentrum.com/de/#rechenbeispiel">details</a>)</td><td>16.8&nbsp;c€/kWh (18–21h)</td><td>11.1&nbsp;c€/kWh</td><td>≈&nbsp;140&nbsp;€</td></tr>
+          <tr><td><strong>France</strong> (<a href="https://botcentrum.com/fr/#exemple-calcul">details</a>)</td><td>13.6&nbsp;c€/kWh (18–21h)</td><td>8.2&nbsp;c€/kWh</td><td>≈&nbsp;135&nbsp;€</td></tr>
+          <tr><td><strong>Spain</strong> (<a href="https://botcentrum.com/es/#ejemplo-calculo">details</a>)</td><td>13.8&nbsp;c€/kWh (20–23h)</td><td>9.8&nbsp;c€/kWh</td><td>≈&nbsp;100&nbsp;€</td></tr>
+          <tr><td><strong>Italy, North zone</strong> (<a href="https://botcentrum.com/it/#esempio-calcolo">details</a>)</td><td>18.7&nbsp;c€/kWh (18–21h)</td><td>14.3&nbsp;c€/kWh</td><td>≈&nbsp;110&nbsp;€</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">
+        Wholesale day-ahead prices, 21&nbsp;Nov&nbsp;2025 – 19&nbsp;Nov&nbsp;2026, excluding
+        VAT, network charges and taxes; source: Energy-Charts (Fraunhofer ISE),
+        CC BY 4.0. These are historical price differences, not guaranteed savings —
+        what reaches the customer depends on the tariff.
+      </p>
+      <p>
+        The tariff decides whether any of this matters. With a fixed price, every
+        kWh costs the same at any hour and timing changes nothing. With
+        time-of-use bands (night rates, heures creuses, Italian F1/F2/F3 bands) the
+        band decides, not the hour. Only dynamic or hourly-indexed tariffs pass
+        the hourly difference through. And the cheapest hours are not always at
+        night: in all four markets the solar midday hours were on average the
+        cheapest of the day. The rule is to choose the cheapest hours
+        <strong>within the period the car is actually plugged in</strong>.
+      </p>
+      <pre class="pattern"><span class="c"># Schedule home/depot charging: location answers where, price answers when</span>
+if tariff in ("fixed", None):        <span class="c"># fixed price or unknown tariff</span>
+    start_charging(at="now")           <span class="c"># timing does not change the cost</span>
+elif tariff == "time_of_use":
+    start_charging(at=next_cheap_band_start)
+else:                                  <span class="c"># dynamic / hourly-indexed tariff</span>
+    window = price_signal.cheapest_window(
+        zone=user_zone, duration=charge_duration, start="now", end=departure_time)
+    if window is None:                 <span class="c"># signal missing or stale</span>
+        start_charging(at="now")       <span class="c"># safe fallback: ready on time beats cheaper</span>
+    else:
+        start_charging(at=window.start)</pre>
+      <p>
+        Agent-optimized price signals return this window directly — for example
+        the <code>best_window</code> field of <a href="https://elecz.com">Elecz</a>'s
+        cheapest-hours signal. Raw sources such as ENTSO-E or SMARD work too, but
+        the window calculation then lives in your own code. The full comparison
+        of electricity price sources is on
+        <a href="https://botcentrum.com/">BotCentrum's electricity price API page</a>.
+      </p>
     </section>
 
     <section id="open-vs-commercial">
@@ -623,6 +705,7 @@
         <li><strong>Navigation-grade commercial data:</strong> HERE or Google Places</li>
         <li><strong>Live availability lookups:</strong> TomTom</li>
         <li><strong>North America only:</strong> ChargeHub</li>
+        <li><strong>When to charge at home or at a depot:</strong> an electricity price signal — but only if the user's tariff follows the market</li>
       </ul>
       <p>
         No reviewed provider currently looks like a universal, MCP-native,
@@ -656,10 +739,30 @@
             <span class="faq-icon">+</span>
           </div>
           <div class="faq-a">
-            No. This page covers station location and availability data only.
-            Electricity price optimization and cheapest-hour charging timing
-            are a separate category, covered on
-            <a href="https://elecz.com">Elecz</a>.
+            Partly. The comparison covers station location and availability APIs.
+            The <a href="#where-and-when">where vs. when</a> section covers charging
+            timing: when an electricity price signal is worth using, how much it
+            was worth in Germany, France, Spain and Italy, and an agent pattern
+            with a safe fallback. Electricity price sources themselves are compared
+            on <a href="https://botcentrum.com/">BotCentrum's electricity price API page</a>.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggle(this)">
+            Should an AI agent check electricity prices before scheduling EV charging?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">
+            Yes, if the user has a dynamic or hourly-indexed tariff and the car is
+            plugged in longer than it needs to charge. Over the last twelve months
+            the cheapest night window was 4–6&nbsp;c€/kWh cheaper than charging right
+            after getting home in Germany, France, Spain and Italy — roughly
+            100–140&nbsp;€ a year for a typical EV, as a historical wholesale
+            difference rather than a guaranteed saving. With a fixed price or
+            time-of-use bands, an hourly price signal does not change the bill.
+            If the signal is unavailable, the agent should charge anyway so the
+            car is ready on time.
           </div>
         </div>
 

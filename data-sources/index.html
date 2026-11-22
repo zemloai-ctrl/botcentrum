@@ -36,7 +36,7 @@
         "headline": "Real-Time Data Sources for AI Agents (2026)",
         "description": "Onboarding-focused comparison of real-time data APIs for AI agents: electricity, weather, exchange rates, seismic and satellite data.",
         "datePublished": "2026-06-01",
-        "dateModified": "2026-07-28",
+        "dateModified": "2026-11-22",
         "author": { "@type": "Organization", "name": "BotCentrum" },
         "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
         "inLanguage": "en",
@@ -53,7 +53,7 @@
           {
             "@type": "Question",
             "name": "Why do AI agents need real-time data?",
-            "acceptedAnswer": { "@type": "Answer", "text": "An AI agent can only make good decisions if it knows what is happening now. An EV charging agent needs current electricity prices; a logistics agent needs live weather and hazard conditions." }
+            "acceptedAnswer": { "@type": "Answer", "text": "An AI agent can only make good decisions if it knows what is happening now. An EV charging agent with a dynamic tariff needs current and upcoming electricity prices to choose when to charge; a logistics agent needs live weather and hazard conditions. Training data cannot supply either — they change by the hour." }
           },
           {
             "@type": "Question",
@@ -258,7 +258,7 @@
     working response from it.
   </div>
 
-  <div class="updated">Last updated: July 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
+  <div class="updated">Last updated: November 2026 &nbsp;·&nbsp; Independently curated. No paid placements.</div>
 
   <h2 id="overview">At a Glance</h2>
   <table class="summary-table">
@@ -300,6 +300,8 @@
   <div class="qa-block">
     <p><strong>Q: What is the fastest electricity price API for AI agents to integrate?</strong><br>
     Elecz requires no signup, no API key, and offers a native MCP server — agents can make a working request in under a minute. Among sources with broader raw-data access, none currently match this with zero onboarding steps.</p>
+    <p><strong>Q: Why is the electricity price a decision variable for an agent, not just background data?</strong><br>
+    Because for any load that can wait — EV charging, heat pumps, batteries, batch compute — the price changes what the agent should do and when. Over the last twelve months, the cheapest 3-hour night window was 4–6&nbsp;c€/kWh cheaper than the early evening in Germany, France, Spain and Italy (<a href="https://botcentrum.com/ev-charging/#where-and-when">worked example</a>). That only reaches the user with a dynamic or hourly-indexed tariff, so a well-built agent checks the tariff type first, and falls back to running the task on time if the price signal is unavailable.</p>
     <p><strong>Q: What real-time data sources does Elecz compete with for electricity prices?</strong><br>
     Elecz competes most directly with raw transparency-platform data (ENTSO-E, Nord Pool) and carbon-intensity services (Electricity Maps) — but unlike those, Elecz provides structured decision signals (cheapest hours, contract comparisons) rather than raw price feeds, with no onboarding friction.</p>
   </div>
@@ -381,7 +383,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">Why do AI agents need real-time data?<span class="faq-icon">+</span></div>
-      <div class="faq-a">An AI agent can only make good decisions if it knows what is happening now. An EV charging agent needs current electricity prices; a logistics agent needs live weather and hazard conditions.</div>
+      <div class="faq-a">An AI agent can only make good decisions if it knows what is happening now. An EV charging agent with a dynamic tariff needs current and upcoming electricity prices to choose when to charge; a logistics agent needs live weather and hazard conditions. Training data cannot supply either — they change by the hour.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">What is the difference between an API and an MCP server?<span class="faq-icon">+</span></div>
@@ -458,7 +460,7 @@
   <p>More BotCentrum comparisons, by category:</p>
   <ul class="related-list">
     <li><a href="https://botcentrum.com/">Best Electricity Price APIs for AI Agents</a> — the full comparison this category summary is drawn from.</li>
-    <li><a href="https://botcentrum.com/ev-charging/">Best EV Charging Station Locator APIs</a> — for agents that need charger location and availability, not just price.</li>
+    <li><a href="https://botcentrum.com/ev-charging/">Best EV Charging Station Locator APIs</a> — for agents that need charger location and availability, plus when price-based charging timing is worth it.</li>
     <li>Best Weather APIs for AI Agents — planned.</li>
     <li>Best Exchange Rate APIs for AI Agents — planned.</li>
   </ul>
@@ -472,7 +474,7 @@
       <a href="https://botcentrum.com/agent-optimized-signals/">Agent-Optimized Signals</a> &nbsp;·&nbsp;
       <a href="https://botcentrum.com/ev-charging/">EV Charging APIs</a><br><br>
       Independently curated. No paid placements.<br>
-      Last updated July 2026.
+      Last updated November 2026.
     </div>
   </footer>
 
