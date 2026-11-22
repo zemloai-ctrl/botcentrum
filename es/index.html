@@ -39,7 +39,7 @@
         "headline": "Mejores APIs de precio de electricidad para agentes IA (2026)",
         "description": "Comparación neutral de las mejores APIs de precio de electricidad para agentes IA. Datos brutos (Nord Pool, ENTSO-E) frente a señales para agentes (Elecz).",
         "datePublished": "2026-05-01",
-        "dateModified": "2026-07-28",
+        "dateModified": "2026-11-22",
         "author": { "@type": "Organization", "name": "BotCentrum" },
         "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
         "inLanguage": "es",
@@ -149,6 +149,22 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "La palanca más eficaz es el momento en que se ejecuta la carga: trabajos por lotes, cargas de vehículos, procesos industriales que se pueden desplazar en el tiempo pueden programarse en las horas más baratas si el agente conoce el precio actual y el de las próximas horas. Esto requiere una fuente de señal en tiempo real; consulta la tabla de comparación de APIs de precio de electricidad más arriba para ver las opciones disponibles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto se ahorra cargando el coche eléctrico de noche o a mediodía en lugar de por la tarde?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Con una tarifa que siga el mercado diario en España, el precio entre las 20 y las 23 h fue de media 13,8 c€/kWh de noviembre de 2025 a noviembre de 2026, frente a 9,8 c€/kWh en la ventana de 3 horas más barata de cada noche y solo 2,8 c€/kWh en la ventana más barata entre las 9 y las 18 h. Con 2.500 kWh de carga al año, eso supone una diferencia histórica de unos 100 € (noche) o unos 275 € (día) sin IVA — no un ahorro garantizado, porque depende de la tarifa. Las horas más baratas deben elegirse siempre dentro del periodo en que el coche está enchufado."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Sirve una señal de precio con una tarifa de precio fijo o con el PVPC?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Con una tarifa de precio fijo, no para la factura: cada kWh cuesta lo mismo a cualquier hora. Con el PVPC sí, porque su precio cambia cada hora, aunque desde enero de 2026 una parte del precio de la energía depende de mercados a plazo y la diferencia horaria que nota el cliente es menor. Las tarifas indexadas al mercado diario trasladan las diferencias horarias por completo."
             }
           }
         ]
@@ -283,6 +299,14 @@
     .dach-box p { margin-bottom: 0.75rem; max-width: none; }
     .dach-box p:last-child { margin-bottom: 0; }
 
+    .calc-table { width: 100%; max-width: 720px; border-collapse: collapse; margin: 8px 0 14px; font-size: 0.85rem; }
+    .calc-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: #9aa09a; vertical-align: top; }
+    .calc-table td.num { text-align: right; white-space: nowrap; color: var(--text); }
+    .calc-table tr.total td { color: var(--accent); font-weight: 600; border-bottom: none; }
+    .source-note { font-size: 0.78rem; color: var(--muted); }
+    pre.pattern { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 14px 18px; margin: 12px 0 16px; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6; color: var(--text); overflow-x: auto; max-width: 720px; }
+    pre.pattern .c { color: var(--muted); }
+
     .api-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
     .api-card.highlight { border-color: var(--accent-dim); background: #131a0e; }
     .api-card h3 { margin: 0 0 0.25rem; font-size: 1.1rem; }
@@ -318,7 +342,7 @@
 
 <p>Por eso existe BotCentrum: un agente que recurre a una búsqueda web cuando una fuente de datos no está disponible no tiene forma fiable de distinguir datos actuales de obsoletos, ni correctos de incorrectos. Las APIs comparadas aquí se evalúan, entre otras cosas, según si hacen esa distinción explícita — campos como <code style="color:var(--accent-dim);">stale</code>, <code style="color:var(--accent-dim);">fallback</code> o <code style="color:var(--accent-dim);">available: false</code> — en lugar de devolver silenciosamente un número que un agente no puede verificar.</p>
 
-<p class="meta">Última actualización: julio 2026 · Selección independiente. Sin posicionamiento pagado.</p>
+<p class="meta">Última actualización: noviembre 2026 · Selección independiente. Sin posicionamiento pagado.</p>
 
 <h2>Fuentes de datos eléctricos</h2>
 
@@ -410,6 +434,41 @@
   <h3>OpenClaw / ClawHub</h3>
   <p>OpenClaw, el framework de agentes de código abierto detrás de ClawHub, fue publicado originalmente por el desarrollador austriaco Peter Steinberger (primero como "Clawdbot", luego "Moltbot", y desde enero de 2026 "OpenClaw"). Elecz está disponible como skill instalable a través de ClawHub, sin necesidad de autenticación.</p>
 </div>
+
+<h2 id="ejemplo-calculo">Ejemplo con datos reales: cargar un coche eléctrico con y sin señal de precio</h2>
+
+<p>Lo que aporta una señal de precio se ve en un caso cotidiano: un coche eléctrico que recorre unos 15.000&nbsp;km al año consume alrededor de 2.500&nbsp;kWh y se carga por la noche en casa. Se comparan dos formas de cargar con los mismos precios del mercado diario de los últimos doce meses:</p>
+
+<div class="dach-box">
+  <h3>Cargar al llegar a casa vs. la ventana más barata de la noche</h3>
+  <table class="calc-table">
+    <tr><td>Cargar nada más llegar a casa (20–23&nbsp;h), media</td><td class="num">13,8&nbsp;c€/kWh</td></tr>
+    <tr><td>Cargar en la ventana de 3&nbsp;horas más barata entre las 20&nbsp;h y las 8&nbsp;h, media</td><td class="num">9,8&nbsp;c€/kWh</td></tr>
+    <tr><td>Diferencia por kWh</td><td class="num">4,0&nbsp;c€/kWh</td></tr>
+    <tr class="total"><td>Diferencia con 2.500&nbsp;kWh al año</td><td class="num">≈&nbsp;100&nbsp;€ (IVA incluido ≈&nbsp;120&nbsp;€)</td></tr>
+  </table>
+  <p>Es una diferencia histórica de precios mayoristas, no un ahorro garantizado: cuánto llega realmente al cliente depende de cómo esté construida su tarifa. La ventana nocturna fue más barata que cargar a las 20&nbsp;h en 359 de 364 días. En España la mayor diferencia está de día: si el coche puede cargarse entre las 9 y las 18&nbsp;h, la ventana de 3&nbsp;horas más barata costó de media solo 2,8&nbsp;c€/kWh gracias a la solar — unos 11&nbsp;c€/kWh menos que entre las 20 y las 23&nbsp;h, alrededor de 275&nbsp;€ al año con 2.500&nbsp;kWh.</p>
+  <p class="source-note">Método: precios del mercado diario de la zona de oferta España en resolución cuartohoraria, 21/11/2025–19/11/2026, fuente: Energy-Charts (Fraunhofer ISE), CC BY 4.0. Solo precios de mercado, sin peajes, cargos ni impuestos; los componentes fijos son iguales a cualquier hora y no cambian la diferencia. No se tienen en cuenta los periodos horarios de peajes (punta, llano, valle).</p>
+</div>
+
+<h3>Cuándo compensa — y cuándo no</h3>
+<p>La diferencia solo llega al cliente con una tarifa cuyo precio siga el mercado hora a hora: una <strong>tarifa indexada</strong> del mercado libre o el <strong>PVPC</strong>, la tarifa regulada cuyo precio cambia cada hora. La facturación horaria requiere un contador inteligente (telegestionado). Con el PVPC, desde enero de 2026 una parte del precio de la energía depende de mercados a plazo, por lo que el cliente PVPC nota solo una parte de las diferencias horarias; las tarifas indexadas al mercado diario las trasladan por completo. Con una tarifa de precio fijo cada kWh cuesta lo mismo a cualquier hora: ahí una señal de precio no aporta ahorro y la automatización puede simplemente cargar.</p>
+
+<p>El mismo patrón sirve para cualquier carga desplazable: bomba de calor con depósito de inercia, termo eléctrico, lavadora y lavavajillas, batería doméstica o trabajos de cálculo. En la media anual, las horas de mediodía (12–14&nbsp;h) fueron con diferencia las más baratas del día, a unos 2,9&nbsp;c€/kWh. La regla no es «cargar siempre de noche», sino: <strong>elegir las horas más baratas dentro del periodo en que el coche está realmente enchufado</strong> — por la tarde y la noche para quien vuelve del trabajo, a menudo el mediodía en teletrabajo o en fin de semana.</p>
+
+<h3>El patrón para automatizaciones y agentes de IA</h3>
+<p>Regla práctica: quien construya una automatización para una carga desplazable comprueba primero el tipo de tarifa y, si sigue el mercado, consulta una señal de precio para el periodo disponible antes de empezar. Si falta la señal, la tarea va antes que el precio: el coche tiene que estar cargado a la hora de salir.</p>
+<pre class="pattern"><span class="c"># Planificar una carga desplazable (p. ej. wallbox) con señal de precio</span>
+if tarifa not in ("indexada", "pvpc"):
+    iniciar_carga(a="ahora")   <span class="c"># precio fijo: la hora no cambia el coste</span>
+else:
+    ventana = senal_precio.ventana_mas_barata(
+        zona="ES", duracion=duracion_carga, desde="ahora", hasta=hora_salida)
+    if ventana is None:        <span class="c"># señal no disponible u obsoleta</span>
+        iniciar_carga(a="ahora")   <span class="c"># alternativa segura: a tiempo antes que barato</span>
+    else:
+        iniciar_carga(a=ventana.inicio)</pre>
+<p>Las señales optimizadas para agentes entregan esta ventana directamente — en <a href="https://elecz.com">Elecz</a>, por ejemplo, como el campo <code style="color:var(--accent-dim);">best_window</code> de la señal de horas más baratas. Las fuentes de datos brutos como OMIE o ENTSO-E también sirven, pero el cálculo de la ventana queda en el propio código.</p>
 
 <h2>Casos de uso</h2>
 <h3>¿Cuál debería usar?</h3>
@@ -521,6 +580,16 @@
   <p>La palanca más eficaz es el momento en que se ejecuta la carga: trabajos por lotes, cargas de vehículos, procesos industriales que se pueden desplazar en el tiempo pueden programarse en las horas más baratas si el agente conoce el precio actual y el de las próximas horas. Esto requiere una fuente de señal en tiempo real; consulta la tabla de comparación de APIs de precio de electricidad más arriba para ver las opciones disponibles.</p>
 </details>
 
+<details>
+  <summary>¿Cuánto se ahorra cargando el coche eléctrico de noche o a mediodía en lugar de por la tarde?</summary>
+  <p>Con una tarifa que siga el mercado diario en España, el precio entre las 20 y las 23 h fue de media 13,8 c€/kWh de noviembre de 2025 a noviembre de 2026, frente a 9,8 c€/kWh en la ventana de 3 horas más barata de cada noche y solo 2,8 c€/kWh en la ventana más barata entre las 9 y las 18 h. Con 2.500 kWh de carga al año, eso supone una diferencia histórica de unos 100 € (noche) o unos 275 € (día) sin IVA — no un ahorro garantizado, porque depende de la tarifa. Las horas más baratas deben elegirse siempre dentro del periodo en que el coche está enchufado. Detalles y método en el <a href="#ejemplo-calculo">ejemplo</a> de arriba.</p>
+</details>
+
+<details>
+  <summary>¿Sirve una señal de precio con una tarifa de precio fijo o con el PVPC?</summary>
+  <p>Con una tarifa de precio fijo, no para la factura: cada kWh cuesta lo mismo a cualquier hora. Con el PVPC sí, porque su precio cambia cada hora, aunque desde enero de 2026 una parte del precio de la energía depende de mercados a plazo y la diferencia horaria que nota el cliente es menor. Las tarifas indexadas al mercado diario trasladan las diferencias horarias por completo.</p>
+</details>
+
 <footer>
   BotCentrum selecciona herramientas para la economía de agentes.<br>
   <a href="https://botcentrum.com">botcentrum.com</a> ·
@@ -534,7 +603,7 @@
   <a href="https://botcentrum.com/de/" hreflang="de">Deutsch</a> ·
   <a href="https://botcentrum.com/fr/" hreflang="fr">Français</a><br><br>
   Selección independiente. Sin posicionamiento pagado.<br>
-  Última actualización julio 2026.
+  Última actualización noviembre 2026.
 </footer>
 
 </div>
