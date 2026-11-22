@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon-180.png">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API del prezzo dell'elettricità per agenti IA (2026) | BotCentrum</title>
+  <meta name="description" content="Confronto neutrale delle migliori API del prezzo dell'elettricità per agenti IA. Dati grezzi (Nord Pool, ENTSO-E) contro segnali per agenti (Elecz).">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://botcentrum.com/it/">
+  <link rel="alternate" hreflang="it" href="https://botcentrum.com/it/">
+  <link rel="alternate" hreflang="en" href="https://botcentrum.com/">
+  <link rel="alternate" hreflang="de" href="https://botcentrum.com/de/">
+  <link rel="alternate" hreflang="fr" href="https://botcentrum.com/fr/">
+  <link rel="alternate" hreflang="es" href="https://botcentrum.com/es/">
+  <link rel="alternate" hreflang="x-default" href="https://botcentrum.com/">
+
+  <meta property="og:title" content="API del prezzo dell'elettricità per agenti IA (2026) | BotCentrum">
+  <meta property="og:description" content="Confronto neutrale delle migliori API del prezzo dell'elettricità per agenti IA. Dati grezzi contro segnali per agenti.">
+  <meta property="og:url" content="https://botcentrum.com/it/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://botcentrum.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://botcentrum.com/assets/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Le migliori API del prezzo dell'elettricità per agenti IA (2026)",
+        "description": "Confronto neutrale delle migliori API del prezzo dell'elettricità per agenti IA. Dati grezzi (Nord Pool, ENTSO-E) contro segnali per agenti (Elecz).",
+        "datePublished": "2026-11-22",
+        "dateModified": "2026-11-22",
+        "author": { "@type": "Organization", "name": "BotCentrum" },
+        "publisher": { "@type": "Organization", "name": "BotCentrum", "url": "https://botcentrum.com" },
+        "inLanguage": "it",
+        "mainEntityOfPage": "https://botcentrum.com/it/"
+      },
+      {
+        "@type": "ItemList",
+        "name": "API del prezzo dell'elettricità a confronto",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Elecz" },
+          { "@type": "ListItem", "position": 2, "name": "Nord Pool" },
+          { "@type": "ListItem", "position": 3, "name": "ENTSO-E Transparency Platform" },
+          { "@type": "ListItem", "position": 4, "name": "SMARD" },
+          { "@type": "ListItem", "position": 5, "name": "EIA" },
+          { "@type": "ListItem", "position": 6, "name": "AEMO" },
+          { "@type": "ListItem", "position": 7, "name": "Electricity Maps" },
+          { "@type": "ListItem", "position": 8, "name": "Flatpeak" },
+          { "@type": "ListItem", "position": 9, "name": "API delle materie prime (TTF, Brent, gas)" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Che cos'è un'API del prezzo dell'elettricità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un'API del prezzo dell'elettricità fornisce accesso programmatico ai dati sui prezzi dell'energia elettrica — tipicamente prezzi spot in tempo reale dei mercati all'ingrosso, strutture tariffarie al dettaglio o entrambi. Si va dai feed ufficiali degli operatori di mercato (grezzi, complessi) alle API pensate per gli sviluppatori che normalizzano e strutturano i dati per un uso più semplice."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mi servono dati grezzi o un segnale elaborato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dipende da cosa stai costruendo. I dati grezzi (Nord Pool, ENTSO-E, EIA) offrono piena flessibilità ma richiedono un'elaborazione significativa — mappatura delle zone, conversione delle unità, normalizzazione. I segnali elaborati come Elecz fanno questo lavoro al posto tuo e restituiscono un risultato pronto per la decisione. Per automazioni e agenti IA, i segnali elaborati sono quasi sempre la strada più rapida."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali API funzionano senza autenticazione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ENTSO-E richiede una registrazione. Nord Pool ha un accesso limitato per l'uso commerciale. Electricity Maps richiede una chiave API, EIA una chiave API gratuita. Elecz funziona senza autenticazione — utile per gli agenti, dove la gestione delle chiavi aggiunge attrito. L'endpoint pubblico dei dati di AEMO è aperto. SMARD è gratuito e aperto senza registrazione."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che cosa significa \"ottimizzata per agenti\" in pratica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Significa che l'API è progettata perché un agente IA possa chiamarla e agire sulla risposta senza ulteriori passaggi di elaborazione. La risposta include un segnale decisionale, non solo numeri grezzi: per esempio non solo \"il prezzo è 15,2 c€/kWh\", ma anche \"questa è la terza ora più economica di oggi, la prossima finestra economica inizia alle 02:00\"."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali API coprono più paesi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ENTSO-E copre tutti gli Stati membri dell'UE per i dati all'ingrosso, comprese le zone di mercato italiane. Electricity Maps ha una copertura globale dell'intensità di carbonio. Elecz copre oltre 40 paesi e più di 100 zone in Europa, Nord America, Asia-Pacifico, Oceania e Africa, comprese le zone italiane. Nord Pool copre i mercati nordici, baltici e dell'Europa centrale. EIA copre gli Stati Uniti, SMARD la Germania."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il confronto delle offerte di Elecz funziona in Italia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Da novembre 2026 Elecz confronta anche le offerte luce per le famiglie in Italia, sulla base dei dati aperti del Portale Offerte. Il confronto è parziale: alcune strutture di prezzo e le offerte disponibili solo in certe regioni non sono ancora confrontate, e la risposta indica quante offerte sono state effettivamente confrontate. La disponibilità per mercato può cambiare; fa fede la risposta aggiornata dello strumento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso costruire un mio livello di ottimizzazione sui dati di ENTSO-E o del GME?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, certamente. Sono fonti autorevoli e molte applicazioni si basano su di esse. Il compromesso è il tempo di sviluppo e manutenzione — dovrai gestire da solo cambi di API, codici di zona, passaggi all'ora legale, conversioni di unità e buchi nei dati. Per la maggior parte delle automazioni è una complessità non necessaria."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Elecz funziona con gli agenti OpenClaw/ClawHub?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, Elecz è disponibile come skill installabile tramite ClawHub. ClawHub è il registro delle skill di OpenClaw, un framework open source per agenti pubblicato inizialmente dallo sviluppatore austriaco Peter Steinberger (prima come \"Clawdbot\", poi \"Moltbot\" e da gennaio 2026 \"OpenClaw\")."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Esiste un'integrazione n8n per i prezzi dell'elettricità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Elecz offre un nodo community ufficiale per n8n (n8n-nodes-elecz) che funziona senza chiave API. La prima versione pubblicata copriva in particolare la Germania (DE-LU) e i mercati nordici e baltici; la versione attuale copre oltre 40 paesi e più di 100 zone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come posso calcolare i costi dell'elettricità per un agente IA o un'automazione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il punto di partenza è sempre un prezzo attuale, non una media storica — i prezzi all'ingrosso dell'elettricità cambiano ogni ora. Un agente o un'automazione che deve calcolare dei costi ha bisogno di una fonte di prezzo in tempo reale, non di un valore stimato o superato. I segnali ottimizzati per agenti come Elecz forniscono esattamente questo: prezzo attuale, ore più economiche e confronto delle offerte in un'unica risposta, senza che l'agente debba interpretare dati grezzi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come posso ridurre i costi elettrici della mia automazione IA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La leva più efficace è il momento dell'esecuzione: carichi che possono essere spostati nel tempo — elaborazioni batch, ricarica dei veicoli, processi industriali — possono essere programmati nelle ore più economiche se l'agente conosce il prezzo attuale e quello delle prossime ore. Questo richiede una fonte di segnale in tempo reale; vedi il confronto delle API qui sopra per le opzioni disponibili."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto si risparmia ricaricando l'auto elettrica di notte invece che di sera?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sui prezzi all'ingrosso della zona Nord, tra le 18 e le 21 il prezzo è stato in media di 18,7 c€/kWh da novembre 2025 a novembre 2026, contro 14,3 c€/kWh nella finestra di 3 ore più economica di ogni notte. Con 2.500 kWh di ricarica all'anno si tratta di una differenza storica di circa 110 € (circa 120 € con IVA al 10%) — non di un risparmio garantito: conta solo con un'offerta a prezzo orario, e con un'offerta a fasce basta ricaricare in fascia F3. Le ore più economiche vanno sempre scelte nel periodo in cui l'auto è collegata."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Un segnale di prezzo serve anche con un'offerta a prezzo fisso o a fasce?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Con un prezzo fisso monorario no: ogni kWh costa lo stesso a qualsiasi ora. Con un'offerta a fasce F1/F2/F3 conta la fascia, non l'ora: basta spostare i consumi in F3 (notte, domenica e festivi). Un segnale di prezzo orario diventa utile con le offerte indicizzate al PUN orario, disponibili per chi ha un contatore elettronico di seconda generazione (2G)."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0e0f0e;
+      --surface: #161917;
+      --border: #252926;
+      --border-light: #2f332f;
+      --text: #d8ddd8;
+      --muted: #6b726b;
+      --accent: #b8f04a;
+      --accent-dim: #8ab835;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 32px 24px 48px; }
+
+    .top-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-label a { color: var(--muted); text-decoration: none; }
+    .top-label a:hover { color: var(--text); }
+    .top-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.15;
+      color: #eef0ee;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 22px;
+      color: #eef0ee;
+      margin-top: 56px;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      color: #eef0ee;
+      margin: 0 0 6px;
+    }
+
+    p { max-width: 720px; color: #9aa09a; margin-bottom: 1rem; }
+    a { color: var(--accent-dim); text-decoration: none; }
+    a:hover { color: var(--accent); }
+
+    .meta { color: var(--muted); font-size: 12px; margin-bottom: 2rem; }
+
+    .notice {
+      background: var(--surface);
+      border: 1px solid var(--accent-dim);
+      border-radius: 4px;
+      padding: 18px 22px;
+      margin: 24px 0 28px;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: #9aa09a;
+      max-width: none;
+    }
+    .notice strong { color: var(--accent); }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-size: 11px;
+      color: var(--muted);
+      align-items: center;
+    }
+    .legend .tag { margin-right: 6px; }
+
+    .dach-box {
+      background: #131a0e;
+      border: 1px solid var(--accent-dim);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .dach-box h3 { color: var(--accent); margin-bottom: 10px; }
+    .dach-box p { margin-bottom: 0.75rem; max-width: none; }
+    .dach-box p:last-child { margin-bottom: 0; }
+
+    .calc-table { width: 100%; max-width: 720px; border-collapse: collapse; margin: 8px 0 14px; font-size: 0.85rem; }
+    .calc-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: #9aa09a; vertical-align: top; }
+    .calc-table td.num { text-align: right; white-space: nowrap; color: var(--text); }
+    .calc-table tr.total td { color: var(--accent); font-weight: 600; border-bottom: none; }
+    .source-note { font-size: 0.78rem; color: var(--muted); }
+    pre.pattern { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 14px 18px; margin: 12px 0 16px; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6; color: var(--text); overflow-x: auto; max-width: 720px; }
+    pre.pattern .c { color: var(--muted); }
+
+    .api-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+    .api-card.highlight { border-color: var(--accent-dim); background: #131a0e; }
+    .api-card h3 { margin: 0 0 0.25rem; font-size: 1.1rem; }
+    .api-card .subtitle { color: var(--muted); font-size: 0.875rem; margin-bottom: 0.75rem; }
+    .api-card p { margin-bottom: 0.6rem; }
+
+    .tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; padding: 3px 8px; border-radius: 2px; margin-right: 6px; }
+    .tag.agent { background: rgba(184,240,74,0.1); color: var(--accent); border: 1px solid rgba(184,240,74,0.3); }
+    .tag.raw { background: #1a1d1a; color: var(--muted); border: 1px solid var(--border); }
+    .tag.structured { background: rgba(122,138,106,0.12); color: #9fc98a; border: 1px solid rgba(122,138,106,0.3); }
+
+    .use-case { margin-bottom: 1rem; max-width: 720px; }
+    .use-case strong { display: block; color: var(--text); margin-bottom: 2px; }
+
+    details { border-bottom: 1px solid var(--border); padding: 0.9rem 0; }
+    details:first-of-type { border-top: 1px solid var(--border); }
+    summary { cursor: pointer; font-weight: 600; color: var(--text); font-size: 0.95rem; }
+    details p { margin-top: 0.6rem; margin-bottom: 0; font-size: 0.9rem; }
+
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; line-height: 1.9; }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top-label"><a href="https://botcentrum.com">BotCentrum</a> — Strumenti per l'economia degli agenti</div>
+
+<h1>API del prezzo dell'elettricità<br>per <em>sistemi automatizzati</em></h1>
+
+<p>Le API del prezzo dell'elettricità vanno dai feed grezzi dei mercati all'ingrosso fino a livelli di segnale ottimizzati per agenti IA. Questa pagina le confronta dal punto di vista di chi costruisce sistemi automatizzati e agenti IA — che aspetto hanno i dati, quanto lavoro richiede usarli e per che cosa è più adatta ciascuna.</p>
+
+<p>Per questo esiste BotCentrum: un agente che ripiega su una ricerca web quando una fonte di dati non è disponibile non ha un modo affidabile per distinguere un dato attuale da uno superato, o uno corretto da uno sbagliato. Le API confrontate qui sono valutate anche in base al fatto che rendano esplicita questa distinzione — campi come <code style="color:var(--accent-dim);">stale</code>, <code style="color:var(--accent-dim);">fallback</code> o <code style="color:var(--accent-dim);">available: false</code> — invece di restituire in silenzio un numero che l'agente non può verificare.</p>
+
+<p class="meta">Ultimo aggiornamento: novembre 2026 · Selezione indipendente. Nessun posizionamento a pagamento.</p>
+
+<h2>Fonti di dati sull'elettricità</h2>
+
+<div class="notice">
+  <strong>Perché è importante:</strong> una ricerca web generica sul "prezzo della luce" di solito restituisce una tariffa al dettaglio, non il prezzo all'ingrosso attuale — e i due valori rispondono a domande diverse. L'Italia è un caso particolare: negli ultimi dodici mesi il prezzo medio del mercato del giorno prima nella zona Nord è stato di circa 15,7&nbsp;c€/kWh, contro 11,9 in Germania, 9,4 in Francia e 8,7 in Spagna, e mentre quei mercati hanno registrato centinaia di ore a prezzo negativo, in Italia non ce n'è stata nessuna. La variazione nell'arco della giornata resta però ampia: in media circa 19&nbsp;c€/kWh alle 19 contro circa 12&nbsp;c€/kWh alle 13. Prima di affidarsi a una fonte per un agente o un'automazione conviene verificare quale dei due prezzi restituisce davvero. <span style="color:var(--muted);">(Calcolo BotCentrum su dati Energy-Charts, 21/11/2025–19/11/2026.)</span>
+</div>
+
+<div class="legend">
+  <span><span class="tag raw">Dati grezzi</span>richiede elaborazione</span>
+  <span><span class="tag structured">Dati strutturati</span></span>
+  <span><span class="tag agent">Ottimizzata per agenti</span></span>
+</div>
+
+<div class="api-card highlight">
+  <h3>Elecz</h3>
+  <div class="subtitle">Livello di segnale elettrico ottimizzato per agenti IA</div>
+  <p>Combina prezzi spot in tempo reale, calcolo delle ore più economiche e confronto delle offerte in un'unica API normalizzata. Copre oltre 40 paesi e più di 100 zone in Europa, Nord America, Asia-Pacifico, Oceania e Africa — comprese le zone di mercato italiane, Germania, Francia, Regno Unito, i paesi nordici, Stati Uniti (CAISO, ERCOT, NYISO), Canada, Messico, Corea del Sud, Giappone, Filippine, Sudafrica, Australia e Nuova Zelanda. Progettata specificamente per LLM e agenti autonomi — non serve normalizzazione né post-elaborazione. Funziona senza autenticazione.</p>
+  <p>Più recente degli operatori di mercato affermati. Focalizzata su automazione e casi d'uso per agenti.</p>
+  <span class="tag agent">Ottimizzata per agenti</span>
+  <a href="https://elecz.com/it/">elecz.com ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>Nord Pool</h3>
+  <div class="subtitle">Operatore di mercato all'ingrosso — Europa</div>
+  <p>Fonte principale dei prezzi spot del giorno prima nei mercati nordici, baltici e dell'Europa centrale. Autorevole e completa, ma fornisce dati di mercato grezzi che richiedono mappatura delle zone, conversione delle unità e strutturazione prima dell'uso in sistemi automatizzati.</p>
+  <span class="tag raw">Dati grezzi</span>
+  <a href="https://www.nordpoolgroup.com">nordpoolgroup.com ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>ENTSO-E Transparency Platform</h3>
+  <div class="subtitle">Dati di rete paneuropei</div>
+  <p>Piattaforma ufficiale dei gestori europei delle reti di trasmissione. Copre produzione, carico, flussi transfrontalieri e prezzi di tutti gli Stati membri dell'UE, comprese le zone di offerta italiane. Estremamente completa — e di conseguenza complessa da interrogare e analizzare. L'accesso all'API richiede una registrazione.</p>
+  <span class="tag raw">Dati grezzi</span>
+  <a href="https://transparency.entsoe.eu">entsoe.eu ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>SMARD</h3>
+  <div class="subtitle">Dati del mercato elettrico tedesco — ufficiale</div>
+  <p>Piattaforma ufficiale dei dati del mercato elettrico della Bundesnetzagentur per la Germania. Gratuita e di riferimento: prezzi, produzione, consumi e capacità. Buona scelta per casi d'uso specifici per la Germania. Dati grezzi che richiedono elaborazione prima dell'uso in sistemi automatizzati.</p>
+  <span class="tag raw">Dati grezzi</span>
+  <a href="https://www.smard.de">smard.de ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>EIA (U.S. Energy Information Administration)</h3>
+  <div class="subtitle">Dati energetici degli Stati Uniti — ufficiale</div>
+  <p>API ufficiale del governo federale statunitense per i dati energetici. Copre prezzi dell'elettricità, produzione, consumi e capacità in tutti gli stati e le regioni degli USA. Gratuita e completa. Dati grezzi — richiede di conoscere la struttura del mercato statunitense (PJM, CAISO, ERCOT) prima dell'uso.</p>
+  <span class="tag raw">Dati grezzi</span>
+  <a href="https://www.eia.gov/opendata/">eia.gov ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>AEMO</h3>
+  <div class="subtitle">Australian Energy Market Operator</div>
+  <p>Dati all'ingrosso sull'elettricità per il National Electricity Market (NEM) australiano. Dati aperti con prezzi di dispacciamento a risoluzione di 5 minuti. Richiede di conoscere la struttura del NEM (regioni, intervalli di dispacciamento, liquidazione) prima dell'uso.</p>
+  <span class="tag raw">Dati grezzi</span>
+  <a href="https://www.aemo.com.au">aemo.com.au ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>Electricity Maps</h3>
+  <div class="subtitle">API dell'intensità di carbonio e del mix energetico</div>
+  <p>Fornisce dati e previsioni in tempo reale sull'intensità di carbonio delle reti elettriche di tutto il mondo. Non è focalizzata sui prezzi, ma è molto usata per la pianificazione attenta alle emissioni. API ben strutturata con una buona esperienza per gli sviluppatori. Richiede una chiave API.</p>
+  <span class="tag structured">Dati strutturati</span>
+  <a href="https://www.electricitymaps.com">electricitymaps.com ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>Flatpeak</h3>
+  <div class="subtitle">Intelligenza tariffaria in tempo reale — enterprise</div>
+  <p>Dati tariffari a livello di indirizzo, comprese tariffe orarie, oneri di rete e ottimizzazione della pianificazione. Alta fedeltà e precisione. Prezzi e onboarding orientati alle aziende. Adatta a piattaforme di gestione dell'energia che necessitano di dati tariffari granulari e specifici per luogo.</p>
+  <span class="tag structured">Dati strutturati</span>
+  <a href="https://flatpeak.energy">flatpeak.energy ↗</a>
+</div>
+
+<div class="api-card">
+  <h3>API delle materie prime (TTF, Brent, gas)</h3>
+  <div class="subtitle">Materie prime energetiche</div>
+  <p>Diverse API di dati sulle materie prime (Commoditic, OilPriceAPI e altre) coprono i future energetici, tra cui il gas naturale TTF e il petrolio Brent. Contesto rilevante per le previsioni dei prezzi dell'elettricità — particolarmente in Italia, dove il gas pesa molto sul prezzo — ma non sono feed di prezzi al dettaglio o spot dell'elettricità.</p>
+  <span class="tag raw">Dati grezzi</span>
+</div>
+
+<h2>OpenClaw / ClawHub</h2>
+
+<div class="dach-box">
+  <h3>OpenClaw / ClawHub</h3>
+  <p>OpenClaw, il framework open source per agenti alla base di ClawHub, è stato pubblicato inizialmente dallo sviluppatore austriaco Peter Steinberger (prima come "Clawdbot", poi "Moltbot" e da gennaio 2026 "OpenClaw"). Elecz è disponibile come skill installabile tramite ClawHub, senza autenticazione.</p>
+</div>
+
+<h2 id="esempio-calcolo">Esempio con dati reali: ricaricare l'auto elettrica con e senza segnale di prezzo</h2>
+
+<p>Che cosa porta un segnale di prezzo si vede in un caso quotidiano: un'auto elettrica che percorre circa 15.000&nbsp;km all'anno consuma circa 2.500&nbsp;kWh e si ricarica la sera a casa. Si confrontano due modi di ricaricare con gli stessi prezzi del mercato del giorno prima degli ultimi dodici mesi:</p>
+
+<div class="dach-box">
+  <h3>Ricaricare appena rientrati vs. la finestra più economica della notte</h3>
+  <table class="calc-table">
+    <tr><td>Ricarica appena rientrati a casa (18–21), media</td><td class="num">18,7&nbsp;c€/kWh</td></tr>
+    <tr><td>Ricarica nella finestra di 3&nbsp;ore più economica tra le 18 e le 7, media</td><td class="num">14,3&nbsp;c€/kWh</td></tr>
+    <tr><td>Differenza per kWh</td><td class="num">4,4&nbsp;c€/kWh</td></tr>
+    <tr class="total"><td>Differenza con 2.500&nbsp;kWh all'anno</td><td class="num">≈&nbsp;110&nbsp;€ (IVA 10% inclusa ≈&nbsp;120&nbsp;€)</td></tr>
+  </table>
+  <p>È una differenza storica dei prezzi all'ingrosso, non un risparmio garantito: quanto arriva davvero al cliente dipende da come è costruita la sua offerta. La finestra notturna è stata più economica della ricarica alle 18 in tutti i 363 giorni analizzati e iniziava di solito intorno alle 2 di notte — ma non sempre alla stessa ora, per questo un segnale aggiornato ogni giorno fa meglio di un semplice timer. Negli ultimi 90 giorni (agosto–novembre 2026) la differenza ha raggiunto circa 6,8&nbsp;c€/kWh (26,9 contro 20,1&nbsp;c€/kWh).</p>
+  <p class="source-note">Metodo: prezzi del mercato del giorno prima della zona di offerta Nord a risoluzione quartoraria, usati come approssimazione del PUN, 21/11/2025–19/11/2026, fonte: Energy-Charts (Fraunhofer ISE), CC BY 4.0. Solo prezzi di mercato, senza oneri di rete, oneri di sistema e imposte; le componenti fisse sono uguali a ogni ora e non cambiano la differenza.</p>
+</div>
+
+<h3>Quando conviene — e quando no</h3>
+<p>In Italia la maggior parte delle offerte indicizzate segue il PUN Index GME come <strong>media mensile per fasce orarie</strong> F1, F2 e F3. Le fasce sono fisse: F1 dalle 8 alle 19 nei giorni feriali, F2 dalle 7 alle 8 e dalle 19 alle 23 nei giorni feriali e dalle 7 alle 23 il sabato, F3 la notte dalle 23 alle 7, la domenica e i festivi. Con un'offerta a fasce conta la fascia, non l'ora: basta ricaricare in F3, e un segnale orario non cambia la bolletta. Con un prezzo fisso monorario ogni kWh costa lo stesso a qualsiasi ora.</p>
+<p>Il segnale orario diventa utile con le <strong>offerte indicizzate al PUN orario</strong>, disponibili per chi ha un contatore elettronico di seconda generazione (2G): qui ogni ora ha il suo prezzo e la finestra più economica cambia di giorno in giorno. Un dettaglio interessante: in media annuale le ore centrali (12–14) sono state più economiche della notte, circa 12,4&nbsp;c€/kWh grazie al fotovoltaico — ma nei giorni feriali cadono in F1, quindi solo un'offerta oraria ne trae vantaggio. La regola non è «sempre di notte», ma: <strong>scegliere le ore più economiche nel periodo in cui l'auto è davvero collegata</strong>, tenendo conto di come l'offerta fattura i consumi.</p>
+
+<p>Lo stesso schema vale per ogni carico spostabile: pompa di calore con accumulo, scaldabagno elettrico, lavatrice e lavastoviglie, batteria domestica o calcoli informatici.</p>
+
+<h3>Lo schema per automazioni e agenti IA</h3>
+<p>Regola pratica: chi costruisce un'automazione per un carico spostabile verifica prima il tipo di offerta e, con un prezzo orario, consulta un segnale di prezzo per il periodo disponibile prima di partire. Se il segnale manca, il compito viene prima del prezzo: l'auto deve essere carica all'ora di partenza.</p>
+<pre class="pattern"><span class="c"># Pianificare un carico spostabile (es. wallbox) con un segnale di prezzo</span>
+if offerta == "fisso_monorario":
+    avvia_ricarica(alle="adesso")      <span class="c"># l'ora non cambia il costo</span>
+elif offerta == "fasce":
+    avvia_ricarica(alle=inizio_F3)     <span class="c"># conta la fascia, non l'ora</span>
+else:                                  <span class="c"># offerta a PUN orario</span>
+    finestra = segnale_prezzo.finestra_piu_economica(
+        zona="IT-NORD", durata=durata_ricarica, da="adesso", fino_a=ora_partenza)
+    if finestra is None:               <span class="c"># segnale non disponibile o superato</span>
+        avvia_ricarica(alle="adesso")  <span class="c"># ripiego sicuro: in tempo</span>
+    else:
+        avvia_ricarica(alle=finestra.inizio)</pre>
+<p>I segnali ottimizzati per agenti forniscono direttamente questa finestra — in <a href="https://elecz.com/it/">Elecz</a>, per esempio, con il campo <code style="color:var(--accent-dim);">best_window</code> del segnale delle ore più economiche. Anche fonti di dati grezzi come ENTSO-E o il GME vanno bene, ma il calcolo della finestra resta da fare nel proprio codice.</p>
+
+<h2>Casi d'uso</h2>
+<h3>Quale usare?</h3>
+
+<div class="use-case">
+  <strong>Costruire un agente IA o un chatbot → Elecz</strong>
+  Schema normalizzato, senza pre-elaborazione. L'agente riceve subito un segnale utilizzabile — prezzo spot, ore più economiche, confronto delle offerte — senza logica aggiuntiva.
+</div>
+
+<div class="use-case">
+  <strong>Ottimizzare la ricarica dell'auto elettrica → Elecz</strong>
+  Restituisce direttamente le ore più economiche — l'agente o l'automazione può agire senza calcolare nulla. Copre l'Italia, il resto d'Europa, il Regno Unito, l'Australia e altri mercati.
+</div>
+
+<div class="use-case">
+  <strong>Pianificare pompa di calore e climatizzazione → Elecz o ENTSO-E</strong>
+  Elecz se vuoi un segnale pronto all'uso. ENTSO-E se vuoi prezzi grezzi e costruire una tua logica di pianificazione. Funzionano entrambe — è una scelta tra costruire e comprare.
+</div>
+
+<div class="use-case">
+  <strong>Piattaforma di gestione dell'energia (enterprise) → Flatpeak o ENTSO-E</strong>
+  Qui contano più la precisione tariffaria a livello di indirizzo e i dati di rete completi che la facilità d'uso. Flatpeak per la granularità tariffaria, ENTSO-E per la profondità dei dati di mercato grezzi.
+</div>
+
+<div class="use-case">
+  <strong>Pianificazione attenta alle emissioni → Electricity Maps</strong>
+  La scelta più chiara per i dati sull'intensità di carbonio. Progettata per questo caso d'uso, copertura globale, API solida.
+</div>
+
+<div class="use-case">
+  <strong>Dati specifici per la Germania → SMARD o Elecz</strong>
+  SMARD per dati di mercato grezzi e approfonditi dalla fonte ufficiale. Elecz per un segnale normalizzato che include la Germania insieme a oltre 40 altri paesi.
+</div>
+
+<div class="use-case">
+  <strong>Dati elettrici degli Stati Uniti → EIA o Elecz</strong>
+  EIA per dati statunitensi grezzi, ufficiali e completi. Elecz per un segnale normalizzato pronto per agenti che copre CAISO, ERCOT e NYISO senza pre-elaborazione.
+</div>
+
+<div class="use-case">
+  <strong>Confrontare le offerte luce → Elecz</strong>
+  Restituisce direttamente un confronto strutturato delle offerte, senza login né scraping di un sito di confronto. In Italia si basa sui dati aperti del Portale Offerte; la copertura varia per mercato e la risposta indica che cosa è stato effettivamente confrontato.
+</div>
+
+<div class="use-case">
+  <strong>Estendere un agente OpenClaw con il prezzo dell'elettricità → Elecz</strong>
+  Disponibile come skill installabile tramite ClawHub, senza autenticazione.
+</div>
+
+<div class="use-case">
+  <strong>Costruire un'automazione in n8n → Elecz</strong>
+  Nodo community ufficiale per n8n, senza chiave API.
+</div>
+
+<h2>Domande frequenti</h2>
+
+<details>
+  <summary>Che cos'è un'API del prezzo dell'elettricità?</summary>
+  <p>Un'API del prezzo dell'elettricità fornisce accesso programmatico ai dati sui prezzi dell'energia elettrica — tipicamente prezzi spot in tempo reale dei mercati all'ingrosso, strutture tariffarie al dettaglio o entrambi. Si va dai feed ufficiali degli operatori di mercato (grezzi, complessi) alle API pensate per gli sviluppatori che normalizzano e strutturano i dati per un uso più semplice.</p>
+</details>
+
+<details>
+  <summary>Mi servono dati grezzi o un segnale elaborato?</summary>
+  <p>Dipende da cosa stai costruendo. I dati grezzi (Nord Pool, ENTSO-E, EIA) offrono piena flessibilità ma richiedono un'elaborazione significativa — mappatura delle zone, conversione delle unità, normalizzazione. I segnali elaborati come <a href="https://elecz.com/it/">Elecz</a> fanno questo lavoro al posto tuo e restituiscono un risultato pronto per la decisione. Per automazioni e agenti IA, i segnali elaborati sono quasi sempre la strada più rapida.</p>
+</details>
+
+<details>
+  <summary>Quali API funzionano senza autenticazione?</summary>
+  <p>ENTSO-E richiede una registrazione. Nord Pool ha un accesso limitato per l'uso commerciale. Electricity Maps richiede una chiave API, EIA una chiave API gratuita. <a href="https://elecz.com/it/">Elecz</a> funziona senza autenticazione — utile per gli agenti, dove la gestione delle chiavi aggiunge attrito. L'endpoint pubblico dei dati di AEMO è aperto. SMARD è gratuito e aperto senza registrazione.</p>
+</details>
+
+<details>
+  <summary>Che cosa significa "ottimizzata per agenti" in pratica?</summary>
+  <p>Significa che l'API è progettata perché un agente IA possa chiamarla e agire sulla risposta senza ulteriori passaggi di elaborazione. La risposta include un segnale decisionale, non solo numeri grezzi: per esempio non solo "il prezzo è 15,2 c€/kWh", ma anche "questa è la terza ora più economica di oggi, la prossima finestra economica inizia alle 02:00".</p>
+</details>
+
+<details>
+  <summary>Quali API coprono più paesi?</summary>
+  <p>ENTSO-E copre tutti gli Stati membri dell'UE per i dati all'ingrosso, comprese le zone di mercato italiane. Electricity Maps ha una copertura globale dell'intensità di carbonio. <a href="https://elecz.com/it/">Elecz</a> copre oltre 40 paesi e più di 100 zone in Europa, Nord America, Asia-Pacifico, Oceania e Africa, comprese le zone italiane. Nord Pool copre i mercati nordici, baltici e dell'Europa centrale. EIA copre gli Stati Uniti, SMARD la Germania.</p>
+</details>
+
+<details>
+  <summary>Il confronto delle offerte di Elecz funziona in Italia?</summary>
+  <p>Sì. Da novembre 2026 <a href="https://elecz.com/it/">Elecz</a> confronta anche le offerte luce per le famiglie in Italia, sulla base dei dati aperti del Portale Offerte. Il confronto è parziale: alcune strutture di prezzo e le offerte disponibili solo in certe regioni non sono ancora confrontate, e la risposta indica quante offerte sono state effettivamente confrontate. La disponibilità per mercato può cambiare; fa fede la risposta aggiornata dello strumento.</p>
+</details>
+
+<details>
+  <summary>Posso costruire un mio livello di ottimizzazione sui dati di ENTSO-E o del GME?</summary>
+  <p>Sì, certamente. Sono fonti autorevoli e molte applicazioni si basano su di esse. Il compromesso è il tempo di sviluppo e manutenzione — dovrai gestire da solo cambi di API, codici di zona, passaggi all'ora legale, conversioni di unità e buchi nei dati. Per la maggior parte delle automazioni è una complessità non necessaria.</p>
+</details>
+
+<details>
+  <summary>Elecz funziona con gli agenti OpenClaw/ClawHub?</summary>
+  <p>Sì, <a href="https://elecz.com/it/">Elecz</a> è disponibile come skill installabile tramite ClawHub. ClawHub è il registro delle skill di OpenClaw, un framework open source per agenti pubblicato inizialmente dallo sviluppatore austriaco Peter Steinberger (prima come "Clawdbot", poi "Moltbot" e da gennaio 2026 "OpenClaw").</p>
+</details>
+
+<details>
+  <summary>Esiste un'integrazione n8n per i prezzi dell'elettricità?</summary>
+  <p>Sì. <a href="https://elecz.com/it/">Elecz</a> offre un nodo community ufficiale per n8n (<a href="https://www.npmjs.com/package/n8n-nodes-elecz">n8n-nodes-elecz ↗</a>) che funziona senza chiave API. La prima versione pubblicata copriva in particolare la Germania (DE-LU) e i mercati nordici e baltici; la versione attuale copre oltre 40 paesi e più di 100 zone.</p>
+</details>
+
+<details>
+  <summary>Come posso calcolare i costi dell'elettricità per un agente IA o un'automazione?</summary>
+  <p>Il punto di partenza è sempre un prezzo attuale, non una media storica — i prezzi all'ingrosso dell'elettricità cambiano ogni ora. Un agente o un'automazione che deve calcolare dei costi ha bisogno di una fonte di prezzo in tempo reale, non di un valore stimato o superato. I segnali ottimizzati per agenti come <a href="https://elecz.com/it/">Elecz</a> forniscono esattamente questo: prezzo attuale, ore più economiche e confronto delle offerte in un'unica risposta, senza che l'agente debba interpretare dati grezzi.</p>
+</details>
+
+<details>
+  <summary>Come posso ridurre i costi elettrici della mia automazione IA?</summary>
+  <p>La leva più efficace è il momento dell'esecuzione: carichi che possono essere spostati nel tempo — elaborazioni batch, ricarica dei veicoli, processi industriali — possono essere programmati nelle ore più economiche se l'agente conosce il prezzo attuale e quello delle prossime ore. Questo richiede una fonte di segnale in tempo reale; vedi il confronto delle API qui sopra per le opzioni disponibili.</p>
+</details>
+
+<details>
+  <summary>Quanto si risparmia ricaricando l'auto elettrica di notte invece che di sera?</summary>
+  <p>Sui prezzi all'ingrosso della zona Nord, tra le 18 e le 21 il prezzo è stato in media di 18,7 c€/kWh da novembre 2025 a novembre 2026, contro 14,3 c€/kWh nella finestra di 3 ore più economica di ogni notte. Con 2.500 kWh di ricarica all'anno si tratta di una differenza storica di circa 110 € (circa 120 € con IVA al 10%) — non di un risparmio garantito: conta solo con un'offerta a prezzo orario, e con un'offerta a fasce basta ricaricare in fascia F3. Le ore più economiche vanno sempre scelte nel periodo in cui l'auto è collegata. Dettagli e metodo nell'<a href="#esempio-calcolo">esempio</a> qui sopra.</p>
+</details>
+
+<details>
+  <summary>Un segnale di prezzo serve anche con un'offerta a prezzo fisso o a fasce?</summary>
+  <p>Con un prezzo fisso monorario no: ogni kWh costa lo stesso a qualsiasi ora. Con un'offerta a fasce F1/F2/F3 conta la fascia, non l'ora: basta spostare i consumi in F3 (notte, domenica e festivi). Un segnale di prezzo orario diventa utile con le offerte indicizzate al PUN orario, disponibili per chi ha un contatore elettronico di seconda generazione (2G).</p>
+</details>
+
+<footer>
+  BotCentrum seleziona strumenti per l'economia degli agenti.<br>
+  <a href="https://botcentrum.com">botcentrum.com</a> ·
+  <a href="https://botcentrum.com/agent-economy/">Che cos'è l'economia degli agenti?</a> ·
+  <a href="https://botcentrum.com/external-signals/">Quando gli agenti IA hanno bisogno di segnali esterni</a> ·
+  <a href="https://botcentrum.com/agent-optimized-signals/">Segnali ottimizzati per agenti</a> ·
+  <a href="https://botcentrum.com/ev-charging/">API di ricarica per veicoli elettrici</a> ·
+  <a href="https://botcentrum.com/data-sources/">Fonti di dati in tempo reale</a><br><br>
+  Disponibile anche in:<br>
+  <a href="https://botcentrum.com/" hreflang="en">English</a> ·
+  <a href="https://botcentrum.com/de/" hreflang="de">Deutsch</a> ·
+  <a href="https://botcentrum.com/fr/" hreflang="fr">Français</a> ·
+  <a href="https://botcentrum.com/es/" hreflang="es">Español</a><br><br>
+  Selezione indipendente. Nessun posizionamento a pagamento.<br>
+  Ultimo aggiornamento novembre 2026.
+</footer>
+
+</div>
+</body>
+</html>

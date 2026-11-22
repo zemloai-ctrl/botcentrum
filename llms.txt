@@ -17,3 +17,4 @@
 - [Deutsch](https://botcentrum.com/de/)
 - [Français](https://botcentrum.com/fr/)
 - [Español](https://botcentrum.com/es/)
+- [Italiano](https://botcentrum.com/it/)
